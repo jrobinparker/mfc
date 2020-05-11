@@ -7,7 +7,7 @@ const ProfileSchema = new mongoose.Schema({
   },
   rank: {
     type: String,
-    required: True
+    required: true
   },
   location: {
     type: String
