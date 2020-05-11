@@ -6,8 +6,7 @@ const ProfileSchema = new mongoose.Schema({
     ref: 'user'
   },
   rank: {
-    type: String,
-    required: true
+    type: String
   },
   location: {
     type: String
