@@ -77,6 +77,34 @@ router.post('/', [
     console.error(err.message);
     res.status(500).send('Server error');
   }
+});
+
+// @route Get api/profile/all
+// @desc Get all profiles
+// @access Private
+
+router.get('/all', auth, async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate('user', ['name'])
+    res.json(profiles)
+  } catch (err) {
+    console.error(error.message)
+    res.status(500).send('Server error.')
+  }
+})
+
+// @route Get api/profile/
+// @desc Get all profiles
+// @access Private
+
+router.get('/all', auth, async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate('user', ['name'])
+    res.json(profiles)
+  } catch (err) {
+    console.error(error.message)
+    res.status(500).send('Server error.')
+  }
 })
 
 module.exports = router;
