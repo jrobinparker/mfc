@@ -39,7 +39,40 @@ router.post('/', [ auth, [
       console.error(err.message);
       res.status(500).send('Server error');
     }
-
   });
+
+// @route GET api/lessons
+// @desc Get all lessons
+// @access Private
+router.get('/', auth, async (req, res) => {
+  try {
+    const lessons = await Lesson.find().sort({ date: -1 });
+    res.json(lessons);
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// @route GET api/lessons/:id
+// @desc Get lesson by ID
+// @access Private
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const lesson = await Lesson.findById(req.params.id);
+
+    if (!lesson) {
+      return res.status(404).json({ msg: 'Lesson not found' });
+    }
+
+    res.json(lesson);
+  } catch(err) {
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Lesson not found' });
+    }
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
 
 module.exports = router;
