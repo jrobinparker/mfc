@@ -11,7 +11,7 @@ const User = require('../../models/User');
 // @route POST api/lessons
 // @desc Create a lesson
 // @access Private
-router.get('/', [ auth, [
+router.post('/', [ auth, [
     check('title', 'Title is required').not().isEmpty(),
     check('description', 'Description is required').not().isEmpty()
     ]
