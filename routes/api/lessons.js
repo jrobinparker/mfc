@@ -194,4 +194,68 @@ router.put('/uncomplete/:id', auth, async (req, res) => {
   }
 });
 
+// @route POST api/lessons/comment/:id
+// @desc Add a comment to a lesson
+// @access Private
+router.post('/comment/:id', [ auth, [
+    check('text', 'Comment text is required').not().isEmpty(),
+    ]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() })
+    }
+
+    try {
+      const user = await User.findById(req.user.id).select('-password');
+      const lesson = await Lesson.findById(req.params.id);
+
+      const newComment = {
+        user: req.user.id,
+        author: user.name,
+        text: req.body.text
+      };
+
+      lesson.comments.unshift(newComment);
+
+      await lesson.save();
+
+      res.json(lesson.comments);
+    } catch(err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
+  });
+
+// @route DELETE api/lessons/comment/:id/:comment_id
+// @desc Delete comment
+// @access Private
+router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
+  try {
+    const lesson = await Lesson.findById(req.params.id);
+
+    const comment = lesson.comments.find(comment => comment.id === req.params.comment_id);
+
+    if (!comment) {
+      return res.status(404).json({ msg: 'Comment does not exist' });
+    }
+
+    if (comment.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'User not authorized' });
+    }
+
+    const removeIndex = lesson.comments.map(comment => comment.user.toString()).indexOf(req.user.id);
+
+    lesson.comments.splice(removeIndex, 1);
+
+    await lesson.save();
+
+    res.json(lesson.comments);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+})
+
 module.exports = router;
