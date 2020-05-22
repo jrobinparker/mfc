@@ -75,4 +75,31 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
+// @route DELETE api/lessons/:id
+// @desc Delete a lesson
+// @access Private
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const lesson = await Lesson.findById(req.params.id);
+
+    if (!lesson) {
+      return res.status(404).json({ msg: 'Lesson not found' });
+    }
+
+    if (lesson.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'User not authorized' });
+    }
+
+    await lesson.remove();
+
+    res.json({ msg: 'Lesson deleted' });
+  } catch(err) {
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Lesson not found' });
+    }
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;
