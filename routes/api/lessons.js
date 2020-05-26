@@ -172,8 +172,8 @@ router.put('/complete/:id', auth, async (req, res) => {
   }
 });
 
-// @route PUT api/lessons/unlike/:id
-// @desc Complete a lesson
+// @route PUT api/lessons/uncomplete/:id
+// @desc Uncomplete a lesson
 // @access Private
 router.put('/uncomplete/:id', auth, async (req, res) => {
   try {
