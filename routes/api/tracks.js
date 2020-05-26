@@ -78,4 +78,31 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
+// @route DELETE api/tracks/:id
+// @desc Delete a track
+// @access Private
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    const track = await Track.findById(req.params.id);
+
+    if (!track) {
+      return res.status(404).json({ msg: 'Track not found' });
+    }
+
+    if (track.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'User not authorized' });
+    }
+
+    await track.remove();
+
+    res.json({ msg: 'Track deleted' });
+  } catch(err) {
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Track not found' });
+    }
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;
