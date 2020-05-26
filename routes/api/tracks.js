@@ -57,4 +57,25 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// @route GET api/tracks/:id
+// @desc Get track by ID
+// @access Private
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const track = await Track.findById(req.params.id);
+
+    if (!track) {
+      return res.status(404).json({ msg: 'Track not found' });
+    }
+
+    res.json(track);
+  } catch(err) {
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Track not found' });
+    }
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;
