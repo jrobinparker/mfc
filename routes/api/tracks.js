@@ -105,4 +105,26 @@ router.delete('/:id', auth, async (req, res) => {
   }
 });
 
+// @route PUT api/tracks/like/:id
+// @desc Like a track
+// @access Private
+router.put('/like/:id', auth, async (req, res) => {
+  try {
+      const track = await Track.findById(req.params.id);
+
+      if (track.likes.filter(like => like.user.toString() === req.user.id).length > 0) {
+        return res.status(400).json({ msg: 'Track already liked!' });
+      };
+
+      track.likes.unshift({ user: req.user.id });
+
+      await track.save();
+
+      res.json(track.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;
