@@ -127,4 +127,28 @@ router.put('/like/:id', auth, async (req, res) => {
   }
 });
 
+// @route PUT api/tracks/unlike/:id
+// @desc Unlike a track
+// @access Private
+router.put('/unlike/:id', auth, async (req, res) => {
+  try {
+      const track = await Track.findById(req.params.id);
+
+      if (track.likes.filter(like => like.user.toString() === req.user.id).length === 0) {
+        return res.status(400).json({ msg: 'Track has not yet been liked!' });
+      };
+
+      const removeIndex = track.likes.map(like => like.user.toString()).indexOf(req.user.id)
+
+      track.likes.splice(removeIndex, 1)
+
+      await track.save();
+
+      res.json(track.likes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;
