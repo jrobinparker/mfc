@@ -17,6 +17,12 @@ const LessonSchema = new Schema({
     type: String,
     required: true
   },
+  style: {
+    type: String
+  },
+  rank: {
+    type: String
+  },
   likes: [
     {
       user: {

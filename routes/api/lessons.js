@@ -29,7 +29,9 @@ router.post('/', [ auth, [
         user: req.user.id,
         title: req.body.title,
         author: user.name,
-        description: req.body.description
+        description: req.body.description,
+        style: req.body.style,
+        rank: req.body.rank
       });
 
       const lesson = await newLesson.save();
