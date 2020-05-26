@@ -151,4 +151,50 @@ router.put('/unlike/:id', auth, async (req, res) => {
   }
 });
 
+// @route PUT api/tracks/complete/:id
+// @desc Complete a track
+// @access Private
+router.put('/complete/:id', auth, async (req, res) => {
+  try {
+      const track = await Track.findById(req.params.id);
+
+      if (track.completes.filter(complete => complete.user.toString() === req.user.id).length > 0) {
+        return res.status(400).json({ msg: 'Track already completed!' });
+      };
+
+      track.completes.unshift({ user: req.user.id });
+
+      await track.save();
+
+      res.json(track.completes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// @route PUT api/tracks/uncomplete/:id
+// @desc Uncomplete a track
+// @access Private
+router.put('/uncomplete/:id', auth, async (req, res) => {
+  try {
+      const track = await Track.findById(req.params.id);
+
+      if (track.completes.filter(complete => complete.user.toString() === req.user.id).length === 0) {
+        return res.status(400).json({ msg: 'Track has not yet been completed!' });
+      };
+
+      const removeIndex = track.completes.map(complete => complete.user.toString()).indexOf(req.user.id)
+
+      track.completes.splice(removeIndex, 1)
+
+      await track.save();
+
+      res.json(track.completes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 module.exports = router;
