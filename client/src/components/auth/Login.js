@@ -12,11 +12,6 @@ const Login = () => {
 
   const onSubmit = e => {
     e.preventDefault();
-    if (password !== password2) {
-      alert('passwords do not match')
-    } else {
-      alert(formData)
-    }
   }
 
   return (
