@@ -1,18 +1,23 @@
 import React, { Fragment } from 'react';
-import Nav from './components/home/nav/Nav';
-import Home from './components/home/Home';
-import Message from './components/home/Message';
-import About from './components/home/about/About';
-import Register from './components/home/Register';
-import Contact from './components/home/contact/Contact';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Main from './components/landing/Main';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import 'bulma';
 import './App.css';
 
-const App = () =>
+const App = () => (
+  <Router>
     <Fragment>
-      <Nav />
-      <div className="container content">
-        <Home />
-      </div>
+        <Route exact path="/" component={Main} />
+        <div className="container">
+          <Switch>
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+          </Switch>
+          </div>
     </Fragment>
+  </Router>
+)
 
 export default App;

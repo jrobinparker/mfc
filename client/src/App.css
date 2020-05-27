@@ -12,7 +12,7 @@ body {
 
 /* nav styles */
 
-.navbar {
+.mfc-navbar {
   z-index: 100;
   position: sticky;
   top: 0%;
@@ -51,9 +51,10 @@ body {
 /* hero image and banner text */
 
 .landing {
-  display: block;
-  height: 101vh;
+  height: 100vh;
   width: 100vw;
+  position: absolute;
+  top: 0%;
 }
 
 .hero-banner {
@@ -298,8 +299,9 @@ body {
   font-size: 1.25rem;
 }
 
+/*
+
 button {
-  font-family: 'Fjalla One', sans-serif;
   width: 50%;
   margin-top: 20px;
   background-color: white;
@@ -322,7 +324,6 @@ button:hover {
 
 label {
   display: block;
-  font-family: 'Fjalla One', sans-serif;
   font-size: 1.5rem;
   margin-bottom: 3.5%;
 }
@@ -333,10 +334,11 @@ input {
   display: block;
   width: 50%;
   padding: 1% 0 1% 0;
-  font-family: 'Fjalla One', sans-serif;
   font-size: 1.5rem;
   margin-bottom: 3.5%;
 }
+
+*/
 
 /* contact */
 
@@ -545,9 +547,11 @@ input {
     font-size: 1rem;
   }
 
-  button {
+  /* button {
     font-size: 1rem;
   }
+
+  */
 
   /* contact */
 
@@ -820,8 +824,7 @@ input {
     font-size: 1.25rem;
   }
 
-  button {
-    font-family: 'Fjalla One', sans-serif;
+  /* button {
     width: 50%;
     margin-top: 20px;
     background-color: white;
@@ -844,7 +847,6 @@ input {
 
   label {
     display: block;
-    font-family: 'Fjalla One', sans-serif;
     font-size: 1.5rem;
     margin-bottom: 3.5%;
   }
@@ -855,10 +857,12 @@ input {
     display: block;
     width: 50%;
     padding: 1% 0 1% 0;
-    font-family: 'Fjalla One', sans-serif;
+    : 'Fjalla One', sans-serif;
     font-size: 1.5rem;
     margin-bottom: 3.5%;
   }
+
+  */
 
   /* contact */
 

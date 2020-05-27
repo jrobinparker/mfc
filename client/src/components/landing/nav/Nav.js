@@ -7,7 +7,7 @@ const Nav = () => {
 
   function setNavStyle() {
     const scrollPercent = window.scrollY / 1000
-    const nav = document.querySelector(".navbar")
+    const nav = document.querySelector(".mfc-navbar")
     const logo = document.querySelector(".logo")
     if (scrollPercent >= .75) {
       nav.style.backgroundColor = 'rgba(255,255,255,1)';
@@ -31,13 +31,13 @@ const Nav = () => {
   }
 
   return (
-    <nav className="navbar">
+    <nav className="mfc-navbar">
         <img src={require('../../../assets/logo-transparent.png')} className="logo" alt="logo"/>
         <NavLink link={'MFC Online'} id={'home'} />
         <div className="nav-links">
           <NavLink link={'About'} id={'message'} />
-          <NavLink link={'Registration'} id={'register'} />
-          <NavLink link={'Contact'} id={'contact'} />
+          <NavLink link={'Pricing'} id={'pricing'} />
+          <NavLink link={'Contact'} id={'Contact'} />
         </div>
     </nav>
   )

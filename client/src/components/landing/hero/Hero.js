@@ -1,12 +1,12 @@
 import React from 'react';
 
-const Home = () => {
+const Hero = () => {
   return (
     <div className="landing" id="home">
       <div className="hero-banner">
         <div className="banner-bg">
         <div className="banner-text">
-          <img src={require('../../assets/logo-transparent.png')} className="hero-img" alt="sparring" />
+          <img src={require('../../../assets/logo-transparent.png')} className="hero-img" alt="sparring" />
           <h1 className="title">Modern Fighting Concepts</h1>
           <h2 className="subtitle">Online</h2>
           <div className="banner-buttons">
@@ -23,7 +23,7 @@ const Home = () => {
               onClick={() => {
                 document.getElementById('register').scrollIntoView({behavior: 'smooth'})
               }}>
-                Register
+                Pricing
             </div>
           </div>
           </div>
@@ -31,6 +31,6 @@ const Home = () => {
         </div>
     </div>
   )
-}
+};
 
-export default Home;
+export default Hero;
