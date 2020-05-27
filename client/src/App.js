@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Main from './components/landing/Main';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import Alert from './components/alerts/Alert';
 import { Provider } from 'react-redux';
 import store from './store';
 import 'bulma';
@@ -14,6 +15,7 @@ const App = () => (
       <Fragment>
           <Route exact path="/" component={Main} />
           <div className="container">
+            <Alert />
             <Switch>
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
