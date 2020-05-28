@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   const [ formData, setFormData ] = useState({
     name: '',
     email: '',
@@ -18,9 +19,9 @@ const Register = ({ setAlert }) => {
   const onSubmit = e => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert('Passwords do not match!', 'danger', 5000);
+      setAlert('Passwords do not match', 'danger', 5000);
     } else {
-      alert(formData)
+      register({ name, email, password });
     }
   }
 
@@ -38,7 +39,6 @@ const Register = ({ setAlert }) => {
                 name='name'
                 placeholder='Full name'
                 onChange={e => onChange(e)}
-                required
               />
           </div>
           </div>
@@ -52,7 +52,6 @@ const Register = ({ setAlert }) => {
                   name='email'
                   placeholder='Email address'
                   onChange={e => onChange(e)}
-                  required
                 />
               </div>
             </div>
@@ -66,7 +65,6 @@ const Register = ({ setAlert }) => {
                   name='password'
                   placeholder='Enter a password'
                   onChange={e => onChange(e)}
-                  required
                 />
             </div>
         </div>
@@ -80,7 +78,6 @@ const Register = ({ setAlert }) => {
                   name='password2'
                   placeholder='Reenter password'
                   onChange={e => onChange(e)}
-                  required
                 />
             </div>
         </div>
@@ -91,7 +88,8 @@ const Register = ({ setAlert }) => {
 }
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
 }
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);

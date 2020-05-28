@@ -207,31 +207,53 @@ body {
   visibility: hidden;
 }
 
-.fade-in-up {
-  animation: fadeInUp .5s ease-in;
+.fade-in {
+  animation: fadeIn .5s ease-in;
 }
 
-@keyframes fadeInUp {
+.fade-out {
+  animation: fadeOut .5s ease-in;
+  animation-delay: 1s;
+}
+
+
+@keyframes fadeIn {
     from {
-        transform: translate3d(0,40px,0);
         opacity: 0
     }
 
     to {
-        transform: translate3d(0,0,0);
         opacity: 1
     }
 }
 
-@-webkit-keyframes fadeInUp {
+@-webkit-keyframes fadeIn {
     from {
-        transform: translate3d(0,40px,0);
-
+        opacity: 0;
     }
 
     to {
-        transform: translate3d(0,0,0);
         opacity: 1
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1
+    }
+
+    to {
+        opacity: 0
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    from {
+        opacity: 1
+    }
+
+    to {
+        opacity: 0
     }
 }
 
