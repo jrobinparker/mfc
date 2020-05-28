@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Main from './components/landing/Main';
+import Nav from './components/landing/nav/Nav';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Alert from './components/alerts/Alert';
@@ -25,6 +26,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
+            <Nav />
             <Route exact path="/" component={Main} />
             <div className="container">
               <Alert />

@@ -5,7 +5,6 @@ import Hero from './hero/Hero';
 const Main = () => {
   return (
       <Fragment>
-        <Nav />
         <Hero />
       </Fragment>
   )

@@ -1,7 +1,26 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import NavLink from './NavLink';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../../actions/auth';
 
-const Nav = () => {
+const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
+
+  const authLinks = (
+    <div className="nav-links">
+      <a onClick={logout} className="nav-brand" style={{ color: 'white', cursor: 'pointer' }}>Logout</a>
+    </div>
+  );
+
+  const guestLinks = (
+    <div className="nav-links">
+      <NavLink link={'About'} id={'message'} />
+      <NavLink link={'Pricing'} id={'pricing'} />
+      <NavLink link={'Contact'} id={'Contact'} />
+      <Link to={'/login'} className="nav-brand" style={{ color: 'white', cursor: 'pointer' }}>Login</Link>
+    </div>
+  )
 
   const app = document.body
 
@@ -34,13 +53,18 @@ const Nav = () => {
     <nav className="mfc-navbar">
         <img src={require('../../../assets/logo-transparent.png')} className="logo" alt="logo"/>
         <NavLink link={'MFC Online'} id={'home'} />
-        <div className="nav-links">
-          <NavLink link={'About'} id={'message'} />
-          <NavLink link={'Pricing'} id={'pricing'} />
-          <NavLink link={'Contact'} id={'Contact'} />
-        </div>
+        { !loading && (<Fragment>{ isAuthenticated ? authLinks : guestLinks }</Fragment>)}
     </nav>
   )
 }
 
-export default Nav;
+Nav.propTypes = {
+  logout: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth
+})
+
+export default connect(mapStateToProps, { logout })(Nav);
