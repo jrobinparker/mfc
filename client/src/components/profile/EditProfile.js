@@ -46,7 +46,6 @@ const EditProfile = ({ profile: { profile, loading}, createProfile, getCurrentPr
               <label className="label">Rank</label>
                 <div class="select">
                   <select onChange={e => onChange(e)} name="rank" value={rank}>
-                    <option value="" disabled selected>{rank}</option>
                     <option name="rank">White</option>
                     <option name="rank">Yellow</option>
                     <option name="rank">Green</option>
