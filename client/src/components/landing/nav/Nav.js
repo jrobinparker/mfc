@@ -9,7 +9,8 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const authLinks = (
     <div className="nav-links">
-      <a onClick={logout} className="nav-brand" style={{ color: 'white', cursor: 'pointer' }}>Logout</a>
+      <Link to={'/lessons'} className="nav-brand" style={{ color: 'black', cursor: 'pointer' }}>Lessons</Link>
+      <Link onClick={logout} className="nav-brand" style={{ color: 'black', cursor: 'pointer' }}>Logout</Link>
     </div>
   );
 
