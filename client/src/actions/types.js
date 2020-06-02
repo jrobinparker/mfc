@@ -11,4 +11,5 @@ export const GET_PROFILE = 'GET_PROFILE';
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const GET_LESSONS = 'GET_LESSONS';
+export const GET_LESSON = 'GET_LESSON';
 export const LESSON_ERROR = 'LESSON_ERROR';

@@ -8,6 +8,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile/CreateProfile';
 import EditProfile from './components/profile/EditProfile';
 import Lessons from './components/lessons/Lessons';
+import Lesson from './components/lessons/Lesson';
 import Alert from './components/alerts/Alert';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { loadUser } from './actions/auth';
@@ -42,8 +43,9 @@ const App = () => {
                 <PrivateRoute exact path="/create-profile" component={CreateProfile} />
                 <PrivateRoute exact path="/edit-profile" component={EditProfile} />
                 <PrivateRoute exact path="/lessons" component={Lessons} />
+                <PrivateRoute exact path="/lesson/:id" component={Lesson} />
               </Switch>
-              </div>
+            </div>
         </Fragment>
       </Router>
     </Provider>
