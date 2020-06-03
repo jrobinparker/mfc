@@ -1,0 +1,17 @@
+.lesson-header, .lesson-description, .lesson-comments {
+  background-color: white;
+  padding: 10px;
+}
+
+.lesson-metadata {
+  margin-top: -15px;
+}
+
+.lesson-content {
+  background-color: hsl(0, 0%, 21%);
+  height: 70vh;
+}
+
+.lesson-comments {
+  margin-top: 10px;
+}

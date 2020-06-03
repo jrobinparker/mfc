@@ -8,7 +8,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile/CreateProfile';
 import EditProfile from './components/profile/EditProfile';
 import Lessons from './components/lessons/Lessons';
-import Lesson from './components/lessons/Lesson';
+import Lesson from './components/lessons/lesson/Lesson';
 import Alert from './components/alerts/Alert';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { loadUser } from './actions/auth';
@@ -16,6 +16,7 @@ import setAuthToken from './utils/setAuthToken';
 import { Provider } from 'react-redux';
 import store from './store';
 import 'bulma';
+import '@fortawesome/fontawesome-free';
 import './App.css';
 
 if (localStorage.token) {
