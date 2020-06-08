@@ -23,6 +23,9 @@ const LessonSchema = new Schema({
   rank: {
     type: String
   },
+  skills: {
+    type: [String]
+  },
   likes: [
     {
       user: {

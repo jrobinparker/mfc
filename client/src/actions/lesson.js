@@ -61,3 +61,35 @@ export const removeLike = id => async dispatch => {
     })
   }
 }
+
+export const createLesson = (formData, history, edit = false) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const res = await axios.post('/api/lessons', formData, config)
+
+    dispatch({
+      type: GET_LESSON,
+      payload: res.data
+    });
+
+    dispatch(setAlert(edit ? 'Lesson updated!' : 'Lesson created!', 'success'));
+
+    history.push('/dashboard');
+  } catch(err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+    };
+
+    dispatch({
+      type: LESSON_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+}

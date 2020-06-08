@@ -25,14 +25,21 @@ router.post('/', [ auth, [
     try {
       const user = await User.findById(req.user.id).select('-password');
 
-      const newLesson = new Lesson({
-        user: req.user.id,
-        title: req.body.title,
-        author: user.name,
-        description: req.body.description,
-        style: req.body.style,
-        rank: req.body.rank
-      });
+      const { title, rank, description, style, skills, about } = req.body;
+
+      const lessonFields = {}
+
+      lessonFields.user = user;
+      lessonFields.author = user.name;
+      lessonFields.title = title;
+      lessonFields.description = description;
+      if (rank) lessonFields.rank = rank;
+      if (style) lessonFields.style = style;
+      if (skills) {
+        lessonFields.skills = skills.split(',').map(skill => skill.trim());
+      }
+
+      const newLesson = new Lesson(lessonFields);
 
       const lesson = await newLesson.save();
 

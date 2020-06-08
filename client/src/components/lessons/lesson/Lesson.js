@@ -7,6 +7,7 @@ import { getCurrentProfile } from '../../../actions/profile';
 import { setAlert } from '../../../actions/alert';
 import LessonHeader from './LessonHeader';
 import LessonComments from './LessonComments';
+import SkillIcon from './SkillIcon';
 import Loading from '../../utils/Loading';
 import './Lesson.css';
 
@@ -20,7 +21,7 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, l
     getCurrentProfile()
   }, [match.params.id, getLesson, getCurrentProfile]);
 
-  console.log(user)
+  console.log(lesson)
 
   return loading || lesson === null ? <Loading /> : (
     <div className="container">
@@ -33,6 +34,7 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, l
           date={lesson.date}
           rank={lesson.rank}
           style={lesson.style}
+          skills={lesson.skills}
           likes={lesson.likes}
           addLike={addLike}
           removeLike={removeLike}
