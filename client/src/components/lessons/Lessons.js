@@ -8,7 +8,9 @@ import Loading from '../utils/Loading';
 
 const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
   const [ filter, setFilter ] = useState({
-    filter: ''
+    rank: 'all',
+    style: 'all',
+    sort: 'all'
   });
 
   useEffect(() => {
@@ -16,66 +18,88 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
   }, [getLessons]);
 
   const onChange = e => {
-    setFilter({ filter: e.target.value });
+    setFilter({ [e.target.name]: e.target.value });
   };
 
   let filteredLessons
 
-  if (filter.filter === '') {
-    filteredLessons = lessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson} />)
-  }
-
-  if (filter.filter === 'white') {
+  if (filter.rank === 'white') {
     filteredLessons = lessons
       .filter(lesson => lesson.rank === 'white')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
-  if (filter.filter === 'yellow') {
+  if (filter.rank === 'yellow') {
     filteredLessons = lessons
       .filter(lesson => lesson.rank === 'yellow')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
-  if (filter.filter === 'green') {
+  if (filter.rank === 'green') {
     filteredLessons = lessons
       .filter(lesson => lesson.rank === 'green')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
-  if (filter.filter === 'blue') {
+  if (filter.rank === 'blue') {
     filteredLessons = lessons
       .filter(lesson => lesson.rank === 'blue')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
-  if (filter.filter === 'purple') {
+  if (filter.rank === 'purple') {
     filteredLessons = lessons
       .filter(lesson => lesson.rank === 'purple')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
-  if (filter.filter === 'brown') {
+  if (filter.rank === 'brown') {
     filteredLessons = lessons
       .filter(lesson => lesson.rank === 'purple')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
-  if (filter.filter === 'black') {
+  if (filter.rank === 'black') {
     filteredLessons = lessons
       .filter(lesson => lesson.rank === 'black')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
-  if (filter.filter === '') {
-    filteredLessons = lessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson} />)
+  if (filter.rank === 'all') {
+    filteredLessons = lessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
-  if (filter.filter === 'eskrima') {
+  if (filter.style === 'all') {
+    filteredLessons = lessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+  }
+
+  if (filter.style === 'Eskrima') {
     filteredLessons = lessons
-      .filter(lesson => lesson.rank === 'eskrima')
+      .filter(lesson => lesson.style === 'Eskrima')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
+
+  if (filter.sort === 'all') {
+    filteredLessons = lessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+  }
+
+  if (filter.sort === 'dates') {
+    filteredLessons = lessons
+      .sort((a, b) => b.date - a.date)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+    }
+
+  if (filter.sort === 'likes') {
+    filteredLessons = lessons
+      .sort((a, b) => b.likes.length - a.likes.length)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+    }
+
+  if (filter.sort === 'completes') {
+    filteredLessons = lessons
+      .sort((a, b) => b.completes.length - a.completes.length)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+    }
 
   return loading ? <Loading /> : (
     <Fragment>
@@ -88,7 +112,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
               <label class="label">Rank</label>
               <div class="select">
                 <select onChange={e => onChange(e)} name="rank">
-                  <option value="" selected>all</option>
+                  <option value="all" selected>all</option>
                   <option>white</option>
                   <option>yellow</option>
                   <option>green</option>
@@ -104,9 +128,9 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
             <div class="control">
               <label class="label">Style</label>
               <div class="select">
-                <select>
-                  <option>Select dropdown</option>
-                  <option>With options</option>
+                <select onChange={e => onChange(e)} name="style">
+                  <option value="all" selected>all</option>
+                  <option>Eskrima</option>
                 </select>
               </div>
             </div>
@@ -115,10 +139,11 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
             <div class="control">
               <label class="label">Sort</label>
               <div class="select">
-                <select>
-                  <option>Most Recent</option>
-                  <option>Most Likes</option>
-                  <option>Most Completes</option>
+                <select onChange={e => onChange(e)} name="sort">
+                  <option value="all" selected>All</option>
+                  <option value="dates">Most Recent</option>
+                  <option value="likes">Most Likes</option>
+                  <option value="completes">Most Completes</option>
                 </select>
               </div>
             </div>
