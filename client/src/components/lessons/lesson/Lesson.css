@@ -15,3 +15,22 @@
 .lesson-comments {
   margin-top: 10px;
 }
+
+.lesson-item-title {
+  font-size: 1.5rem;
+  font-weight: 1000;
+  margin-bottom: 25px;
+}
+
+.lessons-subcontainer {
+  display: flex;
+}
+
+.filter-container {
+  width: 20%;
+  margin-right: 20px;
+}
+
+.lessons-container {
+  width: 70%;
+}

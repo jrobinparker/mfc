@@ -6,7 +6,7 @@ import LikeIcon from './LikeIcon';
 import CompleteIcon from './CompleteIcon';
 
 const LessonHeader = props => {
-  const { title, author, date, style, rank, likes, completes } = props
+  const { id, user, title, author, date, style, rank, likes, completes, addLike, removeLike } = props
   return (
     <div className="lesson-header">
         <h1 className="title">
@@ -18,7 +18,7 @@ const LessonHeader = props => {
         <div class="field is-grouped is-grouped-multiline lesson-metadata">
           <StyleIcon style={style} />
           <RankIcon rank={rank} />
-          <LikeIcon likes={likes} />
+          <LikeIcon likes={likes} id={id} user={user} addLike={addLike} removeLike={removeLike} alert={alert}/>
           <CompleteIcon completes={completes} />
         </div>
     </div>

@@ -2,31 +2,41 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getLesson } from '../../../actions/lesson';
+import { getLesson, addLike, removeLike } from '../../../actions/lesson';
+import { getCurrentProfile } from '../../../actions/profile';
+import { setAlert } from '../../../actions/alert';
 import LessonHeader from './LessonHeader';
 import LessonComments from './LessonComments';
 import Loading from '../../utils/Loading';
 import './Lesson.css';
 
-const Lesson = ({ getLesson, lesson: { lesson, loading }, match }) => {
+const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, lesson: { lesson, loading }, auth: { user }, match }) => {
   const [ displayComments, toggleComments ] = useState({
     show: false
   })
 
   useEffect(() => {
-    getLesson(match.params.id);
-  }, [match.params.id, getLesson]);
+    getLesson(match.params.id)
+    getCurrentProfile()
+  }, [match.params.id, getLesson, getCurrentProfile]);
+
+  console.log(user)
 
   return loading || lesson === null ? <Loading /> : (
     <div className="container">
       <div className="lesson-container">
         <LessonHeader
+          id={lesson._id}
+          user={user}
           title={lesson.title}
           author={lesson.author}
           date={lesson.date}
           rank={lesson.rank}
           style={lesson.style}
           likes={lesson.likes}
+          addLike={addLike}
+          removeLike={removeLike}
+          alert={setAlert}
           completes={lesson.completes}
         />
 
@@ -60,11 +70,16 @@ const Lesson = ({ getLesson, lesson: { lesson, loading }, match }) => {
 
 Lesson.propTypes = {
   getLesson: PropTypes.func.isRequired,
-  lesson: PropTypes.object.isRequired
+  getCurrentProfile: PropTypes.func.isRequired,
+  addLike: PropTypes.func.isRequired,
+  removeLike: PropTypes.func.isRequired,
+  lesson: PropTypes.object.isRequired,
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   lesson: state.lesson
 });
 
-export default connect(mapStateToProps, { getLesson })(withRouter(Lesson));
+export default connect(mapStateToProps, { getLesson, getCurrentProfile, setAlert, addLike, removeLike })(withRouter(Lesson));

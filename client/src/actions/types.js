@@ -13,3 +13,4 @@ export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const GET_LESSONS = 'GET_LESSONS';
 export const GET_LESSON = 'GET_LESSON';
 export const LESSON_ERROR = 'LESSON_ERROR';
+export const UPDATE_LIKES = 'UPDATE_LIKES';
