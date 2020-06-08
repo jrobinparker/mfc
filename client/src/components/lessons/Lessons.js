@@ -73,7 +73,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
     filteredLessons = lessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
-  if (filter.style === 'Eskrima') {
+  if (filter.style === 'eskrima') {
     filteredLessons = lessons
       .filter(lesson => lesson.style === 'Eskrima')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
@@ -112,14 +112,14 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
               <label class="label">Rank</label>
               <div class="select">
                 <select onChange={e => onChange(e)} name="rank">
-                  <option value="all" selected>all</option>
-                  <option>white</option>
-                  <option>yellow</option>
-                  <option>green</option>
-                  <option>blue</option>
-                  <option>purple</option>
-                  <option>brown</option>
-                  <option>black</option>
+                <option value="all" selected>All Ranks</option>
+                <option value="white">White</option>
+                <option value="yellow">Yellow</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="purple">Purple</option>
+                <option value="brown">Brown</option>
+                <option value="black">Black</option>
                 </select>
               </div>
             </div>
@@ -129,8 +129,8 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
               <label class="label">Style</label>
               <div class="select">
                 <select onChange={e => onChange(e)} name="style">
-                  <option value="all" selected>all</option>
-                  <option>Eskrima</option>
+                  <option value="all" selected>All Styles</option>
+                  <option value="eskrima">Eskrima</option>
                 </select>
               </div>
             </div>

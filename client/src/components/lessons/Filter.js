@@ -10,14 +10,14 @@ const Filter = props => {
           <label class="label">Rank</label>
           <div class="select">
             <select onChange={e => setFilter(e)} name="rank">
-              <option value="" selected>all</option>
-              <option>white</option>
-              <option>yellow</option>
-              <option>green</option>
-              <option>blue</option>
-              <option>purple</option>
-              <option>brown</option>
-              <option>black</option>
+              <option value="all" selected>All Ranks</option>
+              <option value="white">White</option>
+              <option value="yellow">Yellow</option>
+              <option value="green">Green</option>
+              <option value="blue">Blue</option>
+              <option value="purple">Purple</option>
+              <option value="brown">Brown</option>
+              <option value="black">Black</option>
             </select>
           </div>
         </div>

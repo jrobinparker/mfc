@@ -8,12 +8,12 @@ import LikeIcon from './lesson/LikeIcon';
 import CompleteIcon from './lesson/CompleteIcon';
 
 const LessonItem = props => {
-  const { id, title, date, rank, style, likes, completes } = props.lesson
+  const { _id, title, date, rank, style, likes, completes } = props.lesson
 
   return (
     <div className="column">
       <div className="box">
-        <h1 className="lesson-item-title"><Link to={`/lesson/${id}`}>{title}</Link></h1>
+        <h1 className="lesson-item-title"><Link to={`/lesson/${_id}`}>{title}</Link></h1>
         <div class="field is-grouped is-grouped-multiline lesson-metadata">
           <RankIcon rank={rank}/>
           <StyleIcon style={style} />
