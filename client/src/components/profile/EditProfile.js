@@ -40,7 +40,7 @@ const EditProfile = ({ profile: { profile, loading}, createProfile, getCurrentPr
   return (
     <Fragment>
       <div className="container">
-        <h1>Create Your MFC User Profile</h1>
+        <h1>Edit Your MFC User Profile</h1>
         <form onSubmit={e => onSubmit(e)}>
             <div className="field">
               <label className="label">Rank</label>

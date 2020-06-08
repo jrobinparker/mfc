@@ -129,7 +129,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
               <label class="label">Style</label>
               <div class="select">
                 <select onChange={e => onChange(e)} name="style">
-                  <option value="all" selected>All Styles</option>
+                  <option value="all" selected>All</option>
                   <option value="eskrima">Eskrima</option>
                 </select>
               </div>
