@@ -22,15 +22,16 @@
   margin-bottom: 25px;
 }
 
+.lessons-container {
+  position: relative;
+}
+
 .lessons-subcontainer {
   display: flex;
+  width: 100vw;
 }
 
-.filter-container {
-  width: 20%;
-  margin-right: 20px;
-}
 
 .lessons-container {
-  width: 30%;
+  margin-left: 20px;
 }

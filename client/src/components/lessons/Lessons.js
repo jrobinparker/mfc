@@ -25,43 +25,43 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
 
   if (filter.rank === 'white') {
     filteredLessons = lessons
-      .filter(lesson => lesson.rank === 'white')
+      .filter(lesson => lesson.rank === 'White')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'yellow') {
     filteredLessons = lessons
-      .filter(lesson => lesson.rank === 'yellow')
+      .filter(lesson => lesson.rank === 'Yellow')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'green') {
     filteredLessons = lessons
-      .filter(lesson => lesson.rank === 'green')
+      .filter(lesson => lesson.rank === 'Green')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'blue') {
     filteredLessons = lessons
-      .filter(lesson => lesson.rank === 'blue')
+      .filter(lesson => lesson.rank === 'Blue')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'purple') {
     filteredLessons = lessons
-      .filter(lesson => lesson.rank === 'purple')
+      .filter(lesson => lesson.rank === 'Purple')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'brown') {
     filteredLessons = lessons
-      .filter(lesson => lesson.rank === 'purple')
+      .filter(lesson => lesson.rank === 'Brown')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'black') {
     filteredLessons = lessons
-      .filter(lesson => lesson.rank === 'black')
+      .filter(lesson => lesson.rank === 'Black')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
@@ -102,9 +102,8 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
     }
 
   return loading ? <Loading /> : (
-    <Fragment>
+    <div className="lessons-container">
       <h1 className="title">Lessons</h1>
-      <div className="container">
         <div className="lessons-subcontainer">
         <div className="filter-container">
           <div class="field">
@@ -151,7 +150,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
         </div>
           <div className="lessons-container">
             <div className="container">
-              <div className="columns">
+              <div className="columns is-multiline">
                 {
                   filteredLessons
                 }
@@ -159,8 +158,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
             </div>
           </div>
         </div>
-      </div>
-    </Fragment>
+    </div>
   );
 };
 
