@@ -150,10 +150,12 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
           </div>
         </div>
           <div className="lessons-container">
-            <div className="columns">
-              {
-                filteredLessons
-              }
+            <div className="container">
+              <div className="columns">
+                {
+                  filteredLessons
+                }
+              </div>
             </div>
           </div>
         </div>

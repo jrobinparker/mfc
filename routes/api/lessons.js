@@ -50,6 +50,44 @@ router.post('/', [ auth, [
     }
   });
 
+// @route PUT api/lessons/:id
+// @desc Edit lesson
+// @access Private
+
+router.patch('/:id', [ auth, [
+    check('title', 'Title is required').not().isEmpty(),
+    check('description', 'Description is required').not().isEmpty()
+    ]
+  ], async (req, res) => {
+
+    const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+      const { title, rank, description, style, skills } = req.body;
+
+      // build profile object
+      const lessonFields = {};
+      if (title) lessonFields.title = title;
+      if (rank) lessonFields.rank = rank;
+      if (description) lessonFields.description = description;
+      if (style) lessonFields.style = style;
+      if (skills) {
+        lessonFields.skills = skills.split(',').map(skill => skill.trim());
+      }
+
+      let lesson = await Lesson.findById(req.params.id);
+
+          lesson = await Lesson.findByIdAndUpdate(
+            req.params.id,
+            { $set: lessonFields },
+            { new: true }
+          )
+
+          console.log(lessonFields)
+          res.json(lesson)
+})
+
 // @route GET api/lessons
 // @desc Get all lessons
 // @access Private

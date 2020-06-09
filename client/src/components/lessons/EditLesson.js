@@ -2,15 +2,16 @@ import React, { Fragment, useState, useEffect, useLayoutEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createLesson, getLesson } from '../../actions/lesson';
+import { editLesson, getLesson } from '../../actions/lesson';
 
-const EditLesson = ({ lesson: { lesson, loading }, createLesson, getLesson, history, match }) => {
+const EditLesson = ({ lesson: { lesson, loading }, editLesson, getLesson, history, match }) => {
   const [ formData, setFormData ] = useState({
     title: '',
     rank: '',
     style: '',
     skills: '',
-    description: ''
+    description: '',
+    id: ''
   });
 
   const { title, rank, style, description, skills} = formData;
@@ -23,7 +24,8 @@ const EditLesson = ({ lesson: { lesson, loading }, createLesson, getLesson, hist
       rank: loading || !lesson.rank ? '' : lesson.rank,
       style: loading || !lesson.style ? '' : lesson.style,
       skills: loading || !lesson.skills ? '' : lesson.skills.join(', '),
-      description: loading || !lesson.description ? '' : lesson.description
+      description: loading || !lesson.description ? '' : lesson.description,
+      id:  loading || !lesson._id ? '' : lesson._id
     });
   }, [loading])
 
@@ -33,9 +35,9 @@ const EditLesson = ({ lesson: { lesson, loading }, createLesson, getLesson, hist
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e, id) => {
     e.preventDefault();
-    createLesson(formData, history, true);
+    editLesson(match.params.id, formData, history, true);
   };
 
   return (
@@ -117,7 +119,7 @@ const EditLesson = ({ lesson: { lesson, loading }, createLesson, getLesson, hist
 };
 
 EditLesson.propTypes = {
-  createLesson: PropTypes.func.isRequired,
+  editLesson: PropTypes.func.isRequired,
   getLesson: PropTypes.func.isRequired,
   lesson: PropTypes.object.isRequired
 };
@@ -127,4 +129,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { createLesson, getLesson })(withRouter(EditLesson));
+export default connect(mapStateToProps, { editLesson, getLesson })(withRouter(EditLesson));
