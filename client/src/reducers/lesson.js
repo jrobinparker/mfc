@@ -1,4 +1,4 @@
-import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES } from '../actions/types';
+import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES } from '../actions/types';
 
 const initialState = {
   lessons: [],
@@ -34,6 +34,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         likes: state.lessons.map(lesson => lesson._id === payload.id ? { ...lesson, likes: payload.likes } : lesson),
+        loading: false
+      };
+    case UPDATE_COMPLETES:
+      return {
+        ...state,
+        completes: state.lessons.map(lesson => lesson._id === payload.id ? { ...lesson, completes: payload.completes } : lesson),
         loading: false
       };
     default:

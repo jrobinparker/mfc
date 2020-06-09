@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getLesson, addLike, removeLike } from '../../../actions/lesson';
+import { getLesson, addLike, removeLike, addComplete, removeComplete } from '../../../actions/lesson';
 import { getCurrentProfile } from '../../../actions/profile';
 import { setAlert } from '../../../actions/alert';
 import LessonHeader from './LessonHeader';
@@ -11,7 +11,7 @@ import SkillIcon from './SkillIcon';
 import Loading from '../../utils/Loading';
 import './Lesson.css';
 
-const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, lesson: { lesson, loading }, auth: { user }, match }) => {
+const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, addComplete, removeComplete, lesson: { lesson, loading }, auth: { user }, match }) => {
   const [ displayComments, toggleComments ] = useState({
     show: false
   })
@@ -40,8 +40,10 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, l
           removeLike={removeLike}
           alert={setAlert}
           completes={lesson.completes}
+          addComplete={addComplete}
+          removeComplete={removeComplete}
         />
-        
+
         <div className="lesson-content">
         </div>
 
@@ -84,4 +86,4 @@ const mapStateToProps = state => ({
   lesson: state.lesson
 });
 
-export default connect(mapStateToProps, { getLesson, getCurrentProfile, setAlert, addLike, removeLike })(withRouter(Lesson));
+export default connect(mapStateToProps, { getLesson, getCurrentProfile, setAlert, addLike, removeLike, addComplete, removeComplete })(withRouter(Lesson));
