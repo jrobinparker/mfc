@@ -41,7 +41,7 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, l
           alert={setAlert}
           completes={lesson.completes}
         />
-
+        
         <div className="lesson-content">
         </div>
 

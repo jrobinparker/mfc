@@ -17,8 +17,6 @@ const LessonItem = props => {
         <div class="field is-grouped is-grouped-multiline lesson-metadata">
           <RankIcon rank={rank}/>
           <StyleIcon style={style} />
-          <LikeIcon likes={likes} />
-          <CompleteIcon completes={completes} />
         </div>
         <small><Moment format='MM/DD/YYYY'>{date}</Moment></small>
       </div>
