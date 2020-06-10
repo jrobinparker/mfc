@@ -11,6 +11,7 @@ import Lessons from './components/lessons/Lessons';
 import Lesson from './components/lessons/lesson/Lesson';
 import CreateLesson from './components/lessons/CreateLesson';
 import EditLesson from './components/lessons/EditLesson';
+import Tracks from './components/tracks/Tracks';
 import Alert from './components/alerts/Alert';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { loadUser } from './actions/auth';
@@ -49,6 +50,7 @@ const App = () => {
                 <PrivateRoute exact path="/lessons" component={Lessons} />
                 <PrivateRoute exact path="/lesson/:id" component={Lesson} />
                 <PrivateRoute exact path="/lesson/:id/edit" component={EditLesson} />
+                <PrivateRoute exact path="/tracks" component={Tracks} />
               </Switch>
             </div>
         </Fragment>

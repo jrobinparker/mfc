@@ -46,9 +46,9 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
     }
   }
 
-  app.onscroll = () => {
-    setNavStyle()
-  }
+  // app.onscroll = () => {
+    // setNavStyle()
+  // }
 
   return (
     <nav className="mfc-navbar">

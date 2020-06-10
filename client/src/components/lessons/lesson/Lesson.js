@@ -7,6 +7,7 @@ import { getCurrentProfile } from '../../../actions/profile';
 import { setAlert } from '../../../actions/alert';
 import LessonHeader from './LessonHeader';
 import LessonComments from './LessonComments';
+import LessonCommentForm from './LessonCommentForm';
 import SkillIcon from './SkillIcon';
 import Loading from '../../utils/Loading';
 import './Lesson.css';
@@ -64,7 +65,12 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, a
 
 
         {
-          displayComments.show ? <LessonComments comments={lesson.comments} /> : <Fragment></Fragment>
+          displayComments.show ? (
+            <Fragment>
+              <LessonComments lessonId={lesson._id} comments={lesson.comments} toggleComments={toggleComments} />
+              <LessonCommentForm lessonId={lesson._id} />
+            </Fragment>
+          ) : <Fragment></Fragment>
         }
 
       </div>
@@ -77,6 +83,8 @@ Lesson.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   addLike: PropTypes.func.isRequired,
   removeLike: PropTypes.func.isRequired,
+  addComment: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
   lesson: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };

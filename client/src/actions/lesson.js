@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES } from './types';
+import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT } from './types';
 
 export const getLessons = () => async dispatch => {
   try {
@@ -74,9 +74,12 @@ export const addComplete = id => async dispatch => {
     dispatch({
       type: UPDATE_COMPLETES,
       payload: { id, completes: res.data }
-    })
+    });
     dispatch(
       getLesson(id)
+    )
+    dispatch(
+      setAlert('Lesson completed!', 'success')
     )
   } catch(err) {
     dispatch({
@@ -165,5 +168,50 @@ export const editLesson = (id, formData, history, edit = true) => async dispatch
       type: LESSON_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
     });
+  }
+}
+
+export const addComment = (id, formData) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const res = await axios.post(`/api/lessons/comment/${id}`, formData, config);
+
+    dispatch({
+      type: ADD_COMMENT,
+      payload: res.data
+    });
+
+    dispatch(
+      getLesson(id)
+    );
+  } catch(err) {
+    dispatch({
+      type: LESSON_ERROR,
+      payload: { msg: err.response.statusText, status: err.response. status}
+    });
+  }
+};
+
+export const deleteComment = (lessonId, commentId) => async dispatch => {
+  try {
+    const res = await axios.delete(`/api/lessons/comment/${lessonId}/${commentId}`)
+
+    dispatch({
+      type: DELETE_COMMENT,
+      payload: res.data
+    });
+    dispatch(
+      getLesson(lessonId)
+    );
+  } catch(err) {
+    dispatch({
+      type: LESSON_ERROR,
+      payload: { msg: err.response.statusText, status: err.response. status}
+    })
   }
 }
