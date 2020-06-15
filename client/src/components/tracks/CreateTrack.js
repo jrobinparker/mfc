@@ -6,6 +6,7 @@ import { createTrack } from '../../actions/track';
 import { getLessons } from '../../actions/lesson';
 import { getCurrentProfile } from '../../actions/profile';
 import TitleAndDesc from './TitleAndDesc';
+import AddLessons from './AddLessons';
 
 class CreateTrack extends React.Component {
     state = {
@@ -96,6 +97,13 @@ class CreateTrack extends React.Component {
                     rank={rank}
                     style={style}
                     skills={skills}
+                  />
+        case 2:
+          return <AddLessons
+                    nextStep={this.nextStep}
+                    prevStep={this.prevStep}
+                    lessons={this.props.lessons}
+                    addLessons={this.addLessons}
                   />
         default:
           return <TitleAndDesc
