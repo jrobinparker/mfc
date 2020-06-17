@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import AddLessonsPagination from './AddLessonsPagination';
 import './tracks.css';
 
-const AddLessons = ({ lessons, addLessons, nextStep, prevStep }) => {
+const AddLessons = ({ lessons, selectedLessons, addLessons, nextStep, prevStep }) => {
 
   const [ lessonsData, setLessonData ] = useState([]);
   const [ displayLessons, setToggleLessons ] = useState(false);
@@ -15,6 +15,7 @@ const AddLessons = ({ lessons, addLessons, nextStep, prevStep }) => {
     setFilteredLessons(
       lessons.filter(lesson => lesson.title.toLowerCase().includes(search.toLowerCase()))
     )
+    setLessonData(selectedLessons)
   }, [search, lessons])
 
   const indexOfLastLesson = currentPage * lessonsPerPage;
@@ -23,16 +24,21 @@ const AddLessons = ({ lessons, addLessons, nextStep, prevStep }) => {
 
   const currentLessons = filteredLessons.slice(indexOfFirstLesson, indexOfLastLesson);
 
-  const paginate = pageNumber => setCurrentPage(pageNumber)
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
-  const addLesson = (e, lesson) => setLessonData(lessonsData.concat(lesson))
+  const addLesson = (e, lesson) => {
+    if (lessonsData && lessonsData.filter(lesson => lesson._id === e.target.id).length > 0) {
+      alert('already added!')
+    } else {
+      setLessonData(lessonsData.concat(lesson))
+    }
+  }
 
-  const removeLesson = (e, lesson) => setLessonData(lessonsData.filter(lesson => lesson._id !== e.target.id))
+  const removeLesson = (e, lesson) => setLessonData(lessonsData.filter(lesson => lesson._id !== e.target.id));
 
   const saveAndContinue = e => {
-    e.preventDefault()
-    const { lessons } = lessonsData
-    addLessons(lessons)
+    e.preventDefault();
+    addLessons(lessonsData);
     nextStep()
   }
 
@@ -44,9 +50,11 @@ const AddLessons = ({ lessons, addLessons, nextStep, prevStep }) => {
   return (
       <Fragment>
         <div className="container">
-          <h1 className="title">Add Lessons</h1>
-            <div className="box">
-              <div className="field is-grouped is-grouped-centered">
+          <h1 className="title">Create a New Track</h1>
+            <div className="panel">
+              <p className="panel-heading">Add Lessons</p>
+              <div className="form-wizard">
+                <div className="field is-grouped is-grouped-centered">
                   <div className="control">
                     <input type="text" className="input" placeholder="Lesson search" onChange={e => setSearch(e.target.value)}/>
                   </div>
@@ -70,7 +78,7 @@ const AddLessons = ({ lessons, addLessons, nextStep, prevStep }) => {
                       </div>
                 </div>
               </div>
-              <table className="table" style={{ width: '100%' }}>
+              <table className="table" style={{ width: '100%', backgroundColor: 'hsl(0, 0%, 96%)' }}>
                   <thead>
                     <th>Lesson Title</th>
                     <th>Rank</th>
@@ -138,6 +146,7 @@ const AddLessons = ({ lessons, addLessons, nextStep, prevStep }) => {
             ) : (
               <Fragment></Fragment>
             )}
+            </div>
           </div>
         </Fragment>
     )

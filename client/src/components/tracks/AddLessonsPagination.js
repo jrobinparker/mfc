@@ -7,11 +7,11 @@ const AddLessonsPagination = ({ lessonsPerPage, totalLessons, paginate }) => {
     pageNumbers.push(i)
   }
   return (
-    <nav class="pagination" role="navigation" aria-label="pagination">
-      <ul class="pagination-list">
+    <nav className="pagination" role="navigation" aria-label="pagination">
+      <ul className="pagination-list">
         {pageNumbers.map(number => (
           <li key={number}>
-            <a class="pagination-link" onClick={() => paginate(number)}>{number}</a>
+            <a className="pagination-link"  style={{ backgroundColor: 'white' }} onClick={() => paginate(number)}>{number}</a>
           </li>
         ))}
       </ul>

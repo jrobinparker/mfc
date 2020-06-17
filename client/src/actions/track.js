@@ -49,8 +49,9 @@ export const createTrack = (formData, history, edit = false) => async dispatch =
 
     dispatch(setAlert(edit ? 'Track updated!' : 'Track created!', 'success'));
 
-    history.push('/dashboard');
+    history.push('/tracks');
   } catch(err) {
+
     const errors = err.response.data.errors;
 
     if (errors) {

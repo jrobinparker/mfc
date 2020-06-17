@@ -14,7 +14,9 @@ const TitleAndDesc = ({ title, description, rank, style, skills, onChange, nextS
     <Fragment>
           <div className="container">
             <h1 className="title">Create a New Track</h1>
-            <form className="box">
+            <nav className="panel">
+              <p className="panel-heading">About the Track</p>
+            <div className="form-wizard">
               <div className="field">
                 <label className="label">Title</label>
                   <div class="control">
@@ -81,7 +83,8 @@ const TitleAndDesc = ({ title, description, rank, style, skills, onChange, nextS
               </div>
           </div>
               <button className="button is-primary" onClick={e => saveAndContinue(e)}>Next</button>
-            </form>
+            </div>
+            </nav>
           </div>
         </Fragment>
     )

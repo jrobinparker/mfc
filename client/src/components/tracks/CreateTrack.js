@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useLayoutEffect } from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createTrack } from '../../actions/track';
@@ -7,6 +7,8 @@ import { getLessons } from '../../actions/lesson';
 import { getCurrentProfile } from '../../actions/profile';
 import TitleAndDesc from './TitleAndDesc';
 import AddLessons from './AddLessons';
+import ReorderLessons from './ReorderLessons';
+import ReviewTrack from './ReviewTrack';
 
 class CreateTrack extends React.Component {
     state = {
@@ -59,10 +61,17 @@ class CreateTrack extends React.Component {
     }
 
     addLessons = lessons => {
-      const newLessons = lessons
-      this.setState({
-        lessons: this.state.lessons.concat(newLessons)
-      })
+      if (this.state.lessons.length >= 1) {
+        this.setState({
+          lessons: lessons.filter(lesson => this.state.lessons.some(l => lesson._id !== l._id))
+        })
+      } else {
+        this.setState({
+          lessons: this.state.lessons.concat(lessons)
+        })
+      }
+
+      console.log(this.state.lessons)
     }
 
     updateLessonOrder = newLessons => {
@@ -71,18 +80,18 @@ class CreateTrack extends React.Component {
       })
     }
 
-    onSubmit = e => {
-      e.preventDefault()
+    onSubmit = () => {
       const trackData = {
         title: this.state.title,
         rank: this.state.rank,
+        style: this.state.style,
+        skills: this.state.skills,
         description: this.state.description,
         lessons: this.state.lessons,
         author: this.props.profile.handle,
         authorId: this.props.auth.user.id
       }
-      this.props.createTrack(trackData)
-      this.nextStep()
+      this.props.createTrack(trackData, this.props.history)
     }
 
     render() {
@@ -103,7 +112,21 @@ class CreateTrack extends React.Component {
                     nextStep={this.nextStep}
                     prevStep={this.prevStep}
                     lessons={this.props.lessons}
+                    selectedLessons={this.state.lessons}
                     addLessons={this.addLessons}
+                  />
+        case 3:
+          return <ReorderLessons
+                    nextStep={this.nextStep}
+                    prevStep={this.prevStep}
+                    lessons={this.state.lessons}
+                    updateLessonOrder={this.updateLessonOrder}
+                  />
+        case 4:
+          return <ReviewTrack
+                    prevStep={this.prevStep}
+                    track={this.state}
+                    onSubmit={this.onSubmit}
                   />
         default:
           return <TitleAndDesc
@@ -125,4 +148,4 @@ class CreateTrack extends React.Component {
     lessons: state.lesson.lessons
   })
 
-  export default connect(mapStateToProps, { getCurrentProfile, getLessons, createTrack })(CreateTrack)
+  export default connect(mapStateToProps, { getCurrentProfile, getLessons, createTrack })(withRouter(CreateTrack))
