@@ -11,18 +11,18 @@ import LessonCommentForm from './LessonCommentForm';
 import SkillIcon from './SkillIcon';
 import Loading from '../../utils/Loading';
 import './Lesson.css';
+import axios from 'axios';
+import ReactPlayer from 'react-player';
+
 
 const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, addComplete, removeComplete, lesson: { lesson, loading }, auth: { user }, match }) => {
-  const [ displayComments, toggleComments ] = useState({
-    show: false
-  })
+
+  const [ lessonVideo, setLessonVideo ] = useState('')
 
   useEffect(() => {
     getLesson(match.params.id)
     getCurrentProfile()
   }, [match.params.id, getLesson, getCurrentProfile]);
-
-  console.log(lesson)
 
   return loading || lesson === null ? <Loading /> : (
     <div className="container">
@@ -46,33 +46,17 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, a
         />
 
         <div className="lesson-content">
+          <ReactPlayer
+            url={`http://localhost:5000/api/lessons/videos/${lesson.video}`}
+            controls={true}
+            width='100%'
+            height='100%'
+          />
         </div>
 
         <div className="lesson-description">
           <p style={{ marginBottom: '15px' }}>{lesson.description}</p>
-          <button
-            onClick={() =>
-              toggleComments({
-                show: !displayComments.show
-              })
-          }
-            className="button is-normal is-link"
-            >
-            {displayComments.show ? 'Hide comments' : 'Show comments' }
-          </button>
         </div>
-
-
-
-        {
-          displayComments.show ? (
-            <Fragment>
-              <LessonComments lessonId={lesson._id} comments={lesson.comments} toggleComments={toggleComments} />
-              <LessonCommentForm lessonId={lesson._id} />
-            </Fragment>
-          ) : <Fragment></Fragment>
-        }
-
       </div>
     </div>
   )

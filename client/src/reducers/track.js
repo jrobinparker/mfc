@@ -1,8 +1,9 @@
-import { GET_TRACKS, GET_TRACK, TRACK_ERROR } from '../actions/types';
+import { GET_TRACKS, GET_TRACK, TRACK_ERROR, DISPLAY_TRACK_LESSONS } from '../actions/types';
 
 const initialState = {
   tracks: [],
   track: null,
+  trackLessons: [],
   loading: true,
   error: {}
 };
@@ -24,6 +25,12 @@ export default function(state = initialState, action) {
         track: payload,
         loading: false
       };
+  case DISPLAY_TRACK_LESSONS:
+    return {
+      ...state,
+      trackLessons: action.payload,
+      loading: false
+    };
     default:
       return state;
   }

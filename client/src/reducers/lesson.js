@@ -1,9 +1,10 @@
-import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT } from '../actions/types';
+import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT, UPLOAD_VIDEO } from '../actions/types';
 
 const initialState = {
   lessons: [],
   lesson: null,
   loading: true,
+  video: null,
   error: {}
 };
 
@@ -53,6 +54,11 @@ export default function(state = initialState, action) {
        ...state,
        lesson: { ...state.lesson, comments: state.lesson.comments.filter(comment => comment._id !== payload) }
      };
+     case UPLOAD_VIDEO:
+      return {
+        ...state,
+        video: payload
+      }
     default:
       return state;
   }

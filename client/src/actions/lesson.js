@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT } from './types';
+import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT, UPLOAD_VIDEO } from './types';
 
 export const getLessons = () => async dispatch => {
   try {
@@ -137,6 +137,21 @@ export const createLesson = (formData, history, edit = false) => async dispatch 
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
+}
+
+export const uploadVideo = videoData => async dispatch => {
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    }
+
+    const res = await axios.post('/api/lessons/videos', videoData, config);
+
+    dispatch({
+      type: UPLOAD_VIDEO,
+      payload: res.data
+    });
 }
 
 export const editLesson = (id, formData, history, edit = true) => async dispatch => {

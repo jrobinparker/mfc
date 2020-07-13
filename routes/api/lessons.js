@@ -2,11 +2,53 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator/check');
 const auth = require('../../middleware/auth');
+const path = require('path');
+
+const crypto = require('crypto');
+const mongoose = require('mongoose');
+const multer = require('multer');
+const GridFsStorage = require('multer-gridfs-storage');
+const Grid = require('gridfs-stream');
 
 const Lesson = require('../../models/Lesson');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
+// Mongo URI
+const uri = "mongodb+srv://mfc-online-admin:mfcAdmin0520@mfc-online-db-c7fzs.mongodb.net/test?retryWrites=true&w=majority";
+
+// Create mongo connection
+const conn = mongoose.createConnection(uri);
+
+// Init gfs
+let gfs;
+
+conn.once('open', () => {
+  // Init stream
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection('videos');
+});
+
+// Create storage engine
+const storage = new GridFsStorage({
+  url: uri,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = buf.toString('hex') + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: 'videos'
+        };
+        resolve(fileInfo);
+      });
+    });
+  }
+});
+const upload = multer({ storage });
 
 // @route POST api/lessons
 // @desc Create a lesson
@@ -14,7 +56,7 @@ const User = require('../../models/User');
 router.post('/', [ auth, [
     check('title', 'Title is required').not().isEmpty(),
     check('description', 'Description is required').not().isEmpty()
-    ]
+  ]
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -25,7 +67,7 @@ router.post('/', [ auth, [
     try {
       const user = await User.findById(req.user.id).select('-password');
 
-      const { title, rank, description, style, skills, about } = req.body;
+      const { title, rank, description, style, skills, about, video } = req.body;
 
       const lessonFields = {}
 
@@ -33,6 +75,7 @@ router.post('/', [ auth, [
       lessonFields.author = user.name;
       lessonFields.title = title;
       lessonFields.description = description;
+      lessonFields.video = video;
       if (rank) lessonFields.rank = rank;
       if (style) lessonFields.style = style;
       if (skills) {
@@ -50,6 +93,32 @@ router.post('/', [ auth, [
     }
   });
 
+// @route POST api/lessons/videos
+// @desc Upload a video
+// @access Private
+router.post('/videos', [ auth,
+  upload.single('video') ],
+  async (req, res) => {
+    const data = await res.json({ file: req.file })
+    console.log(data);
+  });
+
+// @route GET /videos/:filename
+// @desc Display Image
+router.get('/videos/:filename', (req, res) => {
+  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    // Check if file
+    if (!file || file.length === 0) {
+      return res.status(404).json({
+        err: 'No file exists'
+      });
+    }
+    // Read output to browser
+    const readstream = gfs.createReadStream(file.filename);
+    readstream.pipe(res);
+  });
+});
+
 // @route PUT api/lessons/:id
 // @desc Edit lesson
 // @access Private
@@ -64,11 +133,12 @@ router.patch('/:id', [ auth, [
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-      const { title, rank, description, style, skills } = req.body;
+      const { title, rank, description, style, skills, video } = req.body;
 
       // build profile object
       const lessonFields = {};
       if (title) lessonFields.title = title;
+      if (video) lessonFields.video = video;
       if (rank) lessonFields.rank = rank;
       if (description) lessonFields.description = description;
       if (style) lessonFields.style = style;

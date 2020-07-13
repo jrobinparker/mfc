@@ -2,22 +2,74 @@ import React, { Fragment, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { createLesson } from '../../actions/lesson';
+import { createLesson, uploadVideo } from '../../actions/lesson';
+import axios from 'axios';
 
-const CreateLesson = ({ createLesson, history }) => {
+const CreateLesson = ({ createLesson, uploadVideo, history }) => {
+
   const [ formData, setFormData ] = useState({
     title: '',
     rank: '',
     style: '',
     skills: '',
-    description: ''
+    description: '',
+    video: ''
   })
 
-  const { title, rank, style, description, skills} = formData;
+  const [ videoObj, setVideoObj ] = useState('');
+  const [ videoObjName, setVideoObjName ] = useState('Choose Video');
+  const [ uploadedFile, setUploadedFile ] = useState({});
+  const [ message, setMessage ] = useState('');
+  const [ uploadPercentage, setUploadPercentage ] = useState(0);
+  const [ displayProgress, setDisplayProgress ] = useState(false);
+
+  const { title, rank, style, description, skills } = formData;
 
   const onChange = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const onVideoChange = e => {
+    setVideoObj(e.target.files[0]);
+    setVideoObjName(e.target.files[0].name);
+  }
+
+
+  const onVideoSubmit = async e => {
+   e.preventDefault();
+   const videoData = new FormData();
+   videoData.append('video', videoObj);
+   //uploadVideo(videoData);
+   try {
+     const config = {
+       headers: {
+         'Content-Type': 'multipart/form-data'
+       }
+     }
+
+     const res = await axios.post('/api/lessons/videos', videoData,
+     { config,
+       onUploadProgress: progressEvent => {
+         setDisplayProgress(true);
+          setUploadPercentage(
+            parseInt(
+              Math.round((progressEvent.loaded * 100) / progressEvent.total)
+            )
+          );
+        }
+      })
+      const { filename } = res.data.file
+      setFormData({...formData, video: filename})
+      console.log(formData, filename)
+    } catch(err) {
+      if (err.response.status === 500) {
+        setMessage('There was a problem with the server');
+      } else {
+        setMessage(err.response.data.msg);
+      }
+    }
+  }
+
 
   const onSubmit = e => {
     e.preventDefault();
@@ -27,7 +79,28 @@ const CreateLesson = ({ createLesson, history }) => {
   return (
     <Fragment>
       <div className="container">
-        <h1>Create a New Lesson</h1>
+      <nav className="panel">
+        <p className="panel-heading">Create a New Lesson</p>
+        <div className="form-wizard">
+        <form onSubmit={e => onVideoSubmit(e)} style={{ marginBottom: '20px' }}>
+          <label className="label">Lesson Video</label>
+          <div className="file has-name">
+            <label className="file-label">
+              <input className="file-input" type="file" name="video" onChange={e => onVideoChange(e)}/>
+              <span className="file-cta">
+                <span className="file-icon">
+                  <i className="fas fa-upload"></i>
+                </span>
+                <span className="file-label">
+                  Select Video
+                </span>
+              </span>
+              {!videoObj ? <></> : <span class="file-name">{videoObjName}</span>}
+            </label>
+            <button type="submit" className="button is-primary">Upload Video</button>
+          </div>
+          {displayProgress ? <progress class="progress is-success" value={`${uploadPercentage}`} max="100">{uploadPercentage}%</progress> : <></>}
+        </form>
         <form onSubmit={e => onSubmit(e)}>
           <div className="field">
             <label className="label">Title</label>
@@ -96,13 +169,17 @@ const CreateLesson = ({ createLesson, history }) => {
       </div>
           <button className="button is-primary">Create Lesson</button>
         </form>
+        </div>
+        </nav>
       </div>
     </Fragment>
   )
 };
 
 CreateLesson.propTypes = {
-  createLesson: PropTypes.func.isRequired
+  createLesson: PropTypes.func.isRequired,
+  uploadVideo: PropTypes.func.isRequired
 };
 
-export default connect(null, { createLesson })(withRouter(CreateLesson));
+
+export default connect(null, { createLesson, uploadVideo })(withRouter(CreateLesson));

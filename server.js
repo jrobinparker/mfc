@@ -1,5 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 const app = express();
 
@@ -7,7 +9,9 @@ const app = express();
 connectDB();
 
 // Init middleware
-app.use(express.json({ extended: false }))
+app.use(express.json({ extended: false }));
+app.use(bodyParser.json());
+app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => res.send('api running'));
 

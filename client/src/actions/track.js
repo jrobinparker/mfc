@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_TRACKS, GET_TRACK, TRACK_ERROR } from './types';
+import { GET_TRACKS, GET_TRACK, DISPLAY_TRACK_LESSONS, TRACK_ERROR } from './types';
 
 export const getTracks = () => async dispatch => {
   try {
@@ -17,19 +17,40 @@ export const getTracks = () => async dispatch => {
   }
 }
 
-export const getTrack = id => async dispatch => {
+export const getTrack = id => dispatch => {
   try {
-    const res = await axios.get(`/api/tracks/${id}`);
-    dispatch({
-      type: GET_TRACK,
-      payload: res.data
-    })
+    let lessonIds = []
+    axios.get(`/api/tracks/${id}`)
+      .then(res =>
+        dispatch({
+          type: GET_TRACK,
+          payload: res.data
+        }))
+      .then(res => lessonIds.concat(res.payload.lessons))
+      .then(lessonIds => getTrackLessons(lessonIds))
+
+    async function getTrackLessons(lessonIds) {
+      let trackLessons = []
+      for (let lessonId of lessonIds) {
+        const { _id } = lessonId
+        await axios.get(`/api/lessons/${_id}`)
+          .then(res => trackLessons.push(res.data))
+        }
+      dispatch(displayTrackLessons(trackLessons))
+    }
   } catch(err) {
     dispatch({
       type: TRACK_ERROR,
       payload: ({ msg: err.response.statusText, status: err.response.status })
     })
   }
+}
+
+export const displayTrackLessons = trackLessons => dispatch => {
+  dispatch({
+    type: DISPLAY_TRACK_LESSONS,
+    payload: trackLessons
+  })
 }
 
 export const createTrack = (formData, history, edit = false) => async dispatch => {

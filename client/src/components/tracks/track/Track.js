@@ -10,14 +10,13 @@ import SkillIcon from './SkillIcon';
 import Loading from '../../utils/Loading';
 import './Lesson.css';
 
-const Track = ({ getTrack, track: { track, loading }, auth: { user }, match }) => {
+const Track = ({ getTrack, track: { track, trackLessons, loading }, auth: { user }, match }) => {
+  const [ loadedLesson, setLoadedLesson ] = useState({});
 
   useEffect(() => {
     getTrack(match.params.id)
     getCurrentProfile()
   }, [match.params.id, getTrack, getCurrentProfile]);
-
-  console.log(track)
 
   return loading || track === null ? <Loading /> : (
     <div className="container">
@@ -27,10 +26,33 @@ const Track = ({ getTrack, track: { track, loading }, auth: { user }, match }) =
           user={user}
           title={track.title}
         />
-
-        <div className="lesson-content">
+        <div className="columns">
+        <div className="column is-3">
+          <div className="menu">
+            <ul className="menu-list">
+            {trackLessons.map(lesson =>
+              <a
+                href="!#"
+                className="menu-item"
+                onClick={
+                  () => {
+                    setLoadedLesson(lesson)
+                }}
+              >
+                {lesson.title}
+              </a>
+            )
+            }
+            </ul>
+          </div>
         </div>
-
+        <div className="column">
+          <div className="lesson-content">
+            <p>{loadedLesson.title}</p>
+            <p>{loadedLesson.description}</p>
+          </div>
+        </div>
+        </div>
         <div className="lesson-description">
           <p style={{ marginBottom: '15px' }}>{track.description}</p>
         </div>
@@ -44,12 +66,14 @@ Track.propTypes = {
   getTrack: PropTypes.func.isRequired,
   getCurrentProfile: PropTypes.func.isRequired,
   track: PropTypes.object.isRequired,
+  trackLessons: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  track: state.track
+  track: state.track,
+  trackLessons: state.track.trackLessons
 });
 
 export default connect(mapStateToProps, { getTrack, getCurrentProfile })(withRouter(Track));
