@@ -1,34 +1,30 @@
-import React from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
+import Moment from 'react-moment';
 
 const CompleteIcon = props => {
   const { id, completes, addComplete, removeComplete, user  } = props;
+  const [ completeDate, setCompleteDate ] = useState(null);
 
-  const findUserComplete = completes => {
-    if (completes && completes.filter(complete => complete.user === user._id).length > 0) {
-      return (
-          <i className="fas fa-check" style={{ cursor: 'pointer' }} onClick={() => {
-            removeComplete(id)
-          }} />
-      )
-      console.log(completes)
-    } else {
-      return (
-          <i className="fas fa-check" style={{ cursor: 'pointer' }} onClick={() => {
-            addComplete(id)
-          }} />
-      )
-      console.log(completes)
-    }
-  }
+  useEffect(() => {
+    completes.filter(complete => complete.user === user._id).map(c => {
+      setCompleteDate(c.date)
+    })
+  }, [completes])
 
 
   return (
     <div className="control">
       <div className="tags has-addons">
-        <span className="tag is-info">
-          {findUserComplete(completes)}
-        </span>
-        <span className="tag">{completes.length}</span>
+      {
+        !completeDate ? <></> : (
+          <Fragment>
+            <span className="tag is-success">
+              <i className="fas fa-check" />
+            </span>
+            <span className="tag">You completed this lesson on&nbsp;<Moment format='MM/DD/YYYY'>{completeDate}</Moment></span>
+          </Fragment>
+        )
+      }
       </div>
     </div>
   )

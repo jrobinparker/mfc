@@ -15,7 +15,7 @@ import axios from 'axios';
 import ReactPlayer from 'react-player';
 
 
-const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, addComplete, removeComplete, lesson: { lesson, loading }, auth: { user }, match }) => {
+const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, addComplete, lesson: { lesson, loading }, auth: { user }, match }) => {
 
   const [ lessonVideo, setLessonVideo ] = useState('')
 
@@ -41,8 +41,6 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, a
           removeLike={removeLike}
           alert={setAlert}
           completes={lesson.completes}
-          addComplete={addComplete}
-          removeComplete={removeComplete}
         />
 
         <div className="lesson-content">
@@ -51,6 +49,7 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, a
             controls={true}
             width='100%'
             height='100%'
+            onEnded={() => addComplete(lesson._id)}
           />
         </div>
 
