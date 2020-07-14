@@ -14,6 +14,7 @@ import EditLesson from './components/lessons/EditLesson';
 import Tracks from './components/tracks/Tracks';
 import Track from './components/tracks/track/Track';
 import CreateTrack from './components/tracks/CreateTrack';
+import AdminView from './components/admin/AdminView';
 import Alert from './components/alerts/Alert';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { loadUser } from './actions/auth';
@@ -55,6 +56,7 @@ const App = () => {
                 <PrivateRoute exact path="/tracks" component={Tracks} />
                 <PrivateRoute exact path="/track/:id" component={Track} />
                 <PrivateRoute exact path="/create-track" component={CreateTrack} />
+                <PrivateRoute exact path="/admin" component={AdminView} />
               </Switch>
             </div>
         </Fragment>

@@ -1,4 +1,4 @@
-import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT, UPLOAD_VIDEO } from '../actions/types';
+import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT, UPLOAD_VIDEO, DELETE_LESSON } from '../actions/types';
 
 const initialState = {
   lessons: [],
@@ -58,6 +58,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         video: payload
+      };
+    case DELETE_LESSON:
+      return {
+        ...state,
+        lessons: state.lessons.filter(lesson => lesson._id !== payload)
       }
     default:
       return state;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT, UPLOAD_VIDEO } from './types';
+import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT, UPLOAD_VIDEO, DELETE_LESSON } from './types';
 
 export const getLessons = () => async dispatch => {
   try {
@@ -207,7 +207,7 @@ export const addComment = (id, formData) => async dispatch => {
   } catch(err) {
     dispatch({
       type: LESSON_ERROR,
-      payload: { msg: err.response.statusText, status: err.response. status}
+      payload: { msg: err.response.statusText, status: err.response.status}
     });
   }
 };
@@ -226,7 +226,17 @@ export const deleteComment = (lessonId, commentId) => async dispatch => {
   } catch(err) {
     dispatch({
       type: LESSON_ERROR,
-      payload: { msg: err.response.statusText, status: err.response. status}
+      payload: { msg: err.response.statusText, status: err.response.status}
     })
   }
+}
+
+export const deleteLesson = id => async dispatch => {
+  const res = await axios.delete(`/api/lessons/${id}`)
+
+    dispatch({
+      type: DELETE_LESSON,
+      payload: id
+    });
+    dispatch(setAlert('Lesson deleted', 'success'))
 }
