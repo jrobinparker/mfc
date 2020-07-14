@@ -1,9 +1,9 @@
 import React from 'react';
 
-const AddLessonsPagination = ({ lessonsPerPage, totalLessons, paginate }) => {
+const Pagination = ({ itemsPerPage, totalItems, paginate }) => {
   const pageNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(totalLessons / lessonsPerPage); i++) {
+  for (let i = 1; i <= Math.ceil(totalItems / itemsPerPage); i++) {
     pageNumbers.push(i)
   }
   return (
@@ -19,4 +19,4 @@ const AddLessonsPagination = ({ lessonsPerPage, totalLessons, paginate }) => {
   )
 };
 
-export default AddLessonsPagination;
+export default Pagination;

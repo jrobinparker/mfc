@@ -271,12 +271,18 @@ router.put('/unlike/:id', auth, async (req, res) => {
 router.put('/complete/:id', auth, async (req, res) => {
   try {
       const lesson = await Lesson.findById(req.params.id);
+      const user = await User.findById(req.user.id).select('-password');
 
       if (lesson.completes.filter(complete => complete.user.toString() === req.user.id).length > 0) {
         return res.status(400).json({ msg: 'Lesson already completed!' });
       };
 
-      lesson.completes.unshift({ user: req.user.id });
+      const newComplete = {
+        user: user,
+        name: user.name
+      };
+
+      lesson.completes.unshift(newComplete);
 
       await lesson.save();
 

@@ -1,9 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import AddLessonsPagination from '../../tracks/AddLessonsPagination';
+import Pagination from '../../utils/Pagination';
 import DeleteLesson from './DeleteLesson';
+import LessonCompletes from './LessonCompletes';
 import '../../tracks/tracks.css';
 
-const AdminLessonsView = ({ lessons, deleteLesson }) => {
+const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
 
   const [ lessonsData, setLessonData ] = useState([]);
   const [ displayLessons, setToggleLessons ] = useState(false);
@@ -11,7 +12,8 @@ const AdminLessonsView = ({ lessons, deleteLesson }) => {
   const [ filteredLessons, setFilteredLessons ] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ lessonsPerPage ] = useState(5);
-  const [ modal, toggleModal ] = useState(false);
+  const [ deleteModal, toggleDeleteModal ] = useState(false);
+  const [ completeModal, toggleCompleteModal ] = useState(false);
   const [ selectedLesson, setSelectedLesson ] = useState([])
 
   useEffect(() => {
@@ -70,12 +72,19 @@ const AdminLessonsView = ({ lessons, deleteLesson }) => {
                           <td>{lesson.rank}</td>
                           <td>{lesson.date}</td>
                           <td>
+                            <i className="fas fa-search"
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => {
+                                setSelectedLesson(lesson)
+                                toggleCompleteModal(true)
+                              }}
+                            />
                             <i
                               className="fas fa-times"
                               style={{ color: 'red', cursor: 'pointer' }}
                               onClick={() => {
                                 setSelectedLesson(lesson)
-                                toggleModal(true)
+                                toggleDeleteModal(true)
                               }}
                             />
                           </td>
@@ -83,10 +92,13 @@ const AdminLessonsView = ({ lessons, deleteLesson }) => {
                       )
                     })}
                   </tbody>
+                  <tfoot>
+                    <Pagination lessonsPerPage={lessonsPerPage} totalLessons={lessons.length} paginate={paginate} />
+                  </tfoot>
               </table>
-              <AddLessonsPagination lessonsPerPage={lessonsPerPage} totalLessons={lessons.length} paginate={paginate} />
           </div>
-          {modal ? <DeleteLesson toggleModal={toggleModal} lesson={selectedLesson} deleteLesson={deleteLesson} /> : <Fragment></Fragment>}
+          {deleteModal ? <DeleteLesson toggleDeleteModal={toggleDeleteModal} lesson={selectedLesson} deleteLesson={deleteLesson} /> : <Fragment></Fragment>}
+          {completeModal ? <LessonCompletes toggleCompleteModal={toggleCompleteModal} lesson={selectedLesson} removeComplete={removeComplete} /> : <Fragment></Fragment>}
         </Fragment>
     )
 }

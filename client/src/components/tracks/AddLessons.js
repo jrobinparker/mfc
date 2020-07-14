@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import AddLessonsPagination from './AddLessonsPagination';
+import Pagination from '../utils/Pagination';
 import './tracks.css';
 
 const AddLessons = ({ lessons, selectedLessons, addLessons, nextStep, prevStep }) => {
@@ -102,7 +102,7 @@ const AddLessons = ({ lessons, selectedLessons, addLessons, nextStep, prevStep }
                     })}
                   </tbody>
               </table>
-              <AddLessonsPagination lessonsPerPage={lessonsPerPage} totalLessons={lessons.length} paginate={paginate} />
+              <Pagination itemsPerPage={lessonsPerPage} totalItems={lessons.length} paginate={paginate} />
 
             <div style={{ textAlign: 'center', marginTop: '10px' }}>
                   <button

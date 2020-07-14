@@ -47,6 +47,9 @@ const LessonSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'users'
       },
+      name: {
+        type: String
+      },
       date: {
         type: Date,
         default: Date.now
