@@ -1,4 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import Moment from 'react-moment';
 import Pagination from '../../utils/Pagination';
 import DeleteLesson from './DeleteLesson';
 import LessonCompletes from './LessonCompletes';
@@ -11,16 +13,10 @@ const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
   const [ search, setSearch ] = useState('');
   const [ filteredLessons, setFilteredLessons ] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
-  const [ lessonsPerPage ] = useState(5);
+  const [ lessonsPerPage ] = useState(10);
   const [ deleteModal, toggleDeleteModal ] = useState(false);
   const [ completeModal, toggleCompleteModal ] = useState(false);
   const [ selectedLesson, setSelectedLesson ] = useState([])
-
-  useEffect(() => {
-    setFilteredLessons(
-      lessons.filter(lesson => lesson.title.toLowerCase().includes(search.toLowerCase()))
-    )
-  }, [search, lessons])
 
   const indexOfLastLesson = currentPage * lessonsPerPage;
 
@@ -30,12 +26,23 @@ const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
+  useEffect(() => {
+    setFilteredLessons(lessons)
+  }, [])
+
   return (
       <Fragment>
               <div className="form-wizard">
                 <div className="field is-grouped is-grouped-centered">
                   <div className="control">
-                    <input type="text" className="input" placeholder="Lesson search" onChange={e => setSearch(e.target.value)}/>
+                    <input type="text" className="input" placeholder="Lesson search" onChange={e => {
+                      const term = e.target.value
+                      setFilteredLessons(
+                        lessons.filter(
+                          lesson => lesson.title.toLowerCase().includes(term.toLowerCase())
+                        )
+                      )
+                    }}/>
                   </div>
                   <div className="control">
                     <div class="select">
@@ -70,15 +77,19 @@ const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
                         <tr key={i}>
                           <td>{lesson.title}</td>
                           <td>{lesson.rank}</td>
-                          <td>{lesson.date}</td>
-                          <td>
-                            <i className="fas fa-search"
+                          <td><Moment format='MM/DD/YYYY'>{lesson.date}</Moment></td>
+                          <td className="admin-actions">
+
+                            <i className="fas fa-users"
                               style={{ cursor: 'pointer' }}
                               onClick={() => {
                                 setSelectedLesson(lesson)
                                 toggleCompleteModal(true)
                               }}
                             />
+                            <Link to={`/lesson/${lesson._id}/edit`} target="_blank">
+                              <i className="fas fa-edit" />
+                            </Link>
                             <i
                               className="fas fa-times"
                               style={{ color: 'red', cursor: 'pointer' }}
@@ -92,10 +103,8 @@ const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
                       )
                     })}
                   </tbody>
-                  <tfoot>
-                    <Pagination lessonsPerPage={lessonsPerPage} totalLessons={lessons.length} paginate={paginate} />
-                  </tfoot>
               </table>
+              <Pagination itemsPerPage={lessonsPerPage} totalItems={lessons.length} paginate={paginate} />
           </div>
           {deleteModal ? <DeleteLesson toggleDeleteModal={toggleDeleteModal} lesson={selectedLesson} deleteLesson={deleteLesson} /> : <Fragment></Fragment>}
           {completeModal ? <LessonCompletes toggleCompleteModal={toggleCompleteModal} lesson={selectedLesson} removeComplete={removeComplete} /> : <Fragment></Fragment>}

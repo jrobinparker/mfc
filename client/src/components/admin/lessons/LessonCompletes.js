@@ -7,7 +7,7 @@ const LessonCompletes = ({ lesson, toggleCompleteModal, removeComplete }) => {
   const [ lessonData, setLessonData ] = useState([])
   const [ filteredUsers, setFilteredUsers ] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
-  const [ usersPerPage ] = useState(5);
+  const [ usersPerPage ] = useState(10);
   const [ search, setSearch ] = useState('');
 
   const indexOfLastUser = currentPage * usersPerPage;
@@ -19,11 +19,8 @@ const LessonCompletes = ({ lesson, toggleCompleteModal, removeComplete }) => {
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   useEffect(() => {
-    setFilteredUsers(
-      lesson.completes.filter(c => c.name.toLowerCase().includes(search.toLowerCase()))
-    )
-    setLessonData(filteredUsers)
-  }, [search, lesson])
+    setFilteredUsers(lesson.completes)
+  }, [])
 
    return createPortal(
     <div className="modal is-active">
@@ -36,7 +33,12 @@ const LessonCompletes = ({ lesson, toggleCompleteModal, removeComplete }) => {
         <section className="modal-card-body">
           <div className="control">
             <input type="text" className="input" placeholder="User search" onChange={e => {
-              setSearch(e.target.value)
+              const term = e.target.value
+              setFilteredUsers(
+                lesson.completes.filter(
+                  c => c.name.toLowerCase().includes(term.toLowerCase())
+                )
+              )
             }}/>
           </div>
           <table className="table is-fullwidth">
@@ -46,7 +48,7 @@ const LessonCompletes = ({ lesson, toggleCompleteModal, removeComplete }) => {
               <th></th>
             </thead>
             <tbody>
-              {lesson.completes.map((c, i) => {
+              {filteredUsers.map((c, i) => {
                 return (
                   <tr key={i}>
                     <td>{c.name}</td>

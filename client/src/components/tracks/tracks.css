@@ -32,3 +32,9 @@
   width: 100%;
   margin-bottom: 15px;
 }
+
+.admin-actions {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-around;
+}
