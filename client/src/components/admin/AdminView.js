@@ -19,9 +19,9 @@ const AdminView = ({ getLessons, getTracks, deleteLesson, removeComplete, setAle
 
   return loading ? <Loading /> : (
     <Fragment>
-        <div>
-          <button onClick={() => toggleView(true)}>lessons</button>
-          <button onClick={() => toggleView(false)}>tracks</button>
+        <div className="buttons">
+          <button className="button is-primary" onClick={() => toggleView(true)}>lessons</button>
+          <button className="button is-primary" onClick={() => toggleView(false)}>tracks</button>
         </div>
         <div>
           {

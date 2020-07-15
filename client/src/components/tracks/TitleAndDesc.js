@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 
-const TitleAndDesc = ({ title, description, rank, style, skills, onChange, nextStep }) => {
+const TitleAndDesc = ({ mode, title, description, rank, style, skills, onChange, nextStep }) => {
 
   const saveAndContinue = e => {
 
@@ -13,7 +13,7 @@ const TitleAndDesc = ({ title, description, rank, style, skills, onChange, nextS
   return (
     <Fragment>
           <div className="container">
-            <h1 className="title">Create a New Track</h1>
+            <h1 className="title">{mode}</h1>
             <nav className="panel">
               <p className="panel-heading">About the Track</p>
             <div className="form-wizard">

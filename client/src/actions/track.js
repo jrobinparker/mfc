@@ -84,4 +84,36 @@ export const createTrack = (formData, history, edit = false) => async dispatch =
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
+};
+
+export const editTrack = (id, formData, history, edit = true) => async dispatch => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+
+    const res = await axios.patch(`/api/tracks/${id}`, formData, config)
+
+    dispatch({
+      type: GET_TRACK,
+      payload: res.data
+    });
+
+    dispatch(setAlert('Track updated!', 'success'));
+
+    history.push('/dashboard');
+  } catch(err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach(error => dispatch(setAlert(error.msg, 'danger')))
+    };
+
+    dispatch({
+      type: TRACK_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
 }

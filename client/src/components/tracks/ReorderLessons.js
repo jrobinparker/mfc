@@ -58,7 +58,7 @@ class ReorderLessons extends React.Component {
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <div className="container">
-        <h1 className="title">Create a New Track</h1>
+        <h1 className="title">{this.props.mode}</h1>
           <nav className="panel">
             <p className="panel-heading">Reorder Lessons</p>
             <div className="form-wizard">

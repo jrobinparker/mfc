@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ReviewTrack = ({ prevStep, onSubmit, track: { title, description, rank, style, skills, lessons }}) => {
+const ReviewTrack = ({ mode, buttonText, prevStep, onSubmit, track: { title, description, rank, style, skills, lessons }}) => {
 
     const saveTrack = e => {
       e.preventDefault();
-      onSubmit()
+      onSubmit(e)
     }
 
     return (
       <div className="container">
-        <h1 className="title">Create a New Track</h1>
+        <h1 className="title">{mode}</h1>
         <nav className="panel">
           <p className="panel-heading">Review Track</p>
             <div className="form-wizard">
@@ -41,7 +41,7 @@ const ReviewTrack = ({ prevStep, onSubmit, track: { title, description, rank, st
           </nav>
               <div style={{ textAlign: 'center', marginTop: '10px' }}>
                 <button onClick={() => prevStep()} className="button" style={{ width: '40%', marginRight: '50px' }}>Back</button>
-                <button onClick={e => saveTrack(e)} className="button is-primary" style={{ width: '40%' }}>Create Track</button>
+                <button onClick={e => saveTrack(e)} className="button is-primary" style={{ width: '40%' }}>{buttonText}</button>
               </div>
       </div>
 

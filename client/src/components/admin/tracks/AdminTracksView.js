@@ -76,7 +76,7 @@ const AdminTracksView = ({ tracks }) => {
                         <tr key={i}>
                           <td>{track.title}</td>
                           <td>{track.rank}</td>
-                          <td><Moment format='MM/DD/YYYY'>{track.date}</Moment></td>
+                          <td><Moment format='MM/DD/YYYY'>{track.created}</Moment></td>
                           <td className="admin-actions">
                             <Link to={`/track/${track._id}/edit`} target="_blank">
                               <i className="fas fa-edit" />

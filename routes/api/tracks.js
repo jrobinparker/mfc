@@ -44,6 +44,45 @@ router.post('/', [ auth, [
     }
   });
 
+// @route PUT api/lessons/:id
+// @desc Edit lesson
+// @access Private
+
+router.patch('/:id', [ auth, [
+    check('title', 'Title is required').not().isEmpty(),
+    check('description', 'Description is required').not().isEmpty()
+    ]
+  ], async (req, res) => {
+
+    const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+      const { title, rank, description, style, skills, lessons } = req.body;
+
+      // build profile object
+      const trackFields = {};
+      if (title) trackFields.title = title;
+      if (lessons) trackFields.lessons = lessons;
+      if (rank) trackFields.rank = rank;
+      if (description) trackFields.description = description;
+      if (style) trackFields.style = style;
+      if (skills) {
+        trackFields.skills = skills.split(',').map(skill => skill.trim());
+      }
+
+      let track = await Track.findById(req.params.id);
+
+          track = await Track.findByIdAndUpdate(
+            req.params.id,
+            { $set: trackFields },
+            { new: true }
+          )
+
+          console.log(trackFields)
+          res.json(track)
+})
+
 // @route GET api/tracks
 // @desc Get all tracks
 // @access Private
