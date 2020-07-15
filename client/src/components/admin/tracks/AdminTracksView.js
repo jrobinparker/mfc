@@ -2,20 +2,21 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import Pagination from '../../utils/Pagination';
-// import DeleteLesson from './DeleteLesson';
+import DeleteTrack from './DeleteTrack';
 //import TrackCompletes from './TrackCompletes';
 import '../../tracks/tracks.css';
 
-const AdminTracksView = ({ tracks }) => {
+const AdminTracksView = ({ tracks, deleteTrack }) => {
 
   const [ tracksData, setTrackData ] = useState([]);
-  const [ displayTrackss, setToggleTracks ] = useState(false);
+  const [ displayTracks, setToggleTracks ] = useState(false);
   const [ search, setSearch ] = useState('');
   const [ filteredTracks, setFilteredTracks ] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ tracksPerPage ] = useState(10);
   const [ deleteModal, toggleDeleteModal ] = useState(false);
   const [ completeModal, toggleCompleteModal ] = useState(false);
+  const [ selectedTrack, setSelectedTrack ] = useState([])
 
   const indexOfLastTrack = currentPage * tracksPerPage;
 
@@ -27,7 +28,7 @@ const AdminTracksView = ({ tracks }) => {
 
   useEffect(() => {
     setFilteredTracks(tracks)
-  }, [])
+  }, [tracks])
 
   return (
       <Fragment>
@@ -81,6 +82,14 @@ const AdminTracksView = ({ tracks }) => {
                             <Link to={`/track/${track._id}/edit`} target="_blank">
                               <i className="fas fa-edit" />
                             </Link>
+                            <i
+                              className="fas fa-times"
+                              style={{ color: 'red', cursor: 'pointer' }}
+                              onClick={() => {
+                                setSelectedTrack(track)
+                                toggleDeleteModal(true)
+                              }}
+                            />
                           </td>
                         </tr>
                       )
@@ -89,6 +98,7 @@ const AdminTracksView = ({ tracks }) => {
               </table>
               <Pagination itemsPerPage={tracksPerPage} totalItems={tracks.length} paginate={paginate} />
           </div>
+          {deleteModal ? <DeleteTrack toggleDeleteModal={toggleDeleteModal} track={selectedTrack} deleteTrack={deleteTrack} /> : <Fragment></Fragment>}
         </Fragment>
     )
 }

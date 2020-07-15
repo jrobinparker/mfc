@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_TRACKS, GET_TRACK, DISPLAY_TRACK_LESSONS, TRACK_ERROR } from './types';
+import { GET_TRACKS, GET_TRACK, DISPLAY_TRACK_LESSONS, TRACK_ERROR, DELETE_TRACK } from './types';
 
 export const getTracks = () => async dispatch => {
   try {
@@ -116,4 +116,14 @@ export const editTrack = (id, formData, history, edit = true) => async dispatch 
       payload: { msg: err.response.statusText, status: err.response.status }
     });
   }
+}
+
+export const deleteTrack = id => async dispatch => {
+  const res = await axios.delete(`/api/tracks/${id}`)
+
+    dispatch({
+      type: DELETE_TRACK,
+      payload: id
+    });
+    dispatch(setAlert('Track deleted', 'success'))
 }

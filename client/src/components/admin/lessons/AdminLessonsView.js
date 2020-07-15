@@ -28,7 +28,7 @@ const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
 
   useEffect(() => {
     setFilteredLessons(lessons)
-  }, [])
+  }, [lessons])
 
   return (
       <Fragment>

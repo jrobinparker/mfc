@@ -1,7 +1,7 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 
-const DeleteLesson = ({ lesson, deleteLesson, toggleDeleteModal}) => {
+const DeleteLesson = ({ lesson, deleteLesson, toggleDeleteModal }) => {
 
    return createPortal(
     <div className="modal is-active">
@@ -12,7 +12,7 @@ const DeleteLesson = ({ lesson, deleteLesson, toggleDeleteModal}) => {
         <button className="delete" aria-label="close" onClick={() => toggleDeleteModal(false)}></button>
       </header>
         <section className="modal-card-body">
-          Are you sure you want to delete this course?
+          Are you sure you want to delete this lesson?
         </section>
         <footer className="modal-card-foot">
           <button className="button is-danger" onClick={e => {
@@ -24,7 +24,7 @@ const DeleteLesson = ({ lesson, deleteLesson, toggleDeleteModal}) => {
       </div>
     </div>
     ,
-    document.querySelector('#delete-modal')
+    document.querySelector('#delete-lesson-modal')
     )
 }
 

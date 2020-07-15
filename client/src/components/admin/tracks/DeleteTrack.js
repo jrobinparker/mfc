@@ -1,7 +1,7 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 
-const DeleteTrack = ({ track, deleteTrack, toggleDeleteModal}) => {
+const DeleteTrack = ({ track, deleteTrack, toggleDeleteModal }) => {
 
    return createPortal(
     <div className="modal is-active">
@@ -16,7 +16,7 @@ const DeleteTrack = ({ track, deleteTrack, toggleDeleteModal}) => {
         </section>
         <footer className="modal-card-foot">
           <button className="button is-danger" onClick={e => {
-            deleteLesson(track._id)
+            deleteTrack(track._id)
             toggleDeleteModal(false)
           }}>Delete</button>
           <button className="button" onClick={() => toggleDeleteModal(false)}>Cancel</button>

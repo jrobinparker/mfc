@@ -23,3 +23,4 @@ export const GET_TRACKS = 'GET_TRACKS';
 export const GET_TRACK = 'GET_TRACK';
 export const DISPLAY_TRACK_LESSONS = 'DISPLAY_TRACK_LESSONS';
 export const TRACK_ERROR = 'TRACK_ERROR';
+export const DELETE_TRACK = 'DELETE_TRACK';
