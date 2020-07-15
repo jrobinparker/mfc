@@ -6,6 +6,7 @@ import { getTracks } from '../../actions/track';
 import { getCurrentProfile } from '../../actions/profile';
 import { setAlert } from '../../actions/alert';
 import AdminLessonsView from './lessons/AdminLessonsView';
+import AdminTracksView from './tracks/AdminTracksView';
 import Loading from '../utils/Loading';
 
 const AdminView = ({ getLessons, getTracks, deleteLesson, removeComplete, setAlert, auth: { user }, lesson: { lessons, loading }, track: { tracks } }) => {
@@ -24,7 +25,16 @@ const AdminView = ({ getLessons, getTracks, deleteLesson, removeComplete, setAle
         </div>
         <div>
           {
-            viewLessons ? <AdminLessonsView lessons={lessons} deleteLesson={deleteLesson} removeComplete={removeComplete} /> : <h1>tracks</h1>
+            viewLessons ?
+              <AdminLessonsView
+                lessons={lessons}
+                deleteLesson={deleteLesson}
+                removeComplete={removeComplete}
+              />
+              :
+              <AdminTracksView
+                tracks={tracks}
+              />
           }
           </div>
     </Fragment>
