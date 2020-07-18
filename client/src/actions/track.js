@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_TRACKS, GET_TRACK, DISPLAY_TRACK_LESSONS, TRACK_ERROR, DELETE_TRACK } from './types';
+import { GET_TRACKS, GET_TRACK, DISPLAY_TRACK_LESSONS, TRACK_ERROR, DELETE_TRACK, UPDATE_TRACK_COMPLETES } from './types';
 
 export const getTracks = () => async dispatch => {
   try {
@@ -126,4 +126,25 @@ export const deleteTrack = id => async dispatch => {
       payload: id
     });
     dispatch(setAlert('Track deleted', 'success'))
+}
+
+export const addTrackComplete = id => async dispatch => {
+  try {
+    const res = await axios.put(`/api/tracks/complete/${id}`);
+    dispatch({
+      type: UPDATE_TRACK_COMPLETES,
+      payload: { id, completes: res.data }
+    });
+    dispatch(
+      getTrack(id)
+    )
+    dispatch(
+      setAlert('Track completed!', 'success')
+    )
+  } catch(err) {
+    dispatch({
+      type: TRACK_ERROR,
+      payload: ({ msg: err.response.statusText, status: err.response.status })
+    })
+  }
 }

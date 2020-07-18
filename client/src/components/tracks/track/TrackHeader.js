@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Moment from 'react-moment';
 import RankIcon from './RankIcon';
 import StyleIcon from './StyleIcon';
@@ -6,8 +6,7 @@ import SkillIcon from './SkillIcon';
 import LikeIcon from './LikeIcon';
 import CompleteIcon from './CompleteIcon';
 
-const TrackHeader = props => {
-  const { id, user, title, author, date, style, skills, rank } = props;
+const TrackHeader = ({ id, user, title, author, created, style, skills, rank, completes }) => {
 
   return (
     <div className="lesson-header">
@@ -15,11 +14,12 @@ const TrackHeader = props => {
           {title}
         </h1>
         <h3 className="subtitle">
-            {author} | <Moment format='MM/DD/YYYY'>{date}</Moment>
+            <Moment format='MM/DD/YYYY'>{created}</Moment>
         </h3>
         <div class="field is-grouped is-grouped-multiline lesson-metadata">
-          <StyleIcon style={style} />
-          <RankIcon rank={rank} />
+          { !style ? <></> : <StyleIcon style={style} /> }
+          { !rank ? <></> : <RankIcon rank={rank} /> }
+          <CompleteIcon completes={completes} />
         </div>
         <div class="field is-grouped is-grouped-multiline lesson-metadata" style={{ marginTop: '1.5px' }}>
         </div>

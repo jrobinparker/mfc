@@ -1,4 +1,4 @@
-import { GET_TRACKS, GET_TRACK, TRACK_ERROR, DISPLAY_TRACK_LESSONS, DELETE_TRACK } from '../actions/types';
+import { GET_TRACKS, GET_TRACK, TRACK_ERROR, DISPLAY_TRACK_LESSONS, DELETE_TRACK, UPDATE_TRACK_COMPLETES } from '../actions/types';
 
 const initialState = {
   tracks: [],
@@ -35,7 +35,13 @@ export default function(state = initialState, action) {
       return {
         ...state,
         tracks: state.tracks.filter(track => track._id !== payload)
-      }
+      };
+    case UPDATE_TRACK_COMPLETES:
+      return {
+        ...state,
+        completes: state.tracks.map(track => track._id === payload.id ? { ...track, completes: payload.completes } : track),
+        loading: false
+      };
     default:
       return state;
   }
