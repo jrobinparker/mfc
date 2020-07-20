@@ -5,6 +5,7 @@ import { getLessons } from '../../actions/lesson';
 import LessonItem from './LessonItem';
 import Filter from './Filter';
 import Loading from '../utils/Loading';
+import Pagination from '../utils/Pagination';
 
 const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
   const [ filter, setFilter ] = useState({
@@ -12,6 +13,16 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
     style: 'all',
     sort: 'all'
   });
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ lessonsPerPage ] = useState(12);
+
+  const indexOfLastLesson = currentPage * lessonsPerPage;
+
+  const indexOfFirstLesson = indexOfLastLesson - lessonsPerPage;
+
+  const currentLessons = lessons.slice(indexOfFirstLesson, indexOfLastLesson);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   useEffect(() => {
     getLessons();
@@ -24,79 +35,79 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
   let filteredLessons
 
   if (filter.rank === 'white') {
-    filteredLessons = lessons
+    filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'White')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'yellow') {
-    filteredLessons = lessons
+    filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'Yellow')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'green') {
-    filteredLessons = lessons
+    filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'Green')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'blue') {
-    filteredLessons = lessons
+    filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'Blue')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'purple') {
-    filteredLessons = lessons
+    filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'Purple')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'brown') {
-    filteredLessons = lessons
+    filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'Brown')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'black') {
-    filteredLessons = lessons
+    filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'Black')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.rank === 'all') {
-    filteredLessons = lessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+    filteredLessons = currentLessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.style === 'all') {
-    filteredLessons = lessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+    filteredLessons = currentLessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.style === 'eskrima') {
-    filteredLessons = lessons
+    filteredLessons = currentLessons
       .filter(lesson => lesson.style === 'Eskrima')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.sort === 'all') {
-    filteredLessons = lessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+    filteredLessons = currentLessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
   }
 
   if (filter.sort === 'dates') {
-    filteredLessons = lessons
+    filteredLessons = currentLessons
       .sort((a, b) => b.date - a.date)
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
     }
 
   if (filter.sort === 'likes') {
-    filteredLessons = lessons
+    filteredLessons = currentLessons
       .sort((a, b) => b.likes.length - a.likes.length)
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
     }
 
   if (filter.sort === 'completes') {
-    filteredLessons = lessons
+    filteredLessons = currentLessons
       .sort((a, b) => b.completes.length - a.completes.length)
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
     }
@@ -142,20 +153,21 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
                   <option value="all" selected>All</option>
                   <option value="dates">Most Recent</option>
                   <option value="likes">Most Likes</option>
-                  <option value="completes">Most Completes</option>
+                  <option value="completes">Most Completed</option>
                 </select>
               </div>
             </div>
           </div>
         </div>
           <div className="lessons-container">
-            <div className="container">
+            <div className="container" style={{ height: '70vh' }}>
               <div className="columns is-multiline">
                 {
                   filteredLessons
                 }
               </div>
             </div>
+            <Pagination itemsPerPage={lessonsPerPage} totalItems={lessons.length} paginate={paginate} />
           </div>
         </div>
     </div>

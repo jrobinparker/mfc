@@ -6,14 +6,13 @@ import RankIcon from './lesson/RankIcon';
 import StyleIcon from './lesson/StyleIcon';
 import LikeIcon from './lesson/LikeIcon';
 import CompleteIcon from './lesson/CompleteIcon';
+import './lesson/Lesson.css';
 
-const LessonItem = props => {
-  const { _id, title, date, rank, style, likes, completes } = props.lesson
-
+const LessonItem = ({ lesson: { _id, title, date, rank, style, likes, completes }}) => {
   return (
-    <div className="column is-4">
+    <div className="column is-3">
       <div className="box">
-        <h1 className="lesson-item-title"><Link to={`/lesson/${_id}`}>{title}</Link></h1>
+        <p className="lesson-item-title"><Link to={`/lesson/${_id}`}>{title}</Link></p>
         <div class="field is-grouped is-grouped-multiline lesson-metadata">
           <RankIcon rank={rank}/>
           <StyleIcon style={style} />

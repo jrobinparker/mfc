@@ -10,7 +10,7 @@ import TrackHeader from './TrackHeader';
 import SkillIcon from './SkillIcon';
 import Loading from '../../utils/Loading';
 import ReactPlayer from 'react-player';
-import './Lesson.css';
+import '../../lessons/lesson/Lesson.css';
 
 const Track = ({ getTrack, addTrackComplete, track: { track, trackLessons, loading }, auth: { user }, match }) => {
   const [ lesson, setLesson ] = useState({});

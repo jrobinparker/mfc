@@ -26,7 +26,7 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, a
 
   return loading || lesson === null ? <Loading /> : (
     <div className="container">
-      <div className="lesson-container">
+      <div className="box">
         <LessonHeader
           id={lesson._id}
           user={user}
@@ -43,15 +43,13 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, a
           completes={lesson.completes}
         />
 
-        <div className="lesson-content">
           <ReactPlayer
             url={`http://localhost:5000/api/lessons/videos/${lesson.video}`}
             controls={true}
             width='100%'
-            height='100%'
+            height='50%'
             onEnded={() => addComplete(lesson._id)}
           />
-        </div>
 
         <div className="lesson-description">
           <p style={{ marginBottom: '15px' }}>{lesson.description}</p>
