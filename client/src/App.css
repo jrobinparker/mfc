@@ -1,7 +1,6 @@
 
 html {
    background-color: hsl(0, 0%, 96%);
-
  }
 
 .content {
@@ -50,6 +49,23 @@ html {
 
 .nav-link {
   cursor: pointer;
+}
+
+/* login/registration form */
+
+.auth-container {
+  height: 75vh;
+}
+
+.auth-form-title {
+  text-align: center;
+}
+
+.auth-form {
+  width: 50%;
+  position: relative;
+  left: 25%;
+  top: 15%;
 }
 
 /* hero image and banner text */

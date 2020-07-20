@@ -24,9 +24,10 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <div className="container">
-      <h1>Sign In</h1>
-      <form>
+    <div className="container auth-container">
+      <div className="auth-form">
+      <h1 className="title auth-form-title">Member Login</h1>
+      <form className="box">
           <div className="field">
             <label className="label">Email</label>
               <div class="control">
@@ -57,6 +58,7 @@ const Login = ({ login, isAuthenticated }) => {
         </div>
         <button className="button is-primary" onClick={e => onSubmit(e)}>Login</button>
       </form>
+      </div>
     </div>
   )
 }

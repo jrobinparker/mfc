@@ -31,9 +31,10 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   }
 
   return (
-    <div className="container">
-      <h1>Register</h1>
-      <form>
+    <div className="container auth-container">
+      <div className="auth-form">
+      <h1 className="title auth-form-title">Become a Member</h1>
+      <form className="box">
         <div class="field">
           <label className="label">Full Name</label>
             <div class="control">
@@ -88,6 +89,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         </div>
         <button className="button is-primary" onClick={e => onSubmit(e)}>Register</button>
       </form>
+      </div>
     </div>
   )
 }
