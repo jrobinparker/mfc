@@ -145,7 +145,7 @@ class EditTrack extends React.Component {
         case 4:
           return <ReviewTrack
                     mode={'Edit Track'}
-                    buttonText={'Update Track'}
+                    buttonText='Update'
                     prevStep={this.prevStep}
                     track={this.state}
                     onSubmit={this.handleOnSubmit}

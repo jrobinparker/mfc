@@ -78,7 +78,7 @@ const EditLessons = ({ mode, lessons, selectedLessons, addLessons, nextStep, pre
                       </div>
                 </div>
               </div>
-              <table className="table" style={{ width: '100%', backgroundColor: 'hsl(0, 0%, 96%)' }}>
+              <table className="table" style={{ width: '100%' }}>
                   <thead>
                     <th>Lesson Title</th>
                     <th>Rank</th>

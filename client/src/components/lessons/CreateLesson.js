@@ -97,7 +97,7 @@ const CreateLesson = ({ createLesson, uploadVideo, history }) => {
               </span>
               {!videoObj ? <></> : <span class="file-name">{videoObjName}</span>}
             </label>
-            <button type="submit" className="button is-primary">Upload Video</button>
+            <button type="submit" className="button is-primary" style={{ marginLeft: '2.5%' }}>Upload Video</button>
           </div>
           {displayProgress ? <progress class="progress is-success" value={`${uploadPercentage}`} max="100">{uploadPercentage}%</progress> : <></>}
         </form>

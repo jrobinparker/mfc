@@ -41,9 +41,10 @@ const EditLesson = ({ lesson: { lesson, loading }, editLesson, getLesson, histor
   };
 
   return (
-    <Fragment>
       <div className="container">
-        <h1>Edit Lesson</h1>
+      <nav className="panel">
+        <p className="panel-heading">Create a New Lesson</p>
+        <div className="form-wizard">
         <form onSubmit={e => onSubmit(e)}>
           <div className="field">
             <label className="label">Title</label>
@@ -114,7 +115,8 @@ const EditLesson = ({ lesson: { lesson, loading }, editLesson, getLesson, histor
           <button className="button is-primary">Update</button>
         </form>
       </div>
-    </Fragment>
+      </nav>
+    </div>
   )
 };
 
