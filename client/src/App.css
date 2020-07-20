@@ -1,8 +1,7 @@
 
-body {
-   margin: 0 auto;
+html {
    background-color: hsl(0, 0%, 96%);
-   height: 100vh;
+
  }
 
 .content {
@@ -19,24 +18,27 @@ body {
   top: 0%;
   display: block;
   width: 100vw;
-  padding: 10px;
+  padding: 5px;
   display: flex;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0);
-  color: white;
+  background-color: hsl(0, 0%, 21%);
   font-size: 1.25rem;
+  margin-bottom: 10px;
 }
 
 .logo {
-  width: 75px;
+  width: 50px;
   height: auto;
   margin-right: 10px;
+  padding: 2.5px;
+  border-radius: 50%;
+  background-color: hsl(0, 0%, 96%);
 }
 
 .nav-brand {
   width: 100%;
   cursor: pointer;
-  color: black;
+  color: white;
 }
 
 .nav-links {

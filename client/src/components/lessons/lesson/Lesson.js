@@ -25,7 +25,7 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, a
   }, [match.params.id, getLesson, getCurrentProfile]);
 
   return loading || lesson === null ? <Loading /> : (
-    <div className="container">
+    <div className="container" style={{ marginBottom: '10px' }}>
       <div className="box">
         <LessonHeader
           id={lesson._id}
