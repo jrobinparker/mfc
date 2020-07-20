@@ -31,7 +31,7 @@ const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
   }, [lessons])
 
   return (
-      <Fragment>
+      <div className="box">
               <div className="form-wizard">
                 <div className="field is-grouped is-grouped-centered">
                   <div className="control">
@@ -64,7 +64,7 @@ const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
                       </div>
                 </div>
               </div>
-              <table className="table" style={{ width: '100%', backgroundColor: 'hsl(0, 0%, 96%)' }}>
+              <table className="table" style={{ width: '100%' }}>
                   <thead>
                     <th>Lesson Title</th>
                     <th>Rank</th>
@@ -108,7 +108,7 @@ const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
           </div>
           {deleteModal ? <DeleteLesson toggleDeleteModal={toggleDeleteModal} lesson={selectedLesson} deleteLesson={deleteLesson} /> : <Fragment></Fragment>}
           {completeModal ? <LessonCompletes toggleCompleteModal={toggleCompleteModal} lesson={selectedLesson} removeComplete={removeComplete} /> : <Fragment></Fragment>}
-        </Fragment>
+        </div>
     )
 }
 

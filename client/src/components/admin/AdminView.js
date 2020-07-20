@@ -8,6 +8,7 @@ import { setAlert } from '../../actions/alert';
 import AdminLessonsView from './lessons/AdminLessonsView';
 import AdminTracksView from './tracks/AdminTracksView';
 import Loading from '../utils/Loading';
+import './admin.css';
 
 const AdminView = ({ getLessons, getTracks, deleteLesson, removeComplete, deleteTrack, setAlert, auth: { user }, lesson: { lessons, loading }, track: { tracks } }) => {
   const [ viewLessons, toggleView ] = useState(true)
@@ -18,10 +19,16 @@ const AdminView = ({ getLessons, getTracks, deleteLesson, removeComplete, delete
   }, [getLessons, getTracks])
 
   return loading ? <Loading /> : (
-    <Fragment>
-        <div className="buttons">
-          <button className="button is-primary" onClick={() => toggleView(true)}>lessons</button>
-          <button className="button is-primary" onClick={() => toggleView(false)}>tracks</button>
+    <div className="container">
+        <div class="field">
+          <div class="control">
+            <div class="select admin-select">
+              <select onChange={() => toggleView(!viewLessons)}>
+                <option>Lessons</option>
+                <option>Tracks</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div>
           {
@@ -38,7 +45,7 @@ const AdminView = ({ getLessons, getTracks, deleteLesson, removeComplete, delete
               />
           }
           </div>
-    </Fragment>
+    </div>
   )
 };
 

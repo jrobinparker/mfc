@@ -31,7 +31,7 @@ const AdminTracksView = ({ tracks, deleteTrack }) => {
   }, [tracks])
 
   return (
-      <Fragment>
+      <div className="box">
               <div className="form-wizard">
                 <div className="field is-grouped is-grouped-centered">
                   <div className="control">
@@ -64,7 +64,7 @@ const AdminTracksView = ({ tracks, deleteTrack }) => {
                       </div>
                 </div>
               </div>
-              <table className="table" style={{ width: '100%', backgroundColor: 'hsl(0, 0%, 96%)' }}>
+              <table className="table" style={{ width: '100%' }}>
                   <thead>
                     <th>Track Title</th>
                     <th>Rank</th>
@@ -99,7 +99,7 @@ const AdminTracksView = ({ tracks, deleteTrack }) => {
               <Pagination itemsPerPage={tracksPerPage} totalItems={tracks.length} paginate={paginate} />
           </div>
           {deleteModal ? <DeleteTrack toggleDeleteModal={toggleDeleteModal} track={selectedTrack} deleteTrack={deleteTrack} /> : <Fragment></Fragment>}
-        </Fragment>
+        </div>
     )
 }
 
