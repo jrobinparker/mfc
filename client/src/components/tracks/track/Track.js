@@ -9,42 +9,43 @@ import { setAlert } from '../../../actions/alert';
 import TrackHeader from './TrackHeader';
 import SkillIcon from './SkillIcon';
 import Loading from '../../utils/Loading';
+import LessonCompleteIcon from './LessonCompleteIcon';
 import ReactPlayer from 'react-player';
 import '../../lessons/lesson/Lesson.css';
 
-const Track = ({ getTrack, addTrackComplete, track: { track, trackLessons, loading }, auth: { user }, match }) => {
+const Track = ({ getTrack, addComplete, addTrackComplete, track: { track, trackLessons, loading }, auth: { user }, match }) => {
   const [ lesson, setLesson ] = useState({});
-  const [ completedLessons, setCompletedLessons ] = useState(0);
-  const [ active, toggleActive] = useState('')
+  const [ lessonLoading, setLessonLoading ] = useState(true);
+  const [ active, toggleActive ] = useState('');
+  const [ completedLessons, setCompletedLessons ] = useState([])
+  let userComplete = [];
 
   useEffect(() => {
     getTrack(match.params.id)
     getCurrentProfile()
   }, [match.params.id, getTrack, getCurrentProfile]);
 
-  useEffect(() => {
-    // const userCompletes = trackLessons.map(lesson => lesson.completes).filter(complete => complete.user === user._id)
-    // userCompletes.map(c => {
-    //  setCompletedLessons(completedLessons + 1)
-    //})
-    console.log(trackLessons.map(lesson => lesson))
-  }, [])
+  useLayoutEffect(() => {
+      trackLessons.map(lesson => {
+        lesson.completes.map(c => {
+          if (c.user === user._id) {
+            setCompletedLessons(completedLessons.concat(lesson._id))
+          }
+        })
+      })
 
-  const lessonCounter = n => {
-    setCompletedLessons(completedLessons + n)
-    if (completedLessons >= track.lessons.length) {
-     setCompletedLessons(track.lessons.length);
-     addTrackComplete(track._id);
-     console.log("completed!")
-    } else {
-      setCompletedLessons(completedLessons + 1);
-    }
-    console.log(completedLessons)
-  }
+      if (
+        completedLessons.length >= 1 &&
+        trackLessons.length >= 1 &&
+        completedLessons.length === trackLessons.length
+      ) {
+        addTrackComplete(track._id)
+      }
+  }, [match.params.id, track, trackLessons])
 
   return loading || track === null ? <Loading /> : (
     <div className="container">
-      <div className="lesson-container">
+      <div className="box lesson-container">
         <TrackHeader
           id={track._id}
           created={track.created}
@@ -57,38 +58,53 @@ const Track = ({ getTrack, addTrackComplete, track: { track, trackLessons, loadi
         <div className="track-container">
           <div className="menu">
             <ul className="menu-list">
-            {trackLessons.map(lesson =>
-              <li
-                onClick={
-                  () => {
-                    setLesson(lesson)
-                    toggleActive('is-active')
-                    console.log(lesson)
-                }}
-              >
-                <a>{lesson.title}</a>
-              </li>
-            )
-            }
+              {!trackLessons ? (
+                <Loading />
+              ) : (trackLessons.map(lesson =>
+                <li
+                  className="lesson-title"
+                  onClick={
+                    () => {
+                      setLessonLoading(true)
+                      setLesson(lesson)
+                      setLessonLoading(false)
+                  }}
+                >
+                  <a>
+                    {lesson.title}
+                    <LessonCompleteIcon completes={lesson.completes} user={user} />
+                  </a>
+                </li>
+              ))
+              }
             </ul>
           </div>
           <div className="lesson-content">
-            <ReactPlayer
-              url={`http://localhost:5000/api/lessons/videos/${lesson.video}`}
-              controls={true}
-              width='100%'
-              height='100%'
-              onEnded={() => {
-                addComplete(lesson._id)
-                lessonCounter(1)
-              }}
-            />
+            {
+              lessonLoading ? (
+                <div className="placeholder-container">
+                  <img src={require('../../../assets/logo-transparent.png')} className="placeholder-logo" alt="logo"/>
+                </div>
+              ) : (
+                  <ReactPlayer
+                    url={`http://localhost:5000/api/lessons/videos/${lesson.video}`}
+                    controls={true}
+                    height={'100%'}
+                    width={'100%'}
+                    onEnded={() => {
+                      addComplete(lesson._id)
+                      getTrack(track._id)
+                    }}
+                  />
+              )
+            }
           </div>
           </div>
+          <div className="lesson-description">
+            <p style={{ marginBottom: '15px' }}>{track.description}</p>
+          </div>
         </div>
-        <div className="lesson-description">
-          <p style={{ marginBottom: '15px' }}>{track.description}</p>
-        </div>
+
 
     </div>
   )
@@ -108,4 +124,4 @@ const mapStateToProps = state => ({
   trackLessons: state.track.trackLessons
 });
 
-export default connect(mapStateToProps, { getTrack, getCurrentProfile })(withRouter(Track));
+export default connect(mapStateToProps, { getTrack, getCurrentProfile, addTrackComplete, addComplete })(withRouter(Track));

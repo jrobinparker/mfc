@@ -1,12 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Moment from 'react-moment';
 
-const CompleteIcon = props => {
-  const { id, completes, addComplete, removeComplete, user  } = props;
+const CompleteIcon = ({ id, completes, addComplete, removeComplete, user }) => {
   const [ completeDate, setCompleteDate ] = useState(null);
 
   useEffect(() => {
-    completes.filter(complete => complete.user === user._id).map(c => {
+    completes.filter(complete => complete.user === user).map(c => {
       setCompleteDate(c.date)
     })
   }, [completes])

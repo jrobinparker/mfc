@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createLesson, uploadVideo } from '../../actions/lesson';
+import Loading from '../utils/Loading';
 import axios from 'axios';
 
 const CreateLesson = ({ createLesson, uploadVideo, history }) => {
@@ -22,6 +23,7 @@ const CreateLesson = ({ createLesson, uploadVideo, history }) => {
   const [ message, setMessage ] = useState('');
   const [ uploadPercentage, setUploadPercentage ] = useState(0);
   const [ displayProgress, setDisplayProgress ] = useState(false);
+  const [ uploadStage, setUploadStage ] = useState(0);
 
   const { title, rank, style, description, skills } = formData;
 
@@ -40,6 +42,7 @@ const CreateLesson = ({ createLesson, uploadVideo, history }) => {
    const videoData = new FormData();
    videoData.append('video', videoObj);
    //uploadVideo(videoData);
+   setUploadStage(1)
    try {
      const config = {
        headers: {
@@ -60,7 +63,7 @@ const CreateLesson = ({ createLesson, uploadVideo, history }) => {
       })
       const { filename } = res.data.file
       setFormData({...formData, video: filename})
-      console.log(formData, filename)
+      setUploadStage(2)
     } catch(err) {
       if (err.response.status === 500) {
         setMessage('There was a problem with the server');
@@ -76,6 +79,23 @@ const CreateLesson = ({ createLesson, uploadVideo, history }) => {
     createLesson(formData, history);
   };
 
+  const uploadStageIcon = stage => {
+    switch (stage) {
+      case 0:
+        return <></>
+      case 1:
+        return (
+          <Fragment>
+            <p>Uploading... </p>
+            <progress class="progress is-small is-primary" max="100">15%</progress>
+          </Fragment>
+        )
+      case 2:
+        return <p>Upload complete!</p>
+      default:
+        return <></>
+    }
+  }
   return (
     <Fragment>
       <div className="container">
@@ -99,7 +119,9 @@ const CreateLesson = ({ createLesson, uploadVideo, history }) => {
             </label>
             <button type="submit" className="button is-primary" style={{ marginLeft: '2.5%' }}>Upload Video</button>
           </div>
-          {displayProgress ? <progress class="progress is-success" value={`${uploadPercentage}`} max="100">{uploadPercentage}%</progress> : <></>}
+          <div style={{ marginTop: '15px' }}>
+            {uploadStageIcon(uploadStage)}
+          </div>
         </form>
         <form onSubmit={e => onSubmit(e)}>
           <div className="field">

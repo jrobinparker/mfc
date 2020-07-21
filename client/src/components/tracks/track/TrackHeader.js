@@ -19,7 +19,7 @@ const TrackHeader = ({ id, user, title, author, created, style, skills, rank, co
         <div class="field is-grouped is-grouped-multiline lesson-metadata">
           { !style ? <></> : <StyleIcon style={style} /> }
           { !rank ? <></> : <RankIcon rank={rank} /> }
-          <CompleteIcon completes={completes} />
+          <CompleteIcon completes={completes} user={user._id} />
         </div>
         <div class="field is-grouped is-grouped-multiline lesson-metadata" style={{ marginTop: '1.5px' }}>
         </div>

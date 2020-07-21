@@ -37,6 +37,13 @@ const TrackSchema = new Schema({
       user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
+      },
+      name: {
+        type: String
+      },
+      date: {
+        type: Date,
+        default: Date.now
       }
     }
   ],
@@ -45,6 +52,13 @@ const TrackSchema = new Schema({
       user: {
         type: Schema.Types.ObjectId,
         ref: 'users'
+      },
+      name: {
+        type: String
+      },
+      date: {
+        type: Date,
+        default: Date.now
       }
     }
   ],

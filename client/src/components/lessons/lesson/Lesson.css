@@ -7,12 +7,14 @@
 
 .lesson-metadata {
   margin-top: -15px;
+  align-items: baseline;
 }
 
 .lesson-content {
-  background-color: hsl(0, 0%, 21%);
+  background-color: hsl(0, 0%, 50%);
   height: 70vh;
   width: 100vw;
+  border-radius: 5px;
 }
 
 .lesson-comments {
@@ -62,4 +64,9 @@
 
 .lesson-content {
   width: 75%;
+}
+
+.lesson-title i {
+  margin-left: 10px;
+  color: hsl(141, 53%, 53%);
 }
