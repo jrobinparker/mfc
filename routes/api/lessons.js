@@ -265,8 +265,37 @@ router.put('/unlike/:id', auth, async (req, res) => {
   }
 });
 
+// @route PUT api/lessons/in-progress/:id
+// @desc Log users who have not yet completed the lesson
+// @access Private
+router.put('/in-progress/:id', auth, async (req, res) => {
+  try {
+      const lesson = await Lesson.findById(req.params.id);
+      const user = await User.findById(req.user.id).select('-password');
+
+      if (lesson.inProgress.filter(ip => ip.user.toString() === req.user.id).length > 0) {
+        return res.status(400).json({ msg: 'Lesson already in progress!' });
+      };
+
+      const newInProgress = {
+        user: user,
+        name: user.name
+      };
+
+
+      lesson.inProgress.unshift(newInProgress);
+
+      await lesson.save();
+
+      res.json(lesson.inProgress);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 // @route PUT api/lessons/complete/:id
-// @desc Complete a lesson
+// @desc Complete a lesson and remove user from in-progress array
 // @access Private
 router.put('/complete/:id', auth, async (req, res) => {
   try {
@@ -287,6 +316,30 @@ router.put('/complete/:id', auth, async (req, res) => {
       await lesson.save();
 
       res.json(lesson.completes);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
+// @route PUT api/lessons/uncomplete/:id
+// @desc Uncomplete a lesson
+// @access Private
+router.put('/remove-in-progress/:id', auth, async (req, res) => {
+  try {
+      const lesson = await Lesson.findById(req.params.id);
+
+      if (lesson.inProgress.filter(ip => ip.user.toString() === req.user.id).length === 0) {
+        return res.status(400).json({ msg: 'User has not started this lesson yet!' });
+      };
+
+      const removeIndex = lesson.inProgress.map(ip => ip.user.toString()).indexOf(req.user.id)
+
+      lesson.inProgress.splice(removeIndex, 1)
+
+      await lesson.save();
+
+      res.json(lesson.inProgress);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

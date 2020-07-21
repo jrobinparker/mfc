@@ -41,6 +41,21 @@ const LessonSchema = new Schema({
       }
     }
   ],
+  inProgress: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      },
+      name: {
+        type: String
+      },
+      date: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ],
   completes: [
     {
       user: {

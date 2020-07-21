@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { getLesson, addLike, removeLike, addComplete, removeComplete } from '../../../actions/lesson';
+import { getLesson, addLike, removeLike, addComplete, removeComplete, addInProgress } from '../../../actions/lesson';
 import { getCurrentProfile } from '../../../actions/profile';
 import { setAlert } from '../../../actions/alert';
 import LessonHeader from './LessonHeader';
@@ -15,7 +15,7 @@ import axios from 'axios';
 import ReactPlayer from 'react-player';
 
 
-const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, addComplete, lesson: { lesson, loading }, auth: { user }, match }) => {
+const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, addComplete, addInProgress, lesson: { lesson, loading }, auth: { user }, match }) => {
 
   const [ lessonVideo, setLessonVideo ] = useState('')
 
@@ -48,6 +48,7 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, a
             controls={true}
             width='100%'
             height='50%'
+            onStart={() => addInProgress(lesson._id)}
             onEnded={() => addComplete(lesson._id)}
           />
 
@@ -75,4 +76,4 @@ const mapStateToProps = state => ({
   lesson: state.lesson
 });
 
-export default connect(mapStateToProps, { getLesson, getCurrentProfile, setAlert, addLike, removeLike, addComplete, removeComplete })(withRouter(Lesson));
+export default connect(mapStateToProps, { getLesson, getCurrentProfile, setAlert, addLike, removeLike, addComplete, removeComplete, addInProgress })(withRouter(Lesson));

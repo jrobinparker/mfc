@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT, UPLOAD_VIDEO, DELETE_LESSON } from './types';
+import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT, UPLOAD_VIDEO, DELETE_LESSON, UPDATE_IN_PROGRESS } from './types';
 
 export const getLessons = () => async dispatch => {
   try {
@@ -56,6 +56,40 @@ export const removeLike = id => async dispatch => {
     dispatch({
       type: UPDATE_LIKES,
       payload: { id, likes: res.data }
+    })
+    dispatch(
+      getLesson(id)
+    )
+  } catch(err) {
+    dispatch({
+      type: LESSON_ERROR,
+      payload: ({ msg: err.response.statusText, status: err.response.status })
+    })
+  }
+}
+
+export const addInProgress = id => async dispatch => {
+  try {
+    const res = await axios.put(`/api/lessons/in-progress/${id}`);
+    dispatch({
+      type: UPDATE_IN_PROGRESS,
+      payload: { id, inProgress: res.data }
+    })
+    console.log('lesson in progress')
+  } catch(err) {
+    dispatch({
+      type: LESSON_ERROR,
+      payload: ({ msg: err.response.statusText, status: err.response.status })
+    })
+  }
+}
+
+export const removeInProgress = id => async dispatch => {
+  try {
+    const res = await axios.put(`/api/lessons/remove-in-progress/${id}`);
+    dispatch({
+      type: UPDATE_IN_PROGRESS,
+      payload: { id, inProgress: res.data }
     })
     dispatch(
       getLesson(id)

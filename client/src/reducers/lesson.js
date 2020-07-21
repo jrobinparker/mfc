@@ -1,4 +1,4 @@
-import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT, UPLOAD_VIDEO, DELETE_LESSON } from '../actions/types';
+import { GET_LESSONS, GET_LESSON, LESSON_ERROR, UPDATE_LIKES, UPDATE_COMPLETES, ADD_COMMENT, DELETE_COMMENT, UPLOAD_VIDEO, DELETE_LESSON, UPDATE_IN_PROGRESS } from '../actions/types';
 
 const initialState = {
   lessons: [],
@@ -41,6 +41,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         completes: state.lessons.map(lesson => lesson._id === payload.id ? { ...lesson, completes: payload.completes } : lesson),
+        loading: false
+      };
+    case UPDATE_IN_PROGRESS:
+      return {
+        ...state,
+        inProgress: state.lessons.map(lesson => lesson._id === payload.id ? { ...lesson, inProgress: payload.inProgress } : lesson),
         loading: false
       };
     case ADD_COMMENT:

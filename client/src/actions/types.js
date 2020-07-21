@@ -14,6 +14,7 @@ export const GET_LESSONS = 'GET_LESSONS';
 export const GET_LESSON = 'GET_LESSON';
 export const LESSON_ERROR = 'LESSON_ERROR';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
+export const UPDATE_IN_PROGRESS = 'UPDATE_IN_PROGRESS';
 export const UPDATE_COMPLETES = 'UPDATE_COMPLETES';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
