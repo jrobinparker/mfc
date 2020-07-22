@@ -1,12 +1,14 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createLesson, uploadVideo } from '../../actions/lesson';
+import { loadUser } from '../../actions/auth';
 import Loading from '../utils/Loading';
 import axios from 'axios';
 
-const CreateLesson = ({ createLesson, uploadVideo, history }) => {
+const CreateLesson = ({ loadUser, auth, createLesson, uploadVideo, history }) => {
 
   const [ formData, setFormData ] = useState({
     title: '',
@@ -15,7 +17,12 @@ const CreateLesson = ({ createLesson, uploadVideo, history }) => {
     skills: '',
     description: '',
     video: ''
-  })
+  });
+
+  useEffect(() => {
+    loadUser();
+  }, [loadUser])
+
 
   const [ videoObj, setVideoObj ] = useState('');
   const [ videoObjName, setVideoObjName ] = useState('Choose Video');
@@ -96,112 +103,126 @@ const CreateLesson = ({ createLesson, uploadVideo, history }) => {
         return <></>
     }
   }
-  return (
-    <Fragment>
-      <div className="container">
-      <nav className="panel">
-        <p className="panel-heading">Create a New Lesson</p>
-        <div className="form-wizard">
-        <form onSubmit={e => onVideoSubmit(e)} style={{ marginBottom: '20px' }}>
-          <label className="label">Lesson Video</label>
-          <div className="file has-name">
-            <label className="file-label">
-              <input className="file-input" type="file" name="video" onChange={e => onVideoChange(e)}/>
-              <span className="file-cta">
-                <span className="file-icon">
-                  <i className="fas fa-upload"></i>
+
+  if (auth.loading) {
+    return <Loading />
+  }
+
+  if (auth.user.role !== 'admin') {
+    return <Redirect to='/dashboard' />
+  }
+
+  if (auth.user.role === 'admin') {
+    return (
+      <Fragment>
+        <div className="container">
+        <nav className="panel">
+          <p className="panel-heading">Create a New Lesson</p>
+          <div className="form-wizard">
+          <form onSubmit={e => onVideoSubmit(e)} style={{ marginBottom: '20px' }}>
+            <label className="label">Lesson Video</label>
+            <div className="file has-name">
+              <label className="file-label">
+                <input className="file-input" type="file" name="video" onChange={e => onVideoChange(e)}/>
+                <span className="file-cta">
+                  <span className="file-icon">
+                    <i className="fas fa-upload"></i>
+                  </span>
+                  <span className="file-label">
+                    Select Video
+                  </span>
                 </span>
-                <span className="file-label">
-                  Select Video
-                </span>
-              </span>
-              {!videoObj ? <></> : <span class="file-name">{videoObjName}</span>}
-            </label>
-            <button type="submit" className="button is-primary" style={{ marginLeft: '2.5%' }}>Upload Video</button>
-          </div>
-          <div style={{ marginTop: '15px' }}>
-            {uploadStageIcon(uploadStage)}
-          </div>
-        </form>
-        <form onSubmit={e => onSubmit(e)}>
-          <div className="field">
-            <label className="label">Title</label>
-              <div class="control">
-                <input
-                  className="input"
-                  type='input'
-                  value={title}
-                  name='title'
-                  placeholder='Lesson title'
-                  onChange={e => onChange(e)}
-                />
-              </div>
+                {!videoObj ? <></> : <span class="file-name">{videoObjName}</span>}
+              </label>
+              <button type="submit" className="button is-primary" style={{ marginLeft: '2.5%' }}>Upload Video</button>
             </div>
+            <div style={{ marginTop: '15px' }}>
+              {uploadStageIcon(uploadStage)}
+            </div>
+          </form>
+          <form onSubmit={e => onSubmit(e)}>
             <div className="field">
-              <label className="label">About the lesson</label>
+              <label className="label">Title</label>
                 <div class="control">
-                  <textarea
-                    className="textarea"
-                    value={description}
-                    name='description'
-                    placeholder='This lesson covers...'
+                  <input
+                    className="input"
+                    type='input'
+                    value={title}
+                    name='title'
+                    placeholder='Lesson title'
+                    onChange={e => onChange(e)}
+                  />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">About the lesson</label>
+                  <div class="control">
+                    <textarea
+                      className="textarea"
+                      value={description}
+                      name='description'
+                      placeholder='This lesson covers...'
+                      onChange={e => onChange(e)}
+                    />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Rank</label>
+                  <div class="select">
+                    <select onChange={e => onChange(e)} name="rank" >
+                      <option value="" disabled selected>Select your rank</option>
+                      <option name="rank">White</option>
+                      <option name="rank">Yellow</option>
+                      <option name="rank">Green</option>
+                      <option name="rank">Purple</option>
+                      <option name="rank">Brown</option>
+                      <option name="rank">Black</option>
+                    </select>
+                  </div>
+                </div>
+            <div className="field">
+              <label className="label">Styles</label>
+                <div class="control">
+                  <input
+                    className="input"
+                    type='input'
+                    value={style}
+                    name='style'
+                    placeholder='Enter the lesson style'
                     onChange={e => onChange(e)}
                   />
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Rank</label>
-                <div class="select">
-                  <select onChange={e => onChange(e)} name="rank" >
-                    <option value="" disabled selected>Select your rank</option>
-                    <option name="rank">White</option>
-                    <option name="rank">Yellow</option>
-                    <option name="rank">Green</option>
-                    <option name="rank">Purple</option>
-                    <option name="rank">Brown</option>
-                    <option name="rank">Black</option>
-                  </select>
-                </div>
-              </div>
+          </div>
           <div className="field">
-            <label className="label">Styles</label>
+            <label className="label">Skills</label>
               <div class="control">
                 <input
                   className="input"
                   type='input'
-                  value={style}
-                  name='style'
-                  placeholder='Enter the lesson style'
+                  value={skills}
+                  name='skills'
+                  placeholder='Enter the lesson skills (comma separated)'
                   onChange={e => onChange(e)}
                 />
             </div>
         </div>
-        <div className="field">
-          <label className="label">Skills</label>
-            <div class="control">
-              <input
-                className="input"
-                type='input'
-                value={skills}
-                name='skills'
-                placeholder='Enter the lesson skills (comma separated)'
-                onChange={e => onChange(e)}
-              />
+            <button className="button is-primary">Create Lesson</button>
+          </form>
           </div>
-      </div>
-          <button className="button is-primary">Create Lesson</button>
-        </form>
+          </nav>
         </div>
-        </nav>
-      </div>
-    </Fragment>
-  )
-};
+      </Fragment>
+    )
+  }
+}
 
 CreateLesson.propTypes = {
   createLesson: PropTypes.func.isRequired,
   uploadVideo: PropTypes.func.isRequired
 };
 
+const mapStateToProps = state => ({
+  auth: state.auth
+});
 
-export default connect(null, { createLesson, uploadVideo })(withRouter(CreateLesson));
+export default connect(mapStateToProps, { loadUser, createLesson, uploadVideo })(withRouter(CreateLesson));
