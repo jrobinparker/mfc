@@ -31,6 +31,8 @@ const Dashboard = ({ getCurrentProfile, getLessons, auth: { user }, profile: { p
       return lesson.inProgress.find(ip => ip.user === user._id)
     })
     setInProgress(findInProgress)
+
+    console.log(user)
   }, [lessons])
 
   return loading && profile === null ? <Loading /> : (

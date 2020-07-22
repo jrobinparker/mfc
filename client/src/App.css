@@ -15,9 +15,8 @@ html {
   z-index: 100;
   position: sticky;
   top: 0%;
-  display: block;
   width: 100vw;
-  padding: 5px;
+  padding: 5px 10px 5px 30px;
   display: flex;
   align-items: center;
   background-color: hsl(0, 0%, 21%);
@@ -49,6 +48,9 @@ html {
 
 .nav-link {
   cursor: pointer;
+}
+.nav-brand:hover {
+  color: white;
 }
 
 /* login/registration form */
