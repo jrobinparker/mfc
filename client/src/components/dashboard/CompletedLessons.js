@@ -6,7 +6,7 @@ const CompletedLessons = ({ lessons }) => {
   return(
     <div className="box">
       <h1 className="title profile-widget-title">Completed Lessons</h1>
-      {lessons.map(l => <p><Link to={`/lesson/${l._id}`} target="_blank">{l.title}</Link></p>)}
+      {lessons.map(l => <p><Link to={`/lesson/${l._id}`}>{l.title}</Link></p>)}
     </div>
   )
 };

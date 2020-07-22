@@ -46,7 +46,7 @@ const EditLessons = ({ mode, lessons, selectedLessons, addLessons, nextStep, pre
     e.preventDefault()
     prevStep()
   }
-
+  
   return (
       <Fragment>
         <div className="container">

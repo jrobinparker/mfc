@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 import { createTrack } from '../../actions/track';
 import { getLessons } from '../../actions/lesson';
 import { getCurrentProfile } from '../../actions/profile';
+import { loadUser } from '../../actions/auth';
 import TitleAndDesc from './TitleAndDesc';
 import AddLessons from './AddLessons';
 import ReorderLessons from './ReorderLessons';
 import ReviewTrack from './ReviewTrack';
+import Loading from '../utils/Loading';
 
 class CreateTrack extends React.Component {
     state = {
@@ -25,6 +27,7 @@ class CreateTrack extends React.Component {
     componentDidMount() {
       this.props.getCurrentProfile()
       this.props.getLessons()
+      this.props.loadUser()
     }
 
     nextStep = () => {
@@ -95,49 +98,60 @@ class CreateTrack extends React.Component {
     }
 
     render() {
-      const { title, description, rank, style, skills } = this.state
-      switch (this.state.currentStep) {
-        case 1:
-          return <TitleAndDesc
-                    nextStep={this.nextStep}
-                    onChange={this.onChange}
-                    title={title}
-                    description={description}
-                    rank={rank}
-                    style={style}
-                    skills={skills}
-                  />
-        case 2:
-          return <AddLessons
-                    nextStep={this.nextStep}
-                    prevStep={this.prevStep}
-                    lessons={this.props.lessons}
-                    selectedLessons={this.state.lessons}
-                    addLessons={this.addLessons}
-                  />
-        case 3:
-          return <ReorderLessons
-                    nextStep={this.nextStep}
-                    prevStep={this.prevStep}
-                    lessons={this.state.lessons}
-                    updateLessonOrder={this.updateLessonOrder}
-                  />
-        case 4:
-          return <ReviewTrack
-                    prevStep={this.prevStep}
-                    track={this.state}
-                    onSubmit={this.onSubmit}
-                  />
-        default:
-          return <TitleAndDesc
-                    nextStep={this.nextStep}
-                    onChange={this.onChange}
-                    title={title}
-                    description={description}
-                    rank={rank}
-                    style={style}
-                    skills={skills}
-                  />
+      if (this.props.auth.loading) {
+        return <Loading />
+      }
+
+      if (this.props.auth.user.role !== 'admin') {
+        return <Redirect to='/dashboard' />
+      }
+
+      if (this.props.auth.user.role === 'admin') {
+        const { title, description, rank, style, skills } = this.state
+        switch (this.state.currentStep) {
+          case 1:
+            return <TitleAndDesc
+                      nextStep={this.nextStep}
+                      onChange={this.onChange}
+                      title={title}
+                      description={description}
+                      rank={rank}
+                      style={style}
+                      skills={skills}
+                    />
+          case 2:
+            return <AddLessons
+                      nextStep={this.nextStep}
+                      prevStep={this.prevStep}
+                      lessons={this.props.lessons}
+                      selectedLessons={this.state.lessons}
+                      addLessons={this.addLessons}
+                    />
+          case 3:
+            return <ReorderLessons
+                      nextStep={this.nextStep}
+                      prevStep={this.prevStep}
+                      lessons={this.state.lessons}
+                      updateLessonOrder={this.updateLessonOrder}
+                    />
+          case 4:
+            return <ReviewTrack
+                      prevStep={this.prevStep}
+                      track={this.state}
+                      onSubmit={this.onSubmit}
+                    />
+          default:
+            return <TitleAndDesc
+                      nextStep={this.nextStep}
+                      onChange={this.onChange}
+                      title={title}
+                      description={description}
+                      rank={rank}
+                      style={style}
+                      skills={skills}
+                    />
+
+        }
       }
     }
   }
@@ -148,4 +162,4 @@ class CreateTrack extends React.Component {
     lessons: state.lesson.lessons
   })
 
-  export default connect(mapStateToProps, { getCurrentProfile, getLessons, createTrack })(withRouter(CreateTrack))
+  export default connect(mapStateToProps, { getCurrentProfile, getLessons, createTrack, loadUser })(withRouter(CreateTrack))

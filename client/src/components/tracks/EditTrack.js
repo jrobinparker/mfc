@@ -6,10 +6,12 @@ import { createTrack } from '../../actions/track';
 import { getTrack, editTrack } from '../../actions/track';
 import { getLessons } from '../../actions/lesson';
 import { getCurrentProfile } from '../../actions/profile';
+import { loadUser } from '../../actions/auth';
 import TitleAndDesc from './TitleAndDesc';
 import EditLessons from './EditLessons';
 import ReorderLessons from './ReorderLessons';
 import ReviewTrack from './ReviewTrack';
+import Loading from '../utils/Loading';
 
 class EditTrack extends React.Component {
     state = {
@@ -27,6 +29,7 @@ class EditTrack extends React.Component {
       this.props.getCurrentProfile()
       this.props.getTrack(this.props.match.params.id)
       this.props.getLessons()
+      this.props.loadUser()
     }
 
     componentWillReceiveProps(nextProps) {
@@ -112,59 +115,69 @@ class EditTrack extends React.Component {
     }
 
     render() {
-      const { title, description, rank, style, skills } = this.state
-      switch (this.state.currentStep) {
-        case 1:
-          return <TitleAndDesc
-                    mode={'Edit Track'}
-                    nextStep={this.nextStep}
-                    onChange={this.onChange}
-                    title={title}
-                    description={description}
-                    rank={rank}
-                    style={style}
-                    skills={skills}
-                  />
-        case 2:
-          return <EditLessons
-                    mode={'Edit Track'}
-                    nextStep={this.nextStep}
-                    prevStep={this.prevStep}
-                    lessons={this.props.lessons}
-                    selectedLessons={this.state.lessons}
-                    addLessons={this.addLessons}
-                  />
-        case 3:
-          return <ReorderLessons
-                    mode={'Edit Track'}
-                    nextStep={this.nextStep}
-                    prevStep={this.prevStep}
-                    lessons={this.state.lessons}
-                    updateLessonOrder={this.updateLessonOrder}
-                  />
-        case 4:
-          return <ReviewTrack
-                    mode={'Edit Track'}
-                    buttonText='Update'
-                    prevStep={this.prevStep}
-                    track={this.state}
-                    onSubmit={this.handleOnSubmit}
-                  />
-        case 5:
-          return <Redirect
-                    push to={{
-                      pathname: '/dashboard'
-                    }} />
-        default:
-          return <TitleAndDesc
-                    nextStep={this.nextStep}
-                    onChange={this.onChange}
-                    title={title}
-                    description={description}
-                    rank={rank}
-                    style={style}
-                    skills={skills}
-                  />
+      if (this.props.auth.loading) {
+        return <Loading />
+      }
+
+      if (this.props.auth.user.role !== 'admin') {
+        return <Redirect to='/dashboard' />
+      }
+
+      if (this.props.auth.user.role === 'admin') {
+        const { title, description, rank, style, skills } = this.state
+        switch (this.state.currentStep) {
+          case 1:
+            return <TitleAndDesc
+                      mode={'Edit Track'}
+                      nextStep={this.nextStep}
+                      onChange={this.onChange}
+                      title={title}
+                      description={description}
+                      rank={rank}
+                      style={style}
+                      skills={skills}
+                    />
+          case 2:
+            return <EditLessons
+                      mode={'Edit Track'}
+                      nextStep={this.nextStep}
+                      prevStep={this.prevStep}
+                      lessons={this.props.lessons}
+                      selectedLessons={this.state.lessons}
+                      addLessons={this.addLessons}
+                    />
+          case 3:
+            return <ReorderLessons
+                      mode={'Edit Track'}
+                      nextStep={this.nextStep}
+                      prevStep={this.prevStep}
+                      lessons={this.state.lessons}
+                      updateLessonOrder={this.updateLessonOrder}
+                    />
+          case 4:
+            return <ReviewTrack
+                      mode={'Edit Track'}
+                      buttonText='Update'
+                      prevStep={this.prevStep}
+                      track={this.state}
+                      onSubmit={this.handleOnSubmit}
+                    />
+          case 5:
+            return <Redirect
+                      push to={{
+                        pathname: '/dashboard'
+                      }} />
+          default:
+            return <TitleAndDesc
+                      nextStep={this.nextStep}
+                      onChange={this.onChange}
+                      title={title}
+                      description={description}
+                      rank={rank}
+                      style={style}
+                      skills={skills}
+                    />
+        }
       }
     }
   }
@@ -177,4 +190,4 @@ class EditTrack extends React.Component {
     trackLessons: state.track.trackLessons
   })
 
-  export default connect(mapStateToProps, { getCurrentProfile, getLessons, getTrack, createTrack, editTrack })(withRouter(EditTrack))
+  export default connect(mapStateToProps, { loadUser, getCurrentProfile, getLessons, getTrack, createTrack, editTrack })(withRouter(EditTrack))

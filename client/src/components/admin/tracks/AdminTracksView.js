@@ -79,7 +79,7 @@ const AdminTracksView = ({ tracks, deleteTrack }) => {
                           <td>{track.rank}</td>
                           <td><Moment format='MM/DD/YYYY'>{track.created}</Moment></td>
                           <td className="admin-actions">
-                            <Link to={`/track/${track._id}/edit`} target="_blank">
+                            <Link to={`/track/${track._id}/edit`}>
                               <i className="fas fa-edit" />
                             </Link>
                             <i
