@@ -6,34 +6,42 @@ import Loading from '../utils/Loading';
 import ProfileWidget from './ProfileWidget';
 import { getCurrentProfile } from '../../actions/profile';
 import { getLessons } from '../../actions/lesson';
+import { getTracks } from '../../actions/track';
 import CompletedLessons from './CompletedLessons';
+import CompletedTracks from './CompletedTracks';
 import LessonsInProgress from './LessonsInProgress';
 import './dashboard.css';
 
-const Dashboard = ({ getCurrentProfile, getLessons, auth: { user }, profile: { profile, loading }, lesson: { lessons } }) => {
+const Dashboard = ({ getCurrentProfile, getLessons, getCourses, auth: { user }, profile: { profile, loading }, lesson: { lessons }, track: { tracks } }) => {
   const [ completedLessons, setCompletedLessons ] = useState([]);
   const [ inProgress, setInProgress ] = useState([]);
+  const [ completedTracks, setCompletedTracks ] = useState([]);
 
   useEffect(() => {
     getCurrentProfile();
     getLessons();
-  }, [getLessons]);
+    getTracks();
+  }, [getLessons, getTracks]);
 
-  let findUserCompletes, findInProgress
+  let findUserLessonCompletes, findInProgress, findUserTrackCompletes
 
   useEffect(() => {
-    findUserCompletes = lessons.filter(lesson => {
+    findUserLessonCompletes = lessons.filter(lesson => {
       return lesson.completes.find(c => c.user === user._id)
     })
-    setCompletedLessons(findUserCompletes)
+    setCompletedLessons(findUserLessonCompletes)
 
     findInProgress = lessons.filter(lesson => {
       return lesson.inProgress.find(ip => ip.user === user._id)
     })
     setInProgress(findInProgress)
 
-    console.log(user)
-  }, [lessons])
+    findUserTrackCompletes = tracks.filter(track => {
+      return track.completes.find(t => t.user === user._id)
+    })
+    setCompletedTracks(findUserTrackCompletes)
+
+  }, [lessons, tracks])
 
   return loading && profile === null ? <Loading /> : (
       <Fragment>
@@ -43,6 +51,7 @@ const Dashboard = ({ getCurrentProfile, getLessons, auth: { user }, profile: { p
                 <div className="profile-lessons">
                   <LessonsInProgress lessons={inProgress} />
                   <CompletedLessons lessons={completedLessons} />
+                  <CompletedTracks tracks={completedTracks} />
                 </div>
               </Fragment>
           ) : (
@@ -64,7 +73,8 @@ Dashboard.propTypes = {
 const mapStateToProps = state => ({
     auth: state.auth,
     profile: state.profile,
-    lesson: state.lesson
+    lesson: state.lesson,
+    track: state.track
 })
 
-export default connect(mapStateToProps, { getCurrentProfile, getLessons })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, getLessons, getTracks })(Dashboard);
