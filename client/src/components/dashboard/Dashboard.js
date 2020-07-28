@@ -8,12 +8,10 @@ import { getCurrentProfile } from '../../actions/profile';
 import { loadUser } from '../../actions/auth';
 import { getLessons } from '../../actions/lesson';
 import { getTracks } from '../../actions/track';
-import CompletedLessons from './CompletedLessons';
-import CompletedTracks from './CompletedTracks';
-import LessonsInProgress from './LessonsInProgress';
+import DashboardWidget from './DashboardWidget';
 import './dashboard.css';
 
-const Dashboard = ({ getCurrentProfile, getLessons, getCourses, loadUser, auth: { user }, profile: { profile, loading }, lesson: { lessons }, track: { tracks } }) => {
+const Dashboard = ({ getCurrentProfile, getLessons, getTracks, loadUser, auth: { user }, profile: { profile, loading }, lesson: { lessons }, track: { tracks } }) => {
   const [ completedLessons, setCompletedLessons ] = useState([]);
   const [ inProgress, setInProgress ] = useState([]);
   const [ completedTracks, setCompletedTracks ] = useState([]);
@@ -22,10 +20,9 @@ const Dashboard = ({ getCurrentProfile, getLessons, getCourses, loadUser, auth: 
     getCurrentProfile();
     getLessons();
     getTracks();
-    loadUser();
-  }, [getCurrentProfile, getLessons, getTracks, loadUser]);
+  }, [getCurrentProfile, getLessons, getTracks]);
 
-  let lessonInProgress, lessonCompletes, trackCompletes, findUserLessonCompletes, findInProgress, findUserTrackCompletes
+  let findUserLessonCompletes, findInProgress, findUserTrackCompletes
 
   useEffect(() => {
     if (lessons && user) {
@@ -50,33 +47,30 @@ const Dashboard = ({ getCurrentProfile, getLessons, getCourses, loadUser, auth: 
 
   }, [lessons, tracks, user])
 
-  if (!completedLessons) {
-    lessonInProgress = <Loading />
-  } else {
-    lessonInProgress = <LessonsInProgress lessons={inProgress} />
-  }
-
-  if (!inProgress) {
-    lessonCompletes = <Loading />
-  } else {
-    lessonCompletes = <CompletedLessons lessons={completedLessons} />
-  }
-
-  if (!completedTracks) {
-    trackCompletes = <Loading />
-  } else {
-    trackCompletes = <CompletedTracks tracks={completedTracks} />
-  }
-
   return loading && profile === null ? <Loading /> : (
       <Fragment>
           {profile !== null ? (
               <Fragment>
                 <ProfileWidget name={user && user.name} profile={profile} />
                 <div className="profile-lessons">
-                  {lessonInProgress}
-                  {lessonCompletes}
-                  {trackCompletes}
+                  <DashboardWidget
+                    items={inProgress}
+                    type={'lessons'}
+                    header={'Lessons In Progress'}
+                    nullMessage={`You haven't started any lessons yet!`}
+                    />
+                  <DashboardWidget
+                    items={completedLessons}
+                    type={'lessons'}
+                    header={'Completed Lessons'}
+                    nullMessage={`You haven't completed any lessons yet!`}
+                  />
+                  <DashboardWidget
+                    items={completedTracks}
+                    type={'lessons'}
+                    header={'Completed Tracks'}
+                    nullMessage={`You haven't completed any tracks yet!`}
+                  />
                 </div>
               </Fragment>
           ) : (
@@ -102,4 +96,4 @@ const mapStateToProps = state => ({
     track: state.track
 })
 
-export default connect(mapStateToProps, { getCurrentProfile, getLessons, getTracks, loadUser })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, getLessons, getTracks })(Dashboard);

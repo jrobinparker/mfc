@@ -8,7 +8,7 @@ import LikeIcon from './lesson/LikeIcon';
 import CompleteIcon from './lesson/CompleteIcon';
 import './lesson/Lesson.css';
 
-const LessonItem = ({ lesson: { _id, title, date, rank, style, likes, completes }}) => {
+const LessonItem = ({ lesson: { _id, title, date, rank, style, likes, completes }}, user) => {
   return (
     <div className="column is-3">
       <div className="box">
@@ -18,6 +18,7 @@ const LessonItem = ({ lesson: { _id, title, date, rank, style, likes, completes 
           <StyleIcon style={style} />
         </div>
         <small><Moment format='MM/DD/YYYY'>{date}</Moment></small>
+        <CompleteIcon completes={completes} user={user} />
       </div>
     </div>
   )

@@ -2,12 +2,13 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getLessons } from '../../actions/lesson';
+import { loadUser } from '../../actions/auth';
 import LessonItem from './LessonItem';
 import Filter from './Filter';
 import Loading from '../utils/Loading';
 import Pagination from '../utils/Pagination';
 
-const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
+const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { user } }) => {
   const [ filter, setFilter ] = useState({
     rank: 'all',
     style: 'all',
@@ -25,8 +26,9 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   useEffect(() => {
+    loadUser();
     getLessons();
-  }, [getLessons]);
+  }, [loadUser, getLessons]);
 
   const onChange = e => {
     setFilter({ [e.target.name]: e.target.value });
@@ -37,79 +39,79 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons }) => {
   if (filter.rank === 'white') {
     filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'White')
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
   if (filter.rank === 'yellow') {
     filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'Yellow')
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
   if (filter.rank === 'green') {
     filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'Green')
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
   if (filter.rank === 'blue') {
     filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'Blue')
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
   if (filter.rank === 'purple') {
     filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'Purple')
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
   if (filter.rank === 'brown') {
     filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'Brown')
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
   if (filter.rank === 'black') {
     filteredLessons = currentLessons
       .filter(lesson => lesson.rank === 'Black')
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
   if (filter.rank === 'all') {
-    filteredLessons = currentLessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+    filteredLessons = currentLessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
   if (filter.style === 'all') {
-    filteredLessons = currentLessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+    filteredLessons = currentLessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
   if (filter.style === 'eskrima') {
     filteredLessons = currentLessons
       .filter(lesson => lesson.style === 'Eskrima')
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
   if (filter.sort === 'all') {
-    filteredLessons = currentLessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+    filteredLessons = currentLessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
   if (filter.sort === 'dates') {
     filteredLessons = currentLessons
       .sort((a, b) => b.date - a.date)
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
     }
 
   if (filter.sort === 'likes') {
     filteredLessons = currentLessons
       .sort((a, b) => b.likes.length - a.likes.length)
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
     }
 
   if (filter.sort === 'completes') {
     filteredLessons = currentLessons
       .sort((a, b) => b.completes.length - a.completes.length)
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  />)
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
     }
 
   return loading ? <Loading /> : (
@@ -180,7 +182,8 @@ Lessons.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   lesson: state.lesson
 })
 
-export default connect(mapStateToProps, { getLessons })(Lessons);
+export default connect(mapStateToProps, { getLessons, loadUser })(Lessons);

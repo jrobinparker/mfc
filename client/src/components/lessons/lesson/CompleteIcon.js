@@ -1,8 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Moment from 'react-moment';
 
-const CompleteIcon = props => {
-  const { id, completes, addComplete, removeComplete, user  } = props;
+const CompleteIcon = ({ completes, user  }) => {
   const [ completeDate, setCompleteDate ] = useState(null);
 
   useEffect(() => {
