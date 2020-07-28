@@ -139,6 +139,11 @@ html {
   top: 15%;
 }
 
+.loading {
+  position: absolute;
+  top: 50;
+}
+
 /* hero image and banner text */
 
 .landing {

@@ -115,8 +115,20 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
     }
 
   return loading ? <Loading /> : (
+    <Fragment>
+    <div class="hero is-small">
+       <div class="hero-body">
+         <div class="container">
+           <h1 class="title">
+             Lessons
+           </h1>
+           <h2 class="subtitle">
+             Watch recorded lessons taught by Sensei Joe Parker
+           </h2>
+         </div>
+       </div>
+     </div>
     <div className="lessons-container">
-      <h1 className="title">Lessons</h1>
         <div className="lessons-subcontainer">
         <div className="filter-container">
           <div class="field">
@@ -173,6 +185,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
           </div>
         </div>
     </div>
+    </Fragment>
   );
 };
 

@@ -4,6 +4,12 @@
   margin-bottom: 10px;
 }
 
+.lessons-container {
+  position: relative;
+  width: 75%;
+  margin-bottom: 10px;
+}
+
 .add-lesson {
   color: hsl(171, 100%, 41%);
   cursor: pointer;

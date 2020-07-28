@@ -114,8 +114,20 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
     }
 
   return loading ? <Loading /> : (
+    <Fragment>
+    <div class="hero is-small">
+       <div class="hero-body">
+         <div class="container">
+           <h1 class="title">
+             Tracks
+           </h1>
+           <h2 class="subtitle">
+             Complete a track to learn new skills, prepare for tests, and more
+           </h2>
+         </div>
+       </div>
+     </div>
     <div className="lessons-container">
-      <h1 className="title">Tracks</h1>
         <div className="lessons-subcontainer">
         <div className="filter-container">
           <div class="field">
@@ -172,6 +184,7 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
           </div>
         </div>
     </div>
+    </Fragment>
   );
 };
 

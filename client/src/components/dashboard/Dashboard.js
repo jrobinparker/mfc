@@ -74,10 +74,18 @@ const Dashboard = ({ getCurrentProfile, getLessons, getTracks, loadUser, auth: {
                 </div>
               </Fragment>
           ) : (
-            <Fragment>
-              <h2>Set up a profile</h2>
-              <Link to='/create-profile'>Create your profile</Link>
-            </Fragment>
+            <div class="hero is-primary">
+              <div class="hero-body">
+                <div class="container">
+                  <h1 class="title">
+                    Set up your MFC Online profile!
+                  </h1>
+                  <h2 class="subtitle">
+                    <Link to='/create-profile'>Click here to get started</Link>
+                  </h2>
+                </div>
+              </div>
+            </div>
           )}
       </Fragment>
   );
