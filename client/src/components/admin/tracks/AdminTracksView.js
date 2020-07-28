@@ -31,10 +31,9 @@ const AdminTracksView = ({ tracks, deleteTrack }) => {
   }, [tracks])
 
   return (
-      <div className="box">
+    <Fragment>
               <div className="form-wizard">
-                <div className="field is-grouped is-grouped-centered">
-                  <div className="control">
+                <div className="admin-buttons">
                     <input type="text" className="input" placeholder="Lesson search" onChange={e => {
                       const term = e.target.value
                       setFilteredTracks(
@@ -43,8 +42,6 @@ const AdminTracksView = ({ tracks, deleteTrack }) => {
                         )
                       )
                     }}/>
-                  </div>
-                  <div className="control">
                     <div class="select">
                         <select onChange={e => e.target.value === "" ? (
                           setFilteredTracks(tracks.filter(track => track.rank !== e.target.value))
@@ -61,8 +58,10 @@ const AdminTracksView = ({ tracks, deleteTrack }) => {
                           <option value="Brown">Brown</option>
                           <option value="Black">Black</option>
                         </select>
-                      </div>
-                </div>
+                    </div>
+                    <a className="button is-primary">
+                      <Link to={'/create-track'}>Create New Track</Link>
+                    </a>
               </div>
               <table className="table" style={{ width: '100%' }}>
                   <thead>
@@ -99,7 +98,7 @@ const AdminTracksView = ({ tracks, deleteTrack }) => {
               <Pagination itemsPerPage={tracksPerPage} totalItems={tracks.length} paginate={paginate} />
           </div>
           {deleteModal ? <DeleteTrack toggleDeleteModal={toggleDeleteModal} track={selectedTrack} deleteTrack={deleteTrack} /> : <Fragment></Fragment>}
-        </div>
+        </Fragment>
     )
 }
 

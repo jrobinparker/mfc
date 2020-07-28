@@ -31,38 +31,37 @@ const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
   }, [lessons])
 
   return (
-      <div className="box">
+      <Fragment>
               <div className="form-wizard">
-                <div className="field is-grouped is-grouped-centered">
-                  <div className="control">
-                    <input type="text" className="input" placeholder="Lesson search" onChange={e => {
-                      const term = e.target.value
-                      setFilteredLessons(
-                        lessons.filter(
-                          lesson => lesson.title.toLowerCase().includes(term.toLowerCase())
+                <div className="admin-buttons">
+                      <input type="text" className="input admin-search" placeholder="Lesson search" onChange={e => {
+                        const term = e.target.value
+                        setFilteredLessons(
+                          lessons.filter(
+                            lesson => lesson.title.toLowerCase().includes(term.toLowerCase())
+                          )
                         )
-                      )
-                    }}/>
-                  </div>
-                  <div className="control">
-                    <div class="select">
-                        <select onChange={e => e.target.value === "" ? (
-                          setFilteredLessons(lessons.filter(lesson => lesson.rank !== e.target.value))
-                        ) : (
-                          setFilteredLessons(lessons.filter(lesson => lesson.rank === e.target.value))
-                        )} name="rank">
-                          <option selected disabled>Rank Filter</option>
-                          <option value="">All</option>
-                          <option value="White">White</option>
-                          <option value="Yellow">Yellow</option>
-                          <option value="Green">Green</option>
-                          <option value="Blue">Blue</option>
-                          <option value="Purple">Purple</option>
-                          <option value="Brown">Brown</option>
-                          <option value="Black">Black</option>
-                        </select>
-                      </div>
-                </div>
+                      }}/>
+                      <div class="select">
+                          <select onChange={e => e.target.value === "" ? (
+                            setFilteredLessons(lessons.filter(lesson => lesson.rank !== e.target.value))
+                          ) : (
+                            setFilteredLessons(lessons.filter(lesson => lesson.rank === e.target.value))
+                          )} name="rank">
+                            <option selected disabled>Rank Filter</option>
+                            <option value="">All</option>
+                            <option value="White">White</option>
+                            <option value="Yellow">Yellow</option>
+                            <option value="Green">Green</option>
+                            <option value="Blue">Blue</option>
+                            <option value="Purple">Purple</option>
+                            <option value="Brown">Brown</option>
+                            <option value="Black">Black</option>
+                          </select>
+                        </div>
+                  <a className="button is-primary">
+                    <Link to={'/create-lesson'}>Create New Lesson</Link>
+                  </a>
               </div>
               <table className="table" style={{ width: '100%' }}>
                   <thead>
@@ -108,7 +107,7 @@ const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
           </div>
           {deleteModal ? <DeleteLesson toggleDeleteModal={toggleDeleteModal} lesson={selectedLesson} deleteLesson={deleteLesson} /> : <Fragment></Fragment>}
           {completeModal ? <LessonCompletes toggleCompleteModal={toggleCompleteModal} lesson={selectedLesson} removeComplete={removeComplete} /> : <Fragment></Fragment>}
-        </div>
+        </Fragment>
     )
 }
 

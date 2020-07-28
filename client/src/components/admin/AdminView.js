@@ -32,6 +32,7 @@ const AdminView = ({ getLessons, getTracks, deleteLesson, removeComplete, delete
   if (auth.user.role === 'admin') {
     return (
         <div className="container">
+          <div className="box">
             <div class="field">
               <div class="control">
                 <div class="select admin-select">
@@ -42,7 +43,6 @@ const AdminView = ({ getLessons, getTracks, deleteLesson, removeComplete, delete
                 </div>
               </div>
             </div>
-            <div>
               {
                 viewLessons ?
                   <AdminLessonsView
@@ -56,7 +56,7 @@ const AdminView = ({ getLessons, getTracks, deleteLesson, removeComplete, delete
                     deleteTrack={deleteTrack}
                   />
               }
-              </div>
+            </div>
         </div>
       )
   }
