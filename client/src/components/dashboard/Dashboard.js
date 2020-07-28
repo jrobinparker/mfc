@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../utils/Loading';
 import ProfileWidget from './ProfileWidget';
 import { getCurrentProfile } from '../../actions/profile';
+import { loadUser } from '../../actions/auth';
 import { getLessons } from '../../actions/lesson';
 import { getTracks } from '../../actions/track';
 import CompletedLessons from './CompletedLessons';
@@ -12,7 +13,7 @@ import CompletedTracks from './CompletedTracks';
 import LessonsInProgress from './LessonsInProgress';
 import './dashboard.css';
 
-const Dashboard = ({ getCurrentProfile, getLessons, getCourses, auth: { user }, profile: { profile, loading }, lesson: { lessons }, track: { tracks } }) => {
+const Dashboard = ({ getCurrentProfile, getLessons, getCourses, loadUser, auth: { user }, profile: { profile, loading }, lesson: { lessons }, track: { tracks } }) => {
   const [ completedLessons, setCompletedLessons ] = useState([]);
   const [ inProgress, setInProgress ] = useState([]);
   const [ completedTracks, setCompletedTracks ] = useState([]);
@@ -21,27 +22,51 @@ const Dashboard = ({ getCurrentProfile, getLessons, getCourses, auth: { user }, 
     getCurrentProfile();
     getLessons();
     getTracks();
-  }, [getLessons, getTracks]);
+    loadUser();
+  }, [getCurrentProfile, getLessons, getTracks, loadUser]);
 
-  let findUserLessonCompletes, findInProgress, findUserTrackCompletes
+  let lessonInProgress, lessonCompletes, trackCompletes, findUserLessonCompletes, findInProgress, findUserTrackCompletes
 
   useEffect(() => {
-    findUserLessonCompletes = lessons.filter(lesson => {
-      return lesson.completes.find(c => c.user === user._id)
-    })
-    setCompletedLessons(findUserLessonCompletes)
+    if (lessons && user) {
+      findUserLessonCompletes = lessons.filter(lesson => {
+        return lesson.completes.find(c => c.user === user._id)
+      })
 
-    findInProgress = lessons.filter(lesson => {
-      return lesson.inProgress.find(ip => ip.user === user._id)
-    })
-    setInProgress(findInProgress)
+      findInProgress = lessons.filter(lesson => {
+        return lesson.inProgress.find(ip => ip.user === user._id)
+      })
 
-    findUserTrackCompletes = tracks.filter(track => {
-      return track.completes.find(t => t.user === user._id)
-    })
-    setCompletedTracks(findUserTrackCompletes)
+      setCompletedLessons(findUserLessonCompletes)
+      setInProgress(findInProgress)
+    }
 
-  }, [lessons, tracks])
+    if (tracks && user) {
+      findUserTrackCompletes = tracks.filter(track => {
+        return track.completes.find(t => t.user === user._id)
+      })
+      setCompletedTracks(findUserTrackCompletes)
+    }
+
+  }, [lessons, tracks, user])
+
+  if (!completedLessons) {
+    lessonInProgress = <Loading />
+  } else {
+    lessonInProgress = <LessonsInProgress lessons={inProgress} />
+  }
+
+  if (!inProgress) {
+    lessonCompletes = <Loading />
+  } else {
+    lessonCompletes = <CompletedLessons lessons={completedLessons} />
+  }
+
+  if (!completedTracks) {
+    trackCompletes = <Loading />
+  } else {
+    trackCompletes = <CompletedTracks tracks={completedTracks} />
+  }
 
   return loading && profile === null ? <Loading /> : (
       <Fragment>
@@ -49,9 +74,9 @@ const Dashboard = ({ getCurrentProfile, getLessons, getCourses, auth: { user }, 
               <Fragment>
                 <ProfileWidget name={user && user.name} profile={profile} />
                 <div className="profile-lessons">
-                  <LessonsInProgress lessons={inProgress} />
-                  <CompletedLessons lessons={completedLessons} />
-                  <CompletedTracks tracks={completedTracks} />
+                  {lessonInProgress}
+                  {lessonCompletes}
+                  {trackCompletes}
                 </div>
               </Fragment>
           ) : (
@@ -77,4 +102,4 @@ const mapStateToProps = state => ({
     track: state.track
 })
 
-export default connect(mapStateToProps, { getCurrentProfile, getLessons, getTracks })(Dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, getLessons, getTracks, loadUser })(Dashboard);

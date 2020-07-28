@@ -16,9 +16,8 @@ html {
   position: sticky;
   top: 0%;
   width: 100vw;
-  padding: 5px 10px 5px 30px;
   display: flex;
-  align-items: center;
+  padding: 5px 10px 5px 30px;
   background-color: hsl(0, 0%, 21%);
   font-size: 1.25rem;
   margin-bottom: 10px;
@@ -39,19 +38,90 @@ html {
   color: white;
 }
 
-.nav-links {
-  width: 100%;
-  margin-left: 20%;
-  display: flex;
-  justify-content: space-around;
-}
-
-.nav-link {
-  cursor: pointer;
-}
 .nav-brand:hover {
   color: white;
 }
+
+.menu-icon {
+  z-index: 300;
+  width: 2.5%;
+  align-self: center;
+  position: relative;
+  left: -10;
+  height: auto;
+  cursor: pointer;
+}
+
+.line {
+  height: 5px;
+  width: 100%;
+  background-color: hsl(0, 0%, 96%);
+  display: block;
+  border-radius: 5%;
+  transition: 0.3s ease;
+}
+
+#line1 {
+  transform: translateY(-4px);
+}
+
+#line1::after {
+  background-color: hsl(0, 0%, 96%);
+}
+
+#line3 {
+  transform: translateY(4px);
+}
+
+.change-icon .line {
+  background-color: hsl(0, 0%, 96%);
+}
+
+.change-icon #line1 {
+  transform: translateY(4px) rotateZ(-45deg);
+}
+
+.change-icon #line3 {
+  transform: translateY(-6px) rotateZ(45deg);
+}
+
+.change-icon #line2 {
+  opacity: 0;
+}
+
+.nav-menu {
+  position: absolute;
+  z-index: 200;
+  height: 105vh;
+  width: 20vw;
+  transform: translateX(100%);
+  right: 0;
+  margin-top: -2.5%;
+  background-color: hsl(0, 0%, 4%);
+}
+
+.hide-menu {
+  display: none;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  top: 10%;
+  width: 100%;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: hsl(0, 0%, 96%);
+}
+
+#menu-icon {
+
+}
+
 
 /* login/registration form */
 

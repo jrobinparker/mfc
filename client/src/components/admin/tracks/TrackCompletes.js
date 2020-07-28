@@ -64,7 +64,7 @@ const TrackCompletes = ({ track, toggleCompleteModal, removeComplete }) => {
       </div>
     </div>
     ,
-    document.querySelector('#completes-modal')
+    document.querySelector('#nav-menu')
     )
 }
 

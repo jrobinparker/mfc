@@ -1,27 +1,26 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import NavLink from './NavLink';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../../actions/auth';
+import Menu from './Menu';
 
-const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
+const Nav = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
   const authLinks = (
-    <div className="nav-links">
-      <Link to={'/lessons'} className="nav-brand">Lessons</Link>
-      <Link to={'/tracks'} className="nav-brand">Tracks</Link>
-      <Link onClick={logout} className="nav-brand">Logout</Link>
-    </div>
+    <Fragment>
+      <Menu logout={logout} />
+    </Fragment>
   );
 
   const guestLinks = (
-    <div className="nav-links">
+    <Fragment>
       <NavLink link={'About'} id={'message'} />
       <NavLink link={'Pricing'} id={'pricing'} />
       <NavLink link={'Contact'} id={'Contact'} />
       <Link to={'/login'} className="nav-brand" style={{ color: 'white', cursor: 'pointer' }}>Login</Link>
-    </div>
+    </Fragment>
   )
 
   const app = document.body
@@ -55,7 +54,7 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className="mfc-navbar">
         <img src={require('../../../assets/logo-transparent.png')} className="logo" alt="logo"/>
         <NavLink link={'MFC Online'} id={'home'} />
-        { !loading && (<Fragment>{ isAuthenticated ? authLinks : guestLinks }</Fragment>)}
+        { isAuthenticated ? authLinks : guestLinks }
     </nav>
   )
 }
