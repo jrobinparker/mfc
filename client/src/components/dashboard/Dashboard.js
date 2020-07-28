@@ -51,7 +51,13 @@ const Dashboard = ({ getCurrentProfile, getLessons, getTracks, loadUser, auth: {
       <Fragment>
           {profile !== null ? (
               <Fragment>
-                <ProfileWidget name={user && user.name} profile={profile} />
+                <ProfileWidget
+                  name={user && user.name}
+                  profile={profile}
+                  inProgress={inProgress.length.toString()}
+                  completedLessons={completedLessons.length.toString()}
+                  completedTracks={completedTracks.length.toString()}
+                />
                 <div className="profile-lessons">
                   <DashboardWidget
                     items={inProgress}

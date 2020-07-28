@@ -26,6 +26,7 @@
 
 .profile-edit {
   font-size: 1rem;
+  color: white;
 }
 
 .profile-icons {
@@ -41,4 +42,24 @@
 
 .profile-lessons .box {
   width: 30%;
+}
+
+.hero-stats {
+  display: flex;
+  width: 50%;
+  margin-top: 2.5%;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+}
+
+.hero-stat-number {
+  font-size: 1.5rem;
+}
+
+.hero-stat div {
+  font-size: 1rem;
 }
