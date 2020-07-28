@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
 import Pagination from '../../utils/Pagination';
 import DeleteTrack from './DeleteTrack';
-//import TrackCompletes from './TrackCompletes';
+import TrackCompletes from './TrackCompletes';
 import '../../tracks/tracks.css';
 
 const AdminTracksView = ({ tracks, deleteTrack }) => {
@@ -78,6 +78,13 @@ const AdminTracksView = ({ tracks, deleteTrack }) => {
                           <td>{track.rank}</td>
                           <td><Moment format='MM/DD/YYYY'>{track.created}</Moment></td>
                           <td className="admin-actions">
+                            <i className="fas fa-users"
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => {
+                                setSelectedTrack(track)
+                                toggleCompleteModal(true)
+                              }}
+                            />
                             <Link to={`/track/${track._id}/edit`}>
                               <i className="fas fa-edit" />
                             </Link>
@@ -98,6 +105,7 @@ const AdminTracksView = ({ tracks, deleteTrack }) => {
               <Pagination itemsPerPage={tracksPerPage} totalItems={tracks.length} paginate={paginate} />
           </div>
           {deleteModal ? <DeleteTrack toggleDeleteModal={toggleDeleteModal} track={selectedTrack} deleteTrack={deleteTrack} /> : <Fragment></Fragment>}
+          {completeModal ? <TrackCompletes toggleCompleteModal={toggleCompleteModal} track={selectedTrack} /> : <Fragment></Fragment>}
         </Fragment>
     )
 }

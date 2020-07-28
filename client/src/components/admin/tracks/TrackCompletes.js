@@ -59,12 +59,12 @@ const TrackCompletes = ({ track, toggleCompleteModal, removeComplete }) => {
           </table>
         </section>
         <footer className="modal-card-foot">
-          <Pagination itemsPerPage={usersPerPage} totalItems={lesson.completes.length} paginate={paginate} />
+          <Pagination itemsPerPage={usersPerPage} totalItems={track.completes.length} paginate={paginate} />
         </footer>
       </div>
     </div>
     ,
-    document.querySelector('#nav-menu')
+    document.querySelector('#track-completes-modal')
     )
 }
 
