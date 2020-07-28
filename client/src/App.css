@@ -33,9 +33,9 @@ html {
 }
 
 .nav-brand {
-  width: 100%;
   cursor: pointer;
   color: white;
+  align-self: center;
 }
 
 .nav-brand:hover {
@@ -46,8 +46,7 @@ html {
   z-index: 300;
   width: 2.5%;
   align-self: center;
-  position: relative;
-  left: -10;
+  margin-left: auto;
   height: auto;
   cursor: pointer;
 }
