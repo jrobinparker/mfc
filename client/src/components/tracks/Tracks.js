@@ -5,6 +5,7 @@ import { getTracks } from '../../actions/track';
 import Filter from './Filter';
 import TrackItem from './TrackItem';
 import Loading from '../utils/Loading';
+import Pagination from '../utils/Pagination';
 
 const Tracks = ({ track: { tracks, loading }, getTracks }) => {
   const [ filter, setFilter ] = useState({
@@ -12,6 +13,17 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
     style: 'all',
     sort: 'all'
   });
+
+  const [ currentPage, setCurrentPage ] = useState(1);
+  const [ tracksPerPage ] = useState(12);
+
+  const indexOfLastTrack = currentPage * tracksPerPage;
+
+  const indexOfFirstTrack = indexOfLastTrack - tracksPerPage;
+
+  const currentTracks = tracks.slice(indexOfFirstTrack, indexOfLastTrack);
+
+  const paginate = pageNumber => setCurrentPage(pageNumber);
 
   useEffect(() => {
     getTracks();
@@ -24,79 +36,79 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
   let filteredTracks
 
   if (filter.rank === 'white') {
-    filteredTracks = tracks
+    filteredTracks = currentTracks
       .filter(track => track.rank === 'White')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.rank === 'yellow') {
-    filteredTracks = tracks
+    filteredTracks = currentTracks
       .filter(track => track.rank === 'Yellow')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.rank === 'green') {
-    filteredTracks = tracks
+    filteredTracks = currentTracks
       .filter(track => track.rank === 'Green')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.rank === 'blue') {
-    filteredTracks = tracks
+    filteredTracks = currentTracks
       .filter(track => track.rank === 'Blue')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.rank === 'purple') {
-    filteredTracks = tracks
+    filteredTracks = currentTracks
       .filter(track => track.rank === 'Purple')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.rank === 'brown') {
-    filteredTracks = tracks
+    filteredTracks = currentTracks
       .filter(track => track.rank === 'Brown')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.rank === 'black') {
-    filteredTracks = tracks
+    filteredTracks = currentTracks
       .filter(track => track.rank === 'Black')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.rank === 'all') {
-    filteredTracks = tracks.map(track => <TrackItem key={track._id} track={track}  />)
+    filteredTracks = currentTracks.map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.style === 'all') {
-    filteredTracks = tracks.map(track => <TrackItem key={track._id} track={track}  />)
+    filteredTracks = currentTracks.map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.style === 'eskrima') {
-    filteredTracks = tracks
+    filteredTracks = currentTracks
       .filter(track => track.style === 'Eskrima')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.sort === 'all') {
-    filteredTracks = tracks.map(track => <TrackItem key={track._id} track={track}  />)
+    filteredTracks = currentTracks.map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.sort === 'dates') {
-    filteredTracks = tracks
+    filteredTracks = currentTracks
       .sort((a, b) => b.date - a.date)
       .map(track => <TrackItem key={track._id} track={track}  />)
     }
 
   if (filter.sort === 'likes') {
-    filteredTracks = tracks
+    filteredTracks = currentTracks
       .sort((a, b) => b.likes.length - a.likes.length)
       .map(track => <TrackItem key={track._id} track={track}  />)
     }
 
   if (filter.sort === 'completes') {
-    filteredTracks = tracks
+    filteredTracks = currentTracks
       .sort((a, b) => b.completes.length - a.completes.length)
       .map(track => <TrackItem key={track._id} track={track}  />)
     }
@@ -156,6 +168,7 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
                 }
               </div>
             </div>
+            <Pagination itemsPerPage={tracksPerPage} totalItems={tracks.length} paginate={paginate} />
           </div>
         </div>
     </div>

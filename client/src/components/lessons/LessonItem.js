@@ -16,9 +16,9 @@ const LessonItem = ({ lesson: { _id, title, date, rank, style, likes, completes 
         <div class="field is-grouped is-grouped-multiline lesson-metadata">
           <RankIcon rank={rank}/>
           <StyleIcon style={style} />
+          <CompleteIcon completes={completes} user={user} />
         </div>
         <small><Moment format='MM/DD/YYYY'>{date}</Moment></small>
-        <CompleteIcon completes={completes} user={user} />
       </div>
     </div>
   )
