@@ -181,7 +181,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
                 }
               </div>
             </div>
-            <Pagination itemsPerPage={lessonsPerPage} totalItems={lessons.length} paginate={paginate} />
+            {lessons.length <= 12 ? <></> : <Pagination itemsPerPage={lessonsPerPage} totalItems={lessons.length} paginate={paginate} />}
           </div>
         </div>
     </div>

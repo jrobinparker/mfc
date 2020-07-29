@@ -180,7 +180,7 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
                 }
               </div>
             </div>
-            <Pagination itemsPerPage={tracksPerPage} totalItems={tracks.length} paginate={paginate} />
+            {tracks.length <= 12 ? <></> : <Pagination itemsPerPage={tracksPerPage} totalItems={tracks.length} paginate={paginate} />}
           </div>
         </div>
     </div>
