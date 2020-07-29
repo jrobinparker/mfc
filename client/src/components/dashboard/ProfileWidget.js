@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import RankIcon from '../lessons/lesson/RankIcon';
 
- const ProfileWidget = ({ name, profile, inProgress, completedLessons, completedTracks }) => {
+ const ProfileWidget = ({ name, inProgress, completedLessons, completedTracks }) => {
 
    return (
      <div className="hero is-medium is-primary is-bold">
         <div className="hero-body">
           <div className="container">
             <h1 className="title">
-              <span className="profile-name">{name} <Link to="/edit-profile"><i className="fas fa-edit profile-edit" /></Link></span>
+              <span className="profile-name">{name}</span>
             </h1>
             <div className="hero-stats">
               <h2 className="subtitle hero-stat">

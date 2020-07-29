@@ -5,8 +5,6 @@ import Nav from './components/landing/nav/Nav';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Dashboard from './components/dashboard/Dashboard';
-import CreateProfile from './components/profile/CreateProfile';
-import EditProfile from './components/profile/EditProfile';
 import Lessons from './components/lessons/Lessons';
 import Lesson from './components/lessons/lesson/Lesson';
 import CreateLesson from './components/lessons/CreateLesson';
@@ -48,8 +46,6 @@ const App = () => {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                <PrivateRoute exact path="/create-profile" component={CreateProfile} />
-                <PrivateRoute exact path="/edit-profile" component={EditProfile} />
                 <PrivateRoute exact path="/create-lesson" component={CreateLesson} />
                 <PrivateRoute exact path="/lessons" component={Lessons} />
                 <PrivateRoute exact path="/lesson/:id" component={Lesson} />

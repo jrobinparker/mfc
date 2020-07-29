@@ -4,23 +4,21 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loading from '../utils/Loading';
 import ProfileWidget from './ProfileWidget';
-import { getCurrentProfile } from '../../actions/profile';
 import { loadUser } from '../../actions/auth';
 import { getLessons } from '../../actions/lesson';
 import { getTracks } from '../../actions/track';
 import DashboardWidget from './DashboardWidget';
 import './dashboard.css';
 
-const Dashboard = ({ getCurrentProfile, getLessons, getTracks, loadUser, auth: { user }, profile: { profile, loading }, lesson: { lessons }, track: { tracks } }) => {
+const Dashboard = ({ getLessons, getTracks, loadUser, auth: { user }, lesson: { lessons, loading }, track: { tracks } }) => {
   const [ completedLessons, setCompletedLessons ] = useState([]);
   const [ inProgress, setInProgress ] = useState([]);
   const [ completedTracks, setCompletedTracks ] = useState([]);
 
   useEffect(() => {
-    getCurrentProfile();
     getLessons();
     getTracks();
-  }, [getCurrentProfile, getLessons, getTracks]);
+  }, [getLessons, getTracks]);
 
   let findUserLessonCompletes, findInProgress, findUserTrackCompletes
 
@@ -47,13 +45,10 @@ const Dashboard = ({ getCurrentProfile, getLessons, getTracks, loadUser, auth: {
 
   }, [lessons, tracks, user])
 
-  return loading && profile === null ? <Loading /> : (
-      <Fragment>
-          {profile !== null ? (
+  return loading ? <Loading /> : (
               <Fragment>
                 <ProfileWidget
                   name={user && user.name}
-                  profile={profile}
                   inProgress={inProgress.length.toString()}
                   completedLessons={completedLessons.length.toString()}
                   completedTracks={completedTracks.length.toString()}
@@ -61,53 +56,36 @@ const Dashboard = ({ getCurrentProfile, getLessons, getTracks, loadUser, auth: {
                 <div className="profile-lessons">
                   <DashboardWidget
                     items={inProgress}
-                    type={'lessons'}
+                    type={'lesson'}
                     header={'Lessons In Progress'}
                     nullMessage={`You haven't started any lessons yet!`}
                     />
                   <DashboardWidget
                     items={completedLessons}
-                    type={'lessons'}
+                    type={'lesson'}
                     header={'Completed Lessons'}
                     nullMessage={`You haven't completed any lessons yet!`}
                   />
                   <DashboardWidget
                     items={completedTracks}
-                    type={'lessons'}
+                    type={'track'}
                     header={'Completed Tracks'}
                     nullMessage={`You haven't completed any tracks yet!`}
                   />
                 </div>
               </Fragment>
-          ) : (
-            <div class="hero is-primary">
-              <div class="hero-body">
-                <div class="container">
-                  <h1 class="title">
-                    Set up your MFC Online profile!
-                  </h1>
-                  <h2 class="subtitle">
-                    <Link to='/create-profile'>Click here to get started</Link>
-                  </h2>
-                </div>
-              </div>
-            </div>
-          )}
-      </Fragment>
-  );
+          );
 };
 
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    profile: state.profile,
     lesson: state.lesson,
     track: state.track
 })
 
-export default connect(mapStateToProps, { getCurrentProfile, getLessons, getTracks })(Dashboard);
+export default connect(mapStateToProps, { getLessons, getTracks })(Dashboard);

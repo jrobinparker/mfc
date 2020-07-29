@@ -46,7 +46,7 @@
 
 .hero-stats {
   display: flex;
-  width: 50%;
+  width: 40%;
   margin-top: 2.5%;
 }
 
@@ -57,9 +57,13 @@
 }
 
 .hero-stat-number {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 
 .hero-stat div {
   font-size: 1rem;
+}
+
+.widget-list {
+  margin-bottom: 10px;
 }

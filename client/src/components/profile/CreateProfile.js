@@ -27,6 +27,9 @@ const CreateProfile = ({ createProfile, history }) => {
   return (
     <Fragment>
       <div className="container">
+      <nav className="panel">
+        <p className="panel-heading">Create a New Lesson</p>
+        <div className="form-wizard">
         <h1>Create Your MFC User Profile</h1>
         <form onSubmit={e => onSubmit(e)}>
             <div className="field">
@@ -81,9 +84,11 @@ const CreateProfile = ({ createProfile, history }) => {
               />
               <p class="help">Tell us about yourself</p>
           </div>
-      </div>
+          </div>
           <button className="button is-primary">Create</button>
         </form>
+        </div>
+      </nav>
       </div>
     </Fragment>
   )
