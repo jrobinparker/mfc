@@ -3,27 +3,18 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import Nav from './nav/Nav';
 import Hero from './hero/Hero';
-import { connect } from 'react-redux';
-import { isAuthenticated } from '../../actions/auth';
+import About from './about/About';
+import Contact from './contact/Contact';
 
-const Main = ({ isAuthenticated }) => {
+const Main = () => {
 
-  if (isAuthenticated) {
-    return <Redirect to='/dashboard' />;
-  }
   return (
-      <Fragment>
+      <div>
         <Hero />
-      </Fragment>
+        <About />
+        <Contact />
+      </div>
   )
 };
 
-Main.propTypes = {
-  isAuthenticated: PropTypes.bool
-};
-
-const mapStateToProps = state => ({
-  isAuthenticated: state.auth
-})
-
-export default connect(mapStateToProps)(Main);
+export default Main;

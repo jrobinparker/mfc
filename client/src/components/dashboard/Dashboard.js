@@ -8,16 +8,21 @@ import { loadUser } from '../../actions/auth';
 import { getLessons } from '../../actions/lesson';
 import { getTracks } from '../../actions/track';
 import DashboardWidget from './DashboardWidget';
+import NewUserModal from './NewUserModal';
 import './dashboard.css';
 
-const Dashboard = ({ getLessons, getTracks, loadUser, auth: { user }, lesson: { lessons, loading }, track: { tracks } }) => {
+const Dashboard = ({ getLessons, getTracks, loadUser, auth: { user, newUser }, lesson: { lessons, loading }, track: { tracks } }) => {
   const [ completedLessons, setCompletedLessons ] = useState([]);
   const [ inProgress, setInProgress ] = useState([]);
   const [ completedTracks, setCompletedTracks ] = useState([]);
+  const [ newUserModal, toggleModal ] = useState(false);
 
   useEffect(() => {
     getLessons();
     getTracks();
+    if (newUser) {
+      toggleModal(true)
+    }
   }, [getLessons, getTracks]);
 
   let findUserLessonCompletes, findInProgress, findUserTrackCompletes
@@ -73,6 +78,7 @@ const Dashboard = ({ getLessons, getTracks, loadUser, auth: { user }, lesson: { 
                     nullMessage={`You haven't completed any tracks yet!`}
                   />
                 </div>
+                {newUser && newUserModal ? <NewUserModal name={user.name} toggleModal={toggleModal} /> : <></>}
               </Fragment>
           );
 };

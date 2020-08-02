@@ -43,7 +43,6 @@ const App = () => {
             <div className="container">
               <Alert />
               <Switch>
-                <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute exact path="/create-lesson" component={CreateLesson} />

@@ -3,12 +3,6 @@ html {
    background-color: hsl(0, 0%, 96%);
  }
 
-.content {
-  display: flex;
-  flex-direction: column;
-  margin-top: -8%;
-}
-
 /* nav styles */
 
 .mfc-navbar {
@@ -103,6 +97,18 @@ html {
   display: none;
 }
 
+.guest-links {
+  display: flex;
+  flex-direction: row;
+  width: 50%;
+  justify-content: space-around;
+  margin-left: auto;
+}
+
+.guest-links .nav-brand {
+  margin-right: 10px;
+}
+
 .nav-links {
   display: flex;
   flex-direction: column;
@@ -149,8 +155,9 @@ html {
 .landing {
   height: 100vh;
   width: 100vw;
-  position: absolute;
-  top: 0%;
+  position: relative;
+  margin-top: -1%;
+  display: block;
 }
 
 .hero-banner {
@@ -213,6 +220,7 @@ html {
   height: 100vh;
   width: 100vw;
   display: block;
+  position: relative;
 }
 
 .message-content {
@@ -270,6 +278,7 @@ html {
   width: 100vw;
   display: flex;
   flex-direction: row;
+  display: block;
 }
 
 .about-img {
@@ -463,6 +472,9 @@ input {
 .contact {
   height: 80vh;
   text-align: center;
+  display: block;
+  position: relative;
+
 }
 
 .contact-info {

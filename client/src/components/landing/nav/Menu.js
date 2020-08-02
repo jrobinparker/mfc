@@ -39,7 +39,7 @@ class Menu extends React.Component {
           <div id="line3" className="line">&nbsp;</div>
         </div>
         <div className="nav-menu" id="nav-menu">
-          <MenuLinks toggleMenu={() => this.toggleMenu()} expandMenu={() => this.expandMenu()} logout={this.props.logout}/>
+          <MenuLinks toggleMenu={() => this.toggleMenu()} expandMenu={() => this.expandMenu()} logout={this.props.logout} toggleModal={this.props.toggleModal}/>
         </div>
       </Fragment>
     )

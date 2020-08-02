@@ -1,97 +1,90 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState, useRef, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
+import RegisterForm from './RegisterForm';
+import RegisterPayPal from './RegisterPayPal';
 import PropTypes from 'prop-types';
 
-const Register = ({ setAlert, register, isAuthenticated }) => {
-  const [ formData, setFormData ] = useState({
+class Register extends React.Component {
+  state = {
+    currentStep: 1,
     name: '',
     email: '',
     password: '',
-    password2: ''
-  });
+    password2: '',
+    authenticated: false
+  };
 
-  const { name, email, password, password2 } = formData;
-
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
-
-  const onSubmit = e => {
-    e.preventDefault();
-    if (password !== password2) {
-      setAlert('Passwords do not match', 'danger', 5000);
+  nextStep = () => {
+    let currentStep = this.state.currentStep;
+    if (currentStep >= 2) {
+     currentStep = 2;
     } else {
-      register({ name, email, password });
+      currentStep = currentStep + 1;
+    }
+
+   this.setState({
+     currentStep: currentStep
+   });
+  }
+
+  prevStep = () => {
+   let currentStep = this.state.currentStep;
+   if (currentStep <= 1) {
+     currentStep = 1;
+   } else {
+     currentStep = currentStep - 1;
+   }
+
+   this.setState({
+     currentStep: currentStep
+   });
+ }
+
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  onSubmit = e => {
+    const { name, email, password } = this.state
+    console.log('processed payment')
+    this.props.register({ name, email, password, role: 'basic' });
+    console.log('registered')
+  };
+
+  render() {
+    if (this.props.isAuthenticated) {
+      this.props.toggleModal(false);
+      return <Redirect to={{ pathname: "/dashboard", state: { newUserModal: true } }} />
+    }
+
+    switch (this.state.currentStep) {
+      case 1:
+        return <RegisterForm
+                  nextStep={this.nextStep}
+                  onChange={this.onChange}
+                  name={this.state.name}
+                  email={this.state.email}
+                  password={this.state.password}
+                  password2={this.state.password2}
+                />
+      case 2:
+        return <RegisterPayPal
+                  prevStep={this.prevStep}
+                  onSubmit={this.onSubmit}
+                />
+      default:
+        return <RegisterForm
+                  nextStep={this.nextStep}
+                  onChange={this.onChange}
+                />
+
     }
   }
-
-  if (isAuthenticated) {
-    return <Redirect to="/dashboard" />
-  }
-
-  return (
-    <div className="container auth-container">
-      <div className="auth-form">
-      <h1 className="title auth-form-title">Become a Member</h1>
-      <form className="box">
-        <div class="field">
-          <label className="label">Full Name</label>
-            <div class="control">
-              <input
-                className="input"
-                type='text'
-                value={name}
-                name='name'
-                placeholder='Full name'
-                onChange={e => onChange(e)}
-              />
-          </div>
-          </div>
-          <div className="field">
-            <label className="label">Email</label>
-              <div class="control">
-                <input
-                  className="input"
-                  type='text'
-                  value={email}
-                  name='email'
-                  placeholder='Email address'
-                  onChange={e => onChange(e)}
-                />
-              </div>
-            </div>
-          <div className="field">
-            <label className="label">Password</label>
-              <div class="control">
-                <input
-                  className="input"
-                  type='password'
-                  value={password}
-                  name='password'
-                  placeholder='Enter a password'
-                  onChange={e => onChange(e)}
-                />
-            </div>
-        </div>
-        <div className="field">
-          <label className="label">Reenter Password</label>
-            <div class="control">
-                <input
-                  className="input"
-                  type='password'
-                  value={password2}
-                  name='password2'
-                  placeholder='Reenter password'
-                  onChange={e => onChange(e)}
-                />
-            </div>
-        </div>
-        <button className="button is-primary" onClick={e => onSubmit(e)}>Register</button>
-      </form>
-      </div>
-    </div>
-  )
 }
 
 Register.propTypes = {

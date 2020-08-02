@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { loadUser } from '../../../actions/auth';
 
-const MenuLinks = ({ loadUser, user, toggleMenu, expandMenu, logout }) => {
+const MenuLinks = ({ loadUser, user, toggleMenu, toggleModal, expandMenu, logout }) => {
   const [ loadedUser, setLoadedUser ] = useState(null);
 
   useEffect(() => {
@@ -44,10 +44,11 @@ const MenuLinks = ({ loadUser, user, toggleMenu, expandMenu, logout }) => {
       }}>
         Tracks
       </Link>
-      <Link onClick={() => {
+      <Link to={'/'} onClick={() => {
         toggleMenu()
         expandMenu()
         logout()
+        toggleModal(false)
         }}>
         Logout
       </Link>

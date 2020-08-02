@@ -1,0 +1,35 @@
+.login {
+}
+
+.register-link {
+  font-size: .9rem;
+  margin-top: 15px;
+}
+
+.modal-card {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.modal-card .modal-card-head {
+  background-color: hsl(0, 0%, 96%);
+  text-align: center;
+}
+
+.modal-buttons {
+  width: 100%;
+  display: flex;
+  align-self: center;
+}
+
+.modal-buttons button:first-of-type {
+  margin-right: 10px;
+}
+
+.paypal {
+  text-align: center;
+}
+
+.paypal p {
+  margin-bottom: 5%;
+}

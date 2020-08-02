@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
+import './form.css';
 
-const Login = ({ login, isAuthenticated }) => {
+const Login = ({ login, isAuthenticated, toggleModal }) => {
   const [ formData, setFormData ] = useState({
     email: '',
     password: ''
@@ -20,47 +22,43 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   if (isAuthenticated) {
+    toggleModal(false);
     return <Redirect to="/dashboard" />
   }
 
   return (
-    <div className="container auth-container">
-      <div className="auth-form">
-      <h1 className="title auth-form-title">Member Login</h1>
-      <form className="box">
-          <div className="field">
-            <label className="label">Email</label>
-              <div class="control">
-                <input
-                  className="input"
-                  type='text'
-                  value={email}
-                  name='email'
-                  placeholder='Email address'
-                  onChange={e => onChange(e)}
-                  required
-                />
+        <form>
+            <div className="field">
+              <label className="label">Email</label>
+                <div class="control">
+                  <input
+                    className="input"
+                    type='text'
+                    value={email}
+                    name='email'
+                    placeholder='Email address'
+                    onChange={e => onChange(e)}
+                    required
+                  />
+                </div>
               </div>
-            </div>
-          <div className="field">
-            <label className="label">Password</label>
-              <div class="control">
-                <input
-                  className="input"
-                  type='password'
-                  value={password}
-                  name='password'
-                  placeholder='Enter a password'
-                  onChange={e => onChange(e)}
-                  required
-                />
-            </div>
-        </div>
-        <button className="button is-primary" onClick={e => onSubmit(e)}>Login</button>
-      </form>
-      </div>
-    </div>
-  )
+            <div className="field">
+              <label className="label">Password</label>
+                <div class="control">
+                  <input
+                    className="input"
+                    type='password'
+                    value={password}
+                    name='password'
+                    placeholder='Enter a password'
+                    onChange={e => onChange(e)}
+                    required
+                  />
+              </div>
+          </div>
+          <button className="button is-primary" onClick={e => onSubmit(e)}>Login</button>
+        </form>
+      )
 }
 
 login.propTypes = {

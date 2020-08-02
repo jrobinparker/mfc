@@ -5,22 +5,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../../actions/auth';
 import Menu from './Menu';
+import AuthModal from '../../auth/AuthModal';
 
 const Nav = ({ auth: { isAuthenticated, loading, user }, logout }) => {
+  const [ modal, toggleModal ] = useState(false);
 
   const authLinks = (
     <Fragment>
-      <Menu logout={logout} />
+      <Menu logout={logout} toggleModal={toggleModal} />
     </Fragment>
   );
 
   const guestLinks = (
-    <Fragment>
+    <div className="guest-links">
       <NavLink link={'About'} id={'message'} />
       <NavLink link={'Pricing'} id={'pricing'} />
       <NavLink link={'Contact'} id={'Contact'} />
-      <Link to={'/login'} className="nav-brand" style={{ color: 'white', cursor: 'pointer' }}>Login</Link>
-    </Fragment>
+      <span className="nav-brand" onClick={() => toggleModal(true)}>Login / Sign Up</span>
+    </div>
   )
 
   const app = document.body
@@ -55,6 +57,7 @@ const Nav = ({ auth: { isAuthenticated, loading, user }, logout }) => {
         <img src={require('../../../assets/logo-transparent.png')} className="logo" alt="logo"/>
         <NavLink link={'MFC Online'} id={'home'} />
         { isAuthenticated ? authLinks : guestLinks }
+        { !modal ? <></> : <AuthModal toggleModal={toggleModal} /> }
     </nav>
   )
 }
