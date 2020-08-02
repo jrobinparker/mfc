@@ -6,6 +6,7 @@ html {
 /* nav styles */
 
 .mfc-navbar {
+  font-family: 'Mulish', sans-serif;
   z-index: 100;
   position: sticky;
   top: 0%;
@@ -177,17 +178,20 @@ html {
 }
 
 .banner-text {
+  font-family: 'Mulish', sans-serif;
   position: relative;
   top: 30%;
   left: 25%;
   width: 50%;
   text-align: center;
   color: white;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .subtitle {
   margin-top: -3%;
+  color: white;
+  font-size: 1.75rem;
 }
 
 .banner-buttons {

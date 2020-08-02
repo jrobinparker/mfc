@@ -55,7 +55,7 @@ const Nav = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   return (
     <nav className="mfc-navbar">
         <img src={require('../../../assets/logo-transparent.png')} className="logo" alt="logo"/>
-        <NavLink link={'MFC Online'} id={'home'} />
+        <NavLink link={'MFC Online University'} id={'home'} />
         { isAuthenticated ? authLinks : guestLinks }
         { !modal ? <></> : <AuthModal toggleModal={toggleModal} /> }
     </nav>
