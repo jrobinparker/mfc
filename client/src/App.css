@@ -278,22 +278,139 @@ html {
 /* about */
 
 .about {
-  height: 70vh;
+  height: 100vh;
+  width: 100vw;
+  margin-bottom: 2.5%;
+}
+
+.slider {
+  height: 95vh;
   width: 100vw;
   display: flex;
   flex-direction: row;
-  display: block;
 }
 
-.about-img {
-  width: 50%;
-  height: 100%;
+.slide {
+  position: relative;
+  height: 95vh;
+  width: 100vw;
+  margin-right: 70px;
 }
 
-.about-img img {
+.slide img {
   height: 100%;
   width: 100%;
+  display: inline-block;
 }
+
+.slider-button {
+  position: absolute;
+  z-index: 900;
+  top: 150%;
+  transform: translateY(-50%);
+  width: 5%;
+  height: 20%;
+  background: transparent;
+  border: none;
+}
+
+button i {
+  font-size: 2rem;
+  color: #2A2A35;
+}
+
+button i:hover {
+  cursor: pointer;
+}
+
+#left {
+  left: 0%;
+}
+
+#right {
+  right: 0%;
+}
+
+.slide-about {
+  height: 20%;
+  width: 100%;
+  padding: 10px;
+  position: relative;
+  top: -20%;
+  background-color: rgba(54, 54, 54, .5)
+}
+
+.slide-about h1 {
+  font-family: 'Mulish', sans-serif;
+  color: white;
+  font-size: 2rem;
+}
+
+.slide-about p {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.no-img {
+  position: relative;
+  left: -27%;
+}
+
+.project-header {
+  letter-spacing: -6px;
+}
+
+.slide ul {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left: -7%;
+}
+
+.slide li {
+  margin: 0px 10px 10px 0px;
+  background-color: #BED38E;
+  color: #2A2A35;
+}
+
+.project-text {
+  background-color: #BED38E;
+  color: #2A2A35;
+  width: 100%;
+  font-size: 1.5rem;
+  margin-top: -5px;
+}
+
+.project-links {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.proj-icon {
+  font-size: 4rem;
+}
+
+.proj-icon:first-of-type {
+  margin-right: 50px;
+}
+
+.git {
+  display: flex;
+  flex-direction: column;
+}
+
+.git-link, .web-link {
+  opacity: 0;
+  margin-left: 2px;
+  background-color: #BED38E;
+  color: #2A2A35;
+  width: 50%;
+  align-self: flex-start;
+  text-align: center;
+}
+
 
 .about-info {
   width: 50%;

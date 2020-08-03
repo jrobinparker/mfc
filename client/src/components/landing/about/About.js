@@ -1,48 +1,36 @@
-import React from 'react';
-import StyleIcon from './StyleIcon';
-import VisibilitySensor from 'react-visibility-sensor';
+import React, { useState } from 'react';
+import Slider from './Slider';
 
-class About extends React.Component {
-  state = {
-    visible: false
-  }
-
-  render() {
-    if (this.state.visible) {
-      const aboutStyles = document.querySelectorAll('.about-styles')
-      aboutStyles.forEach(as => {
-        as.classList.remove('hidden');
-        as.classList.add('fade-in-up');
-      })
-    }
-
+const About = () => {
+    const items = [
+          {
+            header: 'Item 1',
+            blurb: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fringilla risus dui, eget porta eros consectetur quis. Vestibulum neque libero, rhoncus quis tincidunt in, interdum sit amet nibh. Nullam ac elit aliquam, malesuada enim eu, pharetra diam. Pellentesque vitae odio sit amet augue vehicula ullamcorper. Vivamus ut semper elit. Quisque pellentesque posuere magna in scelerisque. Proin ipsum leo, commodo sed dignissim id, pretium a lectus. Donec purus mauris, ornare et felis ac, malesuada commodo justo. Pellentesque ultrices nulla ut finibus luctus.',
+            image: 'about1.jpg'
+          },
+          {
+            header: 'Item 2',
+            blurb: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fringilla risus dui, eget porta eros consectetur quis. Vestibulum neque libero, rhoncus quis tincidunt in, interdum sit amet nibh. Nullam ac elit aliquam, malesuada enim eu, pharetra diam. Pellentesque vitae odio sit amet augue vehicula ullamcorper. Vivamus ut semper elit. Quisque pellentesque posuere magna in scelerisque. Proin ipsum leo, commodo sed dignissim id, pretium a lectus. Donec purus mauris, ornare et felis ac, malesuada commodo justo. Pellentesque ultrices nulla ut finibus luctus.',
+            image: 'about2.jpg'
+          }
+          ,
+          {
+            header: 'Item 3',
+            blurb: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fringilla risus dui, eget porta eros consectetur quis. Vestibulum neque libero, rhoncus quis tincidunt in, interdum sit amet nibh. Nullam ac elit aliquam, malesuada enim eu, pharetra diam. Pellentesque vitae odio sit amet augue vehicula ullamcorper. Vivamus ut semper elit. Quisque pellentesque posuere magna in scelerisque. Proin ipsum leo, commodo sed dignissim id, pretium a lectus. Donec purus mauris, ornare et felis ac, malesuada commodo justo. Pellentesque ultrices nulla ut finibus luctus.',
+            image: 'about4.jpg'
+          },
+          ,
+          {
+            header: 'Item 4',
+            blurb: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fringilla risus dui, eget porta eros consectetur quis. Vestibulum neque libero, rhoncus quis tincidunt in, interdum sit amet nibh. Nullam ac elit aliquam, malesuada enim eu, pharetra diam. Pellentesque vitae odio sit amet augue vehicula ullamcorper. Vivamus ut semper elit. Quisque pellentesque posuere magna in scelerisque. Proin ipsum leo, commodo sed dignissim id, pretium a lectus. Donec purus mauris, ornare et felis ac, malesuada commodo justo. Pellentesque ultrices nulla ut finibus luctus.',
+            image: 'about5.jpg'
+          }
+        ]
   return (
-    <VisibilitySensor
-      PartialVisibility
-      onChange={isVisible => {
-        this.setState({
-          visible: isVisible
-        })
-      }}>
     <div className="about" id="about">
-      <div className="about-img">
-        <img src={require('../../../assets/fight.jpg')} alt="fight" />
-      </div>
-      <div className="about-info">
-      <div className="about-styles hidden">
-        <StyleIcon imgSrc={'padded-fighter.svg'} styleName={'padded sticks'} />
-        <StyleIcon imgSrc={'knives.svg'} styleName={'knife fighting'} />
-      </div>
-      <div className="about-styles hidden">
-        <StyleIcon imgSrc={'forms.svg'} styleName={'forms'} />
-        <StyleIcon imgSrc={'toya.svg'} styleName={'single & double sticks'} />
-      </div>
-
-      </div>
+      <Slider items={items} />
     </div>
-    </VisibilitySensor>
   )
-  }
 }
 
 export default About;

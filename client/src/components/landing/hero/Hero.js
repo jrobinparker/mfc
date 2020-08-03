@@ -13,7 +13,7 @@ const Hero = () => {
             <div
               className="banner-button"
               onClick={() => {
-                document.getElementById('message').scrollIntoView({behavior: 'smooth'})
+                document.getElementById('about').scrollIntoView({behavior: 'smooth'})
               }}>
                 About
             </div>
@@ -21,7 +21,7 @@ const Hero = () => {
               className="banner-button"
               id="reg-button"
               onClick={() => {
-                document.getElementById('register').scrollIntoView({behavior: 'smooth'})
+                document.getElementById('plans').scrollIntoView({behavior: 'smooth'})
               }}>
                 Pricing
             </div>
