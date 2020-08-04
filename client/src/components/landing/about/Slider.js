@@ -19,7 +19,7 @@ const Slider = ({ items }) => {
                 <div className="slide">
                     <img src={require(`../../../assets/${item.image}`)} />
                     <div className="slide-about">
-                      <h1>{item.header}</h1>
+                      <h1 className="slide-title">{item.header}</h1>
                       <p>{item.blurb}</p>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import Nav from './nav/Nav';
 import Hero from './hero/Hero';
 import About from './about/About';
 import Contact from './contact/Contact';
+import Pricing from './Pricing';
 
 const Main = () => {
 
@@ -12,6 +13,7 @@ const Main = () => {
       <div>
         <Hero />
         <About />
+        <Pricing />
         <Contact />
       </div>
   )

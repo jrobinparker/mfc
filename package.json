@@ -22,7 +22,8 @@
     "mongoose": "^5.9.13",
     "multer": "^1.4.2",
     "multer-gridfs-storage": "^4.1.0",
-    "node-sass": "^4.14.1"
+    "node-sass": "^4.14.1",
+    "react-visibility-sensor": "^5.1.1"
   },
   "devDependencies": {
     "concurrently": "^5.2.0",

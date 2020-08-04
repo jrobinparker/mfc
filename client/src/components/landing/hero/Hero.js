@@ -7,7 +7,7 @@ const Hero = () => {
         <div className="banner-bg">
         <div className="banner-text">
           <img src={require('../../../assets/logo-transparent.png')} className="hero-img" alt="sparring" />
-          <h1 className="title banner-text">Modern Fighting Concepts</h1>
+          <h1 className="title banner-text">MODERN FIGHTING CONCEPTS</h1>
           <h2 className="subtitle">Online University</h2>
           <div className="banner-buttons">
             <div
@@ -21,7 +21,7 @@ const Hero = () => {
               className="banner-button"
               id="reg-button"
               onClick={() => {
-                document.getElementById('plans').scrollIntoView({behavior: 'smooth'})
+                document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})
               }}>
                 Pricing
             </div>

@@ -4,14 +4,13 @@ import SocialLink from './SocialLink';
 const Contact = () => {
   return (
     <div className="contact" id="contact">
-      <h1>Contact Us</h1>
       <div className="contact-info">
         <div className="address-container">
           <div className="address">
-          <h2>MODERN FIGHTING CONCEPTS</h2>
-          <p>126 New Jersey Ave</p>
-          <p>Absecon, NJ 08201</p>
-          <p>609-646-2113</p>
+            <h2 className="title">MODERN FIGHTING CONCEPTS</h2>
+            <p>126 New Jersey Ave</p>
+            <p>Absecon, NJ 08201</p>
+            <p>609-646-2113</p>
           </div>
           <div className="contact-social">
             <SocialLink link={'http://www.facebook.com/abseconmartialarts/'} imgSrc={'facebook.svg'} />
