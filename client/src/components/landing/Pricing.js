@@ -24,9 +24,9 @@ class Pricing extends React.Component {
         })
       }}>
       <div className="pricing hidden" id="pricing">
-        <div className="container">
+        <div className="container pricing-container">
 
-          <h1 className="title banner-text pricing-header">MEMBERSHIP & PRICING</h1>
+          <span className="title mfc-title pricing-header">MEMBERSHIP & PRICING</span>
           <div className="pricing-top">
             just
             <div className="price">

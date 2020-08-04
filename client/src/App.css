@@ -182,15 +182,21 @@ html {
   font-family: 'Fjalla One', sans-serif;
   position: relative;
   top: 30%;
-  left: 20%;
-  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  align-content: center;
   text-align: center;
   color: white;
-  font-size: 3rem;
 }
 
-.title {
+.mfc-title {
+  display: inline-block;
+  font-family: 'Fjalla One', sans-serif;
   background-color: black;
+  color: white;
+  font-size: 3rem;
   letter-spacing: -3px;
 }
 
@@ -237,7 +243,7 @@ html {
 }
 
 .pricing-header {
-  width: 30%;
+  position: relative;
   left: 35%;
 }
 
@@ -406,6 +412,10 @@ button i:hover {
 
 #right {
   right: 0%;
+}
+
+.slide-header {
+  font-size: 2rem;
 }
 
 .slide-about {
@@ -669,7 +679,7 @@ input {
 /* contact */
 
 .contact {
-  height: 80vh;
+  height: 50vh;
   text-align: center;
   display: block;
   position: relative;
@@ -686,20 +696,9 @@ input {
   justify-content: flex-start;
 }
 
-.contact-img {
-  width: 50%;
-  height: 100%;
-}
-
-.contact-img img {
-  width: 100%;
-  height: 100%;
-  margin-bottom: -5%;
-}
-
 .address-container {
   height: 100%;
-  width: 50%;
+  width: 100%;
   font-family: 'Fjalla One', sans-serif;
   background-color: #4A4843;
   color: white;
@@ -716,7 +715,11 @@ input {
 .contact-social {
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+.contact-social a {
+  margin-right: 1%;
 }
 
 .contact-social img {
@@ -1198,17 +1201,11 @@ input {
 
   .contact {
     height: 80vh;
-    text-align: center;
   }
 
   .contact-info {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-self: center;
-    align-items: center;
-    justify-content: flex-start;
   }
 
   .contact-img {
