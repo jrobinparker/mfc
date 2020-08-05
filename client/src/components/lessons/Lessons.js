@@ -121,7 +121,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
        <div class="hero-body">
          <div class="container hero-container">
            <span class="title lessons-title" style={{ color: 'white' }}>
-             Lessons
+             LESSONS
            </span>
          </div>
        </div>

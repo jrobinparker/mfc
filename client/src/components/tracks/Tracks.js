@@ -120,7 +120,7 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
        <div class="hero-body">
          <div class="container">
            <span class="title tracks-title" style={{ color: 'white' }}>
-             Tracks
+             TRACKS
            </span>
          </div>
        </div>
