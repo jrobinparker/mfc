@@ -5,6 +5,19 @@
   margin-bottom: 10px;
 }
 
+
+.lessons-title {
+  font-family: 'Fjalla One', sans-serif;
+  background-color: black;
+  letter-spacing: -3px;
+  padding-right: 5px;
+}
+
+.lessons-subtitle {
+  margin-top: 15px;
+}
+
+
 .lesson-metadata {
   margin-top: -15px;
   align-items: baseline;

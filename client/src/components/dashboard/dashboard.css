@@ -21,7 +21,11 @@
 }
 
 .profile-name {
+  font-family: 'Fjalla One', sans-serif;
   font-size: 2rem;
+  letter-spacing: -3px;
+  background-color: black;
+  padding-right: 5px;
 }
 
 .profile-edit {
@@ -64,10 +68,19 @@
   font-size: 1rem;
 }
 
+.profile-widget-title {
+  font-family: 'Fjalla One', sans-serif;
+  background-color: black;
+  letter-spacing: -3px;
+  padding-right: 5px;
+}
+
 .widget-list {
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .new-user-modal p {
+  font-family: 'Fjalla One', sans-serif;
   margin-bottom: 5px;
 }

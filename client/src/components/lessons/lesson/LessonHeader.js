@@ -11,12 +11,12 @@ const LessonHeader = props => {
 
   return (
     <div className="lesson-header">
-        <h1 className="title">
+        <span className="title lessons-title" style={{ color: 'white' }}>
           {title}
-        </h1>
-        <h3 className="subtitle">
-            {author} | <Moment format='MM/DD/YYYY'>{date}</Moment>
-        </h3>
+        </span>
+        <div className="subtitle lessons-subtitle" style={{ marginTop: '10px', color: 'black'}}>
+            <Moment format='MM/DD/YYYY'>{date}</Moment>
+        </div>
         <div class="field is-grouped is-grouped-multiline lesson-metadata">
           <StyleIcon style={style} />
           <RankIcon rank={rank} />

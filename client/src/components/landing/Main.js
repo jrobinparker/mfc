@@ -10,7 +10,7 @@ import Pricing from './Pricing';
 const Main = () => {
 
   return (
-      <div>
+      <div id="main">
         <Hero />
         <About />
         <Pricing />

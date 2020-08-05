@@ -10,12 +10,12 @@ const TrackHeader = ({ id, user, title, author, created, style, skills, rank, co
 
   return (
     <div className="lesson-header">
-        <h1 className="title">
+        <span className="title lessons-title" style={{ color: 'white' }}>
           {title}
-        </h1>
-        <h3 className="subtitle">
-            <Moment format='MM/DD/YYYY'>{created}</Moment>
-        </h3>
+        </span>
+        <div className="subtitle lessons-subtitle" style={{ marginTop: '10px', color: 'black' }}>
+          <Moment format='MM/DD/YYYY'>{created}</Moment>
+        </div>
         <div class="field is-grouped is-grouped-multiline lesson-metadata">
           { !style ? <></> : <StyleIcon style={style} /> }
           { !rank ? <></> : <RankIcon rank={rank} /> }

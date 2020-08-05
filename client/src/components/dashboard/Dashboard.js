@@ -53,7 +53,7 @@ const Dashboard = ({ getLessons, getTracks, loadUser, auth: { user, newUser }, l
   return loading ? <Loading /> : (
               <Fragment>
                 <ProfileWidget
-                  name={user && user.name}
+                  name={user && user.name.toUpperCase()}
                   inProgress={inProgress.length.toString()}
                   completedLessons={completedLessons.length.toString()}
                   completedTracks={completedTracks.length.toString()}
@@ -62,19 +62,19 @@ const Dashboard = ({ getLessons, getTracks, loadUser, auth: { user, newUser }, l
                   <DashboardWidget
                     items={inProgress}
                     type={'lesson'}
-                    header={'Lessons In Progress'}
+                    header={'LESSONS IN PROGRESS'}
                     nullMessage={`You haven't started any lessons yet!`}
                     />
                   <DashboardWidget
                     items={completedLessons}
                     type={'lesson'}
-                    header={'Completed Lessons'}
+                    header={'COMPLETED LESSONS'}
                     nullMessage={`You haven't completed any lessons yet!`}
                   />
                   <DashboardWidget
                     items={completedTracks}
                     type={'track'}
-                    header={'Completed Tracks'}
+                    header={'COMPLETED TRACKS'}
                     nullMessage={`You haven't completed any tracks yet!`}
                   />
                 </div>

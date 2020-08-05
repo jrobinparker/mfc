@@ -1,3 +1,15 @@
+
+.tracks-title {
+  font-family: 'Fjalla One', sans-serif;
+  background-color: black;
+  letter-spacing: -3px;
+  padding-right: 5px;
+}
+
+.tracks-subtitle {
+  margin-top: 15px;
+}
+
 .form-wizard {
   padding: 20px;
   background-color: white;

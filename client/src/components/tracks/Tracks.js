@@ -6,6 +6,7 @@ import Filter from './Filter';
 import TrackItem from './TrackItem';
 import Loading from '../utils/Loading';
 import Pagination from '../utils/Pagination';
+import './tracks.css';
 
 const Tracks = ({ track: { tracks, loading }, getTracks }) => {
   const [ filter, setFilter ] = useState({
@@ -118,12 +119,9 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
     <div class="hero is-small">
        <div class="hero-body">
          <div class="container">
-           <h1 class="title">
+           <span class="title tracks-title" style={{ color: 'white' }}>
              Tracks
-           </h1>
-           <h2 class="subtitle">
-             Complete a track to learn new skills, prepare for tests, and more
-           </h2>
+           </span>
          </div>
        </div>
      </div>

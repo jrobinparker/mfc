@@ -1,4 +1,6 @@
-.login {
+.auth-modal, .auth-modal button {
+  font-family: 'Fjalla One', sans-serif;
+  color: black;
 }
 
 .register-link {

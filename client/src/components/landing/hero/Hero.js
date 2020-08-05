@@ -8,14 +8,14 @@ const Hero = () => {
         <div className="banner-text">
           <img src={require('../../../assets/logo-transparent.png')} className="hero-img" alt="sparring" />
           <span className="title mfc-title banner-text banner-header">MODERN FIGHTING CONCEPTS</span>
-          <h2 className="subtitle">Online University</h2>
+          <h2 className="subtitle">Dojo & Online University</h2>
           <div className="banner-buttons">
             <div
               className="banner-button"
               onClick={() => {
                 document.getElementById('about').scrollIntoView({behavior: 'smooth'})
               }}>
-                About
+                About Us
             </div>
             <div
               className="banner-button"

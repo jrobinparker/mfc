@@ -7,6 +7,7 @@ import LessonItem from './LessonItem';
 import Filter from './Filter';
 import Loading from '../utils/Loading';
 import Pagination from '../utils/Pagination';
+import './lessons.css';
 
 const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { user } }) => {
   const [ filter, setFilter ] = useState({
@@ -118,13 +119,10 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
     <Fragment>
     <div class="hero is-small">
        <div class="hero-body">
-         <div class="container">
-           <h1 class="title">
+         <div class="container hero-container">
+           <span class="title lessons-title" style={{ color: 'white' }}>
              Lessons
-           </h1>
-           <h2 class="subtitle">
-             Watch recorded lessons taught by Sensei Joe Parker
-           </h2>
+           </span>
          </div>
        </div>
      </div>

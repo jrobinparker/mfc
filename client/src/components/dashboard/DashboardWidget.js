@@ -30,7 +30,7 @@ const DashboardWidget = ({ items, type, header, nullMessage }) => {
 
   return(
     <div className="box">
-      <h1 className="title profile-widget-title">{header}</h1>
+      <span className="title profile-widget-title" style={{ color: 'white', marginBottom: '5px' }}>{header}</span>
       {content}
     </div>
   )

@@ -32,25 +32,25 @@ const Nav = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     const nav = document.querySelector(".mfc-navbar")
     const logo = document.querySelector(".logo")
     if (scrollPercent >= .75) {
-      nav.style.backgroundColor = 'rgba(255,255,255,1)';
+      nav.style.backgroundColor = 'rgba(54,54,54,1)';
       nav.style.boxShadow = '0px 0px 21px 0px rgba(10,10,10,.25)';
       nav.style.color = 'black'
       logo.width = '50'
     } else if (scrollPercent >= .5 ){
-      nav.style.backgroundColor = `rgba(255,255,255,${scrollPercent})`;
+      nav.style.backgroundColor = `rgba(54,54,54,${scrollPercent})`;
       nav.style.boxShadow = `0px 0px 21px 0px rgba(10,10,10,${scrollPercent})`;
       nav.style.color = 'black'
       logo.width = '50'
     } else {
-      nav.style.backgroundColor = `rgba(255,255,255,${scrollPercent})`;
+      nav.style.backgroundColor = `rgba(54,54,54,${scrollPercent})`;
       nav.style.boxShadow = `0px 0px 21px 0px rgba(10,10,10,${scrollPercent})`;
       nav.style.color = 'white'
     }
   }
 
-  // app.onscroll = () => {
-    // setNavStyle()
-  // }
+  app.onscroll = () => {
+    setNavStyle()
+  }
 
   return (
     <nav className="mfc-navbar">
