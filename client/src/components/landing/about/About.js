@@ -28,6 +28,7 @@ const About = () => {
         ]
   return (
     <div className="about" id="about">
+      <span className="title mfc-title about-header">OUR PHILOSOPHY</span>
       <Slider items={items} />
     </div>
   )

@@ -13,19 +13,12 @@ const Hero = () => {
             <div
               className="banner-button"
               onClick={() => {
-                document.getElementById('about').scrollIntoView({behavior: 'smooth'})
+                document.getElementById('dojo').scrollIntoView({behavior: 'smooth'})
               }}>
-                About the Dojo
-            </div>
-            <div
-              className="banner-button"
-              id="reg-button"
-              onClick={() => {
-                document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})
-              }}>
-                Membership
+                About Us
             </div>
           </div>
+          <i className="fas fa-chevron-down" style={{ position: 'relative', bottom: '10%' }}/>
           </div>
         </div>
         </div>

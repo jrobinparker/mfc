@@ -24,51 +24,48 @@ class Pricing extends React.Component {
         })
       }}>
       <div className="pricing hidden" id="pricing">
-        <div className="container pricing-container">
 
           <span className="title mfc-title pricing-header">MEMBERSHIP & PRICING</span>
-          <div className="pricing-top">
-            just
-            <div className="price">
-              $20
-            </div>
-            a month
-          </div>
           <div className="features">
             <div className="feature">
-              <div className="feature-img">
-                <img src={require('../../assets/contact.jpg')} alt="contact-img"/>
+              <div className="scroll">
+                <p>道場</p>
               </div>
-              <div className="feature-text">
-                View all recorded lessons
-              </div>
+              <h1 className="title mfc-title" style={{ fontSize: '2rem' }}>DOJO MEMBERSHIP</h1>
+                <div>
+                  $150 a month
+                </div>
+                <ul>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                  <li>Item 4</li>
+                  <li>Item 5</li>
+                </ul>
+                <div>
+                  Contact the dojo for membership
+                </div>
             </div>
             <div className="feature">
-              <div className="feature-img">
-                <img src={require('../../assets/greeting1.jpg')} id="gi" />
+              <div className="scroll">
+                <p>大学</p>
               </div>
-              <div className="feature-text">
-                Discounts on apparel, gis, and equipment
-              </div>
-            </div>
-            <div className="feature">
-              <div className="feature-img">
-                <img src={require('../../assets/sensei-img.jpg')} alt="contact-img"/>
-              </div>
-              <div className="feature-text">
-                Members-only Zoom training sessions
-              </div>
-            </div>
-            <div className="feature">
-              <div className="feature-img">
-                <img src={require('../../assets/contact.jpg')} alt="contact-img"/>
-              </div>
-              <div className="feature-text">
-                Early registration to MFC seminars
-              </div>
+              <h1 className="title mfc-title" style={{ fontSize: '2rem' }}>ONLINE UNIVERSITY MEMBERSHIP</h1>
+                <div>
+                  $20 a month
+                </div>
+                <ul>
+                  <li>Item 1</li>
+                  <li>Item 2</li>
+                  <li>Item 3</li>
+                  <li>Item 4</li>
+                  <li>Item 5</li>
+                </ul>
+                <div>
+                  Click Sign Up to get started
+                </div>
             </div>
           </div>
-        </div>
       </div>
       </VisibilitySensor>
   )

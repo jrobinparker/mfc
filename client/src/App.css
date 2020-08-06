@@ -206,7 +206,6 @@ html {
 
 .banner-buttons {
   display: flex;
-  justify-content: center;
 }
 
 .banner-button {
@@ -220,8 +219,8 @@ html {
   cursor: pointer;
 }
 
-.banner-button:first-of-type {
-  margin-right: 15px;
+.banner-button {
+  margin-right: 10px;
 }
 
 .banner-button:hover {
@@ -232,7 +231,7 @@ html {
 /* message */
 
 .pricing {
-  height: 100vh;
+  height: 80vh;
   width: 100vw;
   font-family: 'Fjalla One', sans-serif;
   font-size: 2rem;
@@ -241,15 +240,10 @@ html {
 
 .pricing-header {
   position: relative;
-  left: 35%;
 }
 
 .pricing-top {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  width: 100%;
 }
 
 .price {
@@ -265,13 +259,15 @@ html {
 
 .features {
   width: 100%;
-  margin-top: 2.5%;
+  position: relative;
+  top: 2.5%;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
 }
 
 .feature {
-  height: 100%;
+  height: 90%;
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -300,6 +296,11 @@ html {
   margin-top: -2%;
 }
 
+.scroll {
+  height: 15%;
+  border: 1px solid black;
+  margin-bottom: 10px;
+}
 
 .message-content {
   width: 100%;
@@ -349,24 +350,58 @@ html {
   color: white;
 }
 
+/* dojo */
+
+.dojo {
+  height: 90vh;
+  width: 100vh;
+  display: block;
+}
+
+.dojo-img {
+  height: 100%;
+  width: 100vw;
+  background: url('./assets/dojo.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.dojo-about {
+  height: 37%;
+  width: 30%;
+  color: white;
+  float: right;
+  position: relative;
+  top: 30%;
+  padding: 5px;
+  background-color: black;
+  font-size: 1rem;
+}
+
 /* about */
 
 .about {
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
-  margin-bottom: 2.5%;
+  background-color: #2A2A35;
+}
+
+.about-header {
+  position: relative;
+  z-index: 100;
 }
 
 .slider {
-  height: 95vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  top: -9.6%;
   display: flex;
   flex-direction: row;
 }
 
 .slide {
-  position: relative;
-  height: 95vh;
+  height: 100%;
   width: 100vw;
   margin-right: 70px;
 }
@@ -374,32 +409,29 @@ html {
 .slide img {
   height: 100%;
   width: 100%;
-  display: inline-block;
-}
-
-.slide-title {
-  background-color: black;
-  width: 5%;
-  letter-spacing: -7px;
 }
 
 .slider-button {
   position: absolute;
-  z-index: 900;
-  top: 150%;
+  top: 50%;
   transform: translateY(-50%);
   width: 5%;
-  height: 20%;
+  height: 10%;
   background: transparent;
   border: none;
 }
 
-button i {
+.slider-button i {
   font-size: 2rem;
   color: #2A2A35;
+  text-shadow:
+   -1px -1px 0 #BED38E,
+    1px -1px 0 #BED38E,
+    -1px 1px 0 #BED38E,
+     1px 1px 0 #BED38E;
 }
 
-button i:hover {
+.slider-button i:hover {
   cursor: pointer;
 }
 
@@ -418,13 +450,12 @@ button i:hover {
 .slide-about {
   height: 20%;
   width: 100%;
-  padding: 10px;
-  position: relative;
-  top: -20%;
-  background-color: rgba(54, 54, 54, .5)
+  position: absolute;
+  bottom: 0%;
+  background-color: rgba(54, 54, 54, .5);
 }
 
-.slide-about h1 {
+.slide-about span {
   font-family: 'Fjalla One', sans-serif;
   color: white;
   letter-spacing: -2px;
@@ -433,7 +464,11 @@ button i:hover {
 
 .slide-about p {
   color: white;
+  width: 95%;
+  padding-left: 10px;
+  word-wrap: break-word;
   font-family: 'Open Sans', sans-serif;
+  margin-top: -1%;
 }
 
 .no-img {

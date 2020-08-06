@@ -26,12 +26,12 @@ const Slider = ({ items }) => {
               </div>
           )
         })}
-      <button id="left" className="slider-button" onClick={goLeft}>
-        <i className="fas fa-chevron-left" />
-      </button>
-      <button id="right" className="slider-button" onClick={goRight}>
-        <i className="fas fa-chevron-right" />
-      </button>
+        <button id="left" className="slider-button" onClick={goLeft}>
+          <i className="fas fa-chevron-left" />
+        </button>
+        <button id="right" className="slider-button" onClick={goRight}>
+          <i className="fas fa-chevron-right" />
+        </button>
     </div>
   )
 }
