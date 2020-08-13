@@ -564,7 +564,7 @@ html {
 }
 
 /* small to medium phones - portrait mode */
-@media screen and (max-width: 413px) {
+@media all and (orientation: portrait) and (max-width: 413px) {
 
 
   /* nav */
@@ -767,9 +767,204 @@ html {
 
 }
 
-/* larger phones and small tablets - portrait mode */
-@media screen and (min-width: 414px) and (max-width: 763px) {
+/* small to medium phones - landscape mode */
+@media all and (orientation: landscape) and (max-width: 568px) {
 
+
+  /* nav */
+  .mfc-navbar {
+    font-size: 1rem;
+    letter-spacing: -1px;
+  }
+
+  .nav-brand {
+    display: none;
+  }
+
+  #login {
+    display: inline-block;
+    position: absolute;
+    right: 0%;
+    top: 15%;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .nav-brand:hover {
+    color: white;
+  }
+
+  .guest-links {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-around;
+    margin-left: auto;
+  }
+
+  .guest-links .nav-brand {
+    margin-right: 10px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 10%;
+    width: 100%;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: hsl(0, 0%, 96%);
+  }
+
+  /* hero */
+
+  .hero-banner {
+    background-position: center;
+  }
+
+  /* hero */
+  .mfc-title {
+    font-size: 5vw;
+  }
+
+  .subtitle, .banner-button {
+    font-size: 3vw;
+  }
+
+  /* dojo */
+
+  .dojo {
+    height: 100vh;
+  }
+
+  .dojo-about {
+    top: 46.25%;
+    height: 100%;
+    max-width: 100%;
+    font-size: 2vw;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .dojo-img {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .dojo-img .title {
+    font-size: 2rem;
+  }
+
+  /* about */
+
+  .about {
+    height: 100vh;
+  }
+
+  .about-header {
+    font-size: 2rem;
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+
+  .slide-about {
+    top: 59%;
+    max-height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .slide-about span {
+    font-size: 3vw;
+  }
+
+  .slide-about p {
+    font-size: 2vw;
+    width: 100%;
+  }
+
+  .slider-button {
+    position: absolute;
+    top: 50%;
+  }
+
+  #right {
+    right: 5%;
+  }
+
+
+
+  /* pricing */
+
+  .pricing-header {
+    position: absolute;
+    top: 60%;
+  }
+
+  .features {
+    flex-direction: row;
+    top: 15%;
+  }
+
+  .feature {
+    width: 100%;
+  }
+
+  .feature-header {
+    font-size: 4vw;
+  }
+
+  .feature-img {
+    display: none;
+  }
+
+  .feature div, .feature ul li{
+    font-size: 3vw;
+    letter-spacing: -2px;
+  }
+
+
+  /* contact */
+
+  .contact {
+    height: 100vh;
+  }
+
+  .address-container {
+    width: 100%;
+    top: 20%;
+  }
+
+  .address {
+    font-size: 3.5vw;
+  }
+
+  .contact-social {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .contact-social img {
+    height: 50px;
+    width: auto;
+  }
+
+  .contact-footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: .8rem;
+  }
+
+}
+
+/* larger phones and small tablets - portrait mode */
+@media  all and (orientation: portrait) and (min-width: 414px) and (max-width: 763px) {
 
   /* nav */
 
@@ -930,8 +1125,398 @@ html {
 
 }
 
+/* mid-size phones - landscape mode */
+@media all and (orientation: landscape) and (max-width: 737px) {
+
+
+  /* nav */
+  .mfc-navbar {
+    font-size: 1rem;
+    letter-spacing: -1px;
+  }
+
+  .nav-brand {
+    display: none;
+  }
+
+  #login {
+    display: inline-block;
+    position: absolute;
+    right: 0%;
+    top: 15%;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .nav-brand:hover {
+    color: white;
+  }
+
+  .guest-links {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-around;
+    margin-left: auto;
+  }
+
+  .guest-links .nav-brand {
+    margin-right: 10px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 10%;
+    width: 100%;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: hsl(0, 0%, 96%);
+  }
+
+  /* hero */
+
+  .hero-banner {
+    background-position: center;
+  }
+
+  /* hero */
+  .mfc-title {
+    font-size: 5vw;
+  }
+
+  .subtitle, .banner-button {
+    font-size: 3vw;
+  }
+
+  /* dojo */
+
+  .dojo {
+    height: 100vh;
+  }
+
+  .dojo-about {
+    top: 50.5%;
+    height: 100%;
+    max-width: 100%;
+    font-size: 1.75vw;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .dojo-img {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .dojo-img .title {
+    font-size: 2rem;
+  }
+
+  /* about */
+
+  .about {
+    height: 100vh;
+  }
+
+  .about-header {
+    font-size: 2rem;
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+
+  .slide-about {
+    top: 0%;
+    max-height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .slide-about span {
+    font-size: 3vw;
+  }
+
+  .slide-about p {
+    font-size: 1.75vw;
+    width: 100%;
+  }
+
+  .slider-button {
+    position: absolute;
+    top: 50%;
+  }
+
+  #right {
+    right: 5%;
+  }
+
+
+
+  /* pricing */
+
+  .pricing-header {
+    position: absolute;
+    top: 60%;
+  }
+
+  .features {
+    flex-direction: row;
+    top: 15%;
+  }
+
+  .feature {
+    width: 100%;
+  }
+
+  .feature-header {
+    font-size: 4vw;
+  }
+
+  .feature-img {
+    display: none;
+  }
+
+  .feature div, .feature ul li{
+    font-size: 3vw;
+    letter-spacing: -2px;
+  }
+
+
+  /* contact */
+
+  .contact {
+    height: 100vh;
+  }
+
+  .address-container {
+    width: 100%;
+    top: 20%;
+  }
+
+  .address {
+    font-size: 3vw;
+  }
+
+  .contact-social {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .contact-social img {
+    height: 50px;
+    width: auto;
+  }
+
+  .contact-footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: .8rem;
+  }
+
+}
+
+/* larger phones and tablets - landscape mode */
+@media all and (orientation: landscape) and (max-width: 960px) {
+
+
+  /* nav */
+  .mfc-navbar {
+    font-size: 1rem;
+    letter-spacing: -1px;
+  }
+
+  .nav-brand {
+    display: none;
+  }
+
+  #login {
+    display: inline-block;
+    position: absolute;
+    right: 0%;
+    top: 15%;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .nav-brand:hover {
+    color: white;
+  }
+
+  .guest-links {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-around;
+    margin-left: auto;
+  }
+
+  .guest-links .nav-brand {
+    margin-right: 10px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 10%;
+    width: 100%;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: hsl(0, 0%, 96%);
+  }
+
+  /* hero */
+
+  .hero-banner {
+    background-position: center;
+  }
+
+  /* hero */
+  .mfc-title {
+    font-size: 5vw;
+  }
+
+  .subtitle, .banner-button {
+    font-size: 3vw;
+  }
+
+  /* dojo */
+
+  .dojo {
+    height: 100vh;
+  }
+
+  .dojo-about {
+    top: 50.5%;
+    height: 100%;
+    max-width: 100%;
+    font-size: 1.75vw;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .dojo-img {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .dojo-img .title {
+    font-size: 2rem;
+  }
+
+  /* about */
+
+  .about {
+    height: 100vh;
+  }
+
+  .about-header {
+    font-size: 2rem;
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+
+  .slide-about {
+    top: 68.5%;
+    max-height: 60%;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .slide-about span {
+    font-size: 3vw;
+  }
+
+  .slide-about p {
+    font-size: 1.75vw;
+  }
+
+  .slider-button {
+    position: absolute;
+    top: 50%;
+  }
+
+  #right {
+    right: 5%;
+  }
+
+
+
+  /* pricing */
+
+  .pricing-header {
+    position: absolute;
+    top: 60%;
+  }
+
+  .features {
+    flex-direction: row;
+    top: 15%;
+  }
+
+  .feature {
+    width: 100%;
+  }
+
+  .feature-header {
+    font-size: 4vw;
+  }
+
+  .feature-img {
+    display: none;
+  }
+
+  .feature div, .feature ul li{
+    font-size: 3vw;
+    letter-spacing: -2px;
+  }
+
+
+  /* contact */
+
+  .contact {
+    height: 100vh;
+  }
+
+  .address-container {
+    width: 100%;
+    top: 20%;
+  }
+
+  .address {
+    font-size: 3vw;
+  }
+
+  .contact-social {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .contact-social img {
+    height: 50px;
+    width: auto;
+  }
+
+  .contact-footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: .8rem;
+  }
+
+}
+
 /* tablets - portrait mode */
-@media screen and (min-width: 764px) and (max-width: 1160px) {
+@media all and (orientation: portrait) and (min-width: 764px) and (max-width: 1160px) {
 
   /* nav */
 
@@ -1008,8 +1593,159 @@ html {
 
 }
 
-/* laptops - portrait mode */
-@media screen and (min-width: 1161px) and (max-width: 1675px) {
+/* tablets - landscape mode */
+@media all and (orientation: landscape) and (min-width: 764px) and (max-width: 1160px) {
+
+  /* nav */
+
+  .nav-brand {
+    font-size: 1.25rem;
+  }
+
+
+  /* hero */
+  .hero-banner {
+    background-position: center;
+  }
+
+  /* dojo */
+
+  .dojo-about {
+    top: 30%;
+    max-height: 60%;
+    max-width: 50%;
+    font-size: 2vw;
+    background-color: rgba(0, 0, 0, .5);
+    font-size: 1.65vw;
+  }
+
+  .dojo-img {
+    background-position: center;
+    background-size: cover;
+  }
+
+
+  /* about */
+
+  .about-header {
+    position: absolute;
+    top: 43.45%;
+    left: 0;
+  }
+
+  .slide-about {
+    background-color: rgba(0, 0, 0, .5);
+    top: 55%;
+    height: 45%;
+  }
+
+  .slide-about p {
+    font-size: 1.9vw;
+  }
+
+  /* about */
+
+  .about {
+    height: 100vh;
+  }
+
+  .about-header {
+    font-size: 2rem;
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+
+  .slide-about {
+    top: 55%;
+    max-height: 55%;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .slide-about span {
+    font-size: 3vw;
+  }
+
+  .slide-about p {
+    font-size: 1.75vw;
+  }
+
+  .slider-button {
+    position: absolute;
+    top: 50%;
+  }
+
+  #right {
+    right: 5%;
+  }
+
+  /* pricing */
+
+  .pricing {
+    height: 100vh;
+  }
+
+  .features {
+    flex-direction: row;
+    top: 15%;
+  }
+
+  .feature {
+    width: 100%;
+  }
+
+  .feature-header {
+    font-size: 3vw;
+  }
+
+  .feature-img {
+    display: none;
+  }
+
+  .feature div, .feature ul li{
+    font-size: 3vw;
+    letter-spacing: -2px;
+  }
+
+
+  /* contact */
+
+  .contact {
+    height: 100vh;
+  }
+
+  .address-container {
+    width: 100%;
+    top: 20%;
+  }
+
+  .address {
+    font-size: 3vw;
+  }
+
+  .contact-social {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .contact-social img {
+    height: 50px;
+    width: auto;
+  }
+
+  .contact-footer {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-size: .8rem;
+  }
+}
+
+
+/* laptops */
+@media all and (orientation: landscape) and (min-width: 1161px) and (max-width: 1675px) {
 
   /* hero */
   .hero-banner {
@@ -1039,19 +1775,23 @@ html {
   .slide-about p {
     font-size: 1.5vw;
     max-width: 90%;
-    margin-top: -2.5%;
   }
 
   /* pricing */
 
+  .features {
+    top: 1%;
+  }
+
   .feature-img {
-    height: 250px;
+    height: 200px;
+    width: 200px;
     border-radius: 5px;
     margin-bottom: 10px;
   }
 
   .feature-img img {
-    height: 250px;
+    height: 200px;
     width: 100%;
     object-position: bottom;
   }
@@ -1065,6 +1805,10 @@ html {
   }
 
   /* contact */
+
+  .contact {
+    height: 70vh;
+  }
 
   .address .mfc-title {
     font-size: 3vw;
@@ -1080,27 +1824,58 @@ html {
 
 }
 
-/* monitors - portrait mode */
-@media screen and (min-width: 1676px) and (max-width: 2560px) {
+/* monitors - landscape mode */
+@media all and (orientation: landscape) and (min-width: 1676px) {
 
   /* about */
 
   .about-header {
-    position: relative;
-    top: 0%;
+
   }
 
-  .slide img {
-    position: absolute;
-    top: -7.6%;
+  .slider, .slide {
+    top: -11%;
+  }
+
+  .slide {
+    background-position: bottom;
   }
 
   .slide-about {
-    bottom: 28.5%;
+    top: 70%;
+    height: 30%;
+    background-color: rgba(54, 54, 54, .5);
   }
 
   .slide-about p {
     margin-top: -1.5%;
     font-size: 1.75rem;
+  }
+
+  /* pricing */
+
+  .features {
+    top: 5%;
+  }
+
+  .feature-img {
+    height: 200px;
+    width: 200px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .feature-img img {
+    height: 200px;
+    width: 100%;
+    object-position: bottom;
+  }
+
+  .feature h1 {
+    font-size: 3vw;
+  }
+
+  .feature ul, .feature div {
+    font-size: 2vw;
   }
 }
