@@ -16,22 +16,14 @@ class Pricing extends React.Component {
     }
 
   return (
-    <VisibilitySensor
-      partialVisibility
-      onChange={isVisible => {
-        this.setState({
-          visible: isVisible
-        })
-      }}>
-      <div className="pricing hidden" id="pricing">
-
+      <div className="pricing" id="pricing">
           <span className="title mfc-title pricing-header">MEMBERSHIP & PRICING</span>
           <div className="features">
             <div className="feature">
-              <div className="scroll">
-                <p>道場</p>
+              <div className="feature-img">
+                <img src={require('../../assets/about-img.jpg')} />
               </div>
-              <h1 className="title mfc-title" style={{ fontSize: '2rem' }}>DOJO MEMBERSHIP</h1>
+              <h1 className="title mfc-title feature-header">DOJO MEMBERSHIP</h1>
                 <div>
                   $150 a month
                 </div>
@@ -43,14 +35,19 @@ class Pricing extends React.Component {
                   <li>Item 5</li>
                 </ul>
                 <div>
-                  Contact the dojo for membership
+                  <span
+                    onClick={
+                      () => document.getElementById('contact').scrollIntoView({behavior: 'smooth'})
+                    }
+                    style={{ textDecoration: 'underline', cursor: 'pointer' }}
+                    >Contact</span> the dojo for membership
                 </div>
             </div>
             <div className="feature">
-              <div className="scroll">
-                <p>大学</p>
-              </div>
-              <h1 className="title mfc-title" style={{ fontSize: '2rem' }}>ONLINE UNIVERSITY MEMBERSHIP</h1>
+            <div className="feature-img">
+              <img src={require('../../assets/monitor.jpg')} id="monitor"/>
+            </div>
+              <h1 className="title mfc-title feature-header">ONLINE UNIVERSITY MEMBERSHIP</h1>
                 <div>
                   $20 a month
                 </div>
@@ -67,7 +64,6 @@ class Pricing extends React.Component {
             </div>
           </div>
       </div>
-      </VisibilitySensor>
   )
   }
 }

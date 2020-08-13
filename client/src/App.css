@@ -14,7 +14,7 @@ html {
   display: flex;
   padding: 5px 10px 5px 30px;
   background-color: rgba(54, 54, 54, 0);
-  font-size: 1.25rem;
+  font-size: 1.75rem;
   margin-bottom: 10px;
   letter-spacing: -2px;
 }
@@ -122,11 +122,6 @@ html {
   color: hsl(0, 0%, 96%);
 }
 
-#menu-icon {
-
-}
-
-
 /* login/registration form */
 
 .auth-container {
@@ -149,13 +144,16 @@ html {
   top: 50;
 }
 
+#main {
+  position: absolute;
+  top: 0%;
+}
+
 /* hero image and banner text */
 
 .landing {
-  height: 102vh;
+  height: 100vh;
   width: 100vw;
-  margin-top: -5%;
-  display: block;
 }
 
 .hero-banner {
@@ -192,7 +190,7 @@ html {
   font-family: 'Fjalla One', sans-serif;
   background-color: black;
   color: white;
-  font-size: 3rem;
+  font-size: 4rem;
   padding-right: 5px;
   letter-spacing: -3px;
 }
@@ -201,7 +199,7 @@ html {
   margin-top: -3%;
   color: white;
   letter-spacing: -1px;
-  font-size: 1.75rem;
+  font-size: 2.5rem;
 }
 
 .banner-buttons {
@@ -211,7 +209,7 @@ html {
 .banner-button {
   background-color: white;
   color: black;
-  font-size: 1.5rem;
+  font-size: 2rem;
   border: 1px white solid;
   padding: 10px;
   letter-spacing: -1px;
@@ -231,15 +229,17 @@ html {
 /* message */
 
 .pricing {
-  height: 80vh;
+  height: 100vh;
   width: 100vw;
-  font-family: 'Fjalla One', sans-serif;
   font-size: 2rem;
   letter-spacing: -3px;
 }
 
 .pricing-header {
   position: relative;
+  font-family: 'Fjalla One', sans-serif;
+  position: relative;
+  top: 0%;
 }
 
 .pricing-top {
@@ -260,7 +260,7 @@ html {
 .features {
   width: 100%;
   position: relative;
-  top: 2.5%;
+  top: 10%;
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -273,88 +273,37 @@ html {
   flex-direction: column;
   align-items: center;
   margin-bottom: .5%;
+  font-size: 2.5rem;
+}
+
+.feature-header {
+  font-size: 3rem;
 }
 
 .feature-img {
-  height: 100%;
-  width: 70%;
+  width: 50%;
+  height: 400px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0px 0px 44px -11px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 44px -11px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 44px -11px rgba(0,0,0,0.75);
 }
 
-#gi {
-  height: 352px;
+.feature-img img {
+  height: 400px;
   width: 100%;
   object-fit: cover;
-  object-position: 0 0;
-}
-
-.feature-text {
-  height: 25%;
-  width: 70%;
-  text-align: center;
-  background-color: black;
-  color: white;
-  margin-top: -2%;
-}
-
-.scroll {
-  height: 15%;
-  border: 1px solid black;
-  margin-bottom: 10px;
-}
-
-.message-content {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-self: flex-start;
-}
-
-.sensei-img {
-  width: 40%;
-  align-self: center;
-  text-align: center;
-}
-
-.sensei-img img {
-  height: 300px;
-  width: 300px;
-  border-radius: 50%;
-}
-
-.sensei-msg {
-  width: 50%;
-  height: auto;
-  align-self: center;
-  font-size: 1.5rem;
-}
-
-.sensei-msg a {
-  text-decoration: none;
-  color: black;
-}
-
-.flyer {
-  width: 100%;
-  align-self: center;
-  border: 2px solid black;
+  object-position: bottom;
   border-radius: 5px;
-  padding: 10px 0px 10px 0px;
-  text-align: center;
-  cursor: pointer;
 }
 
-.flyer:hover {
-  border: 2px solid white;
-  background-color: black;
-  color: white;
-}
 
 /* dojo */
 
 .dojo {
-  height: 90vh;
-  width: 100vh;
+  height: 100vh;
+  width: 100vw;
   display: block;
 }
 
@@ -367,53 +316,48 @@ html {
 }
 
 .dojo-about {
-  height: 37%;
-  width: 30%;
+  max-height: 35%;
+  max-width: 30%;
   color: white;
   float: right;
   position: relative;
-  top: 30%;
+  top: 35%;
   padding: 5px;
   background-color: black;
-  font-size: 1rem;
+  font-size: 1vw;
 }
 
 /* about */
 
 .about {
-  height: 90vh;
+  height: 100vh;
   width: 100vw;
   background-color: #2A2A35;
 }
 
 .about-header {
-  position: relative;
+  position: absolute;
+  top: 44.4%;
+  left: 0;
   z-index: 100;
+  display: inline-block;
 }
 
 .slider {
   height: 100%;
   width: 100%;
-  position: relative;
-  top: -9.6%;
   display: flex;
   flex-direction: row;
 }
 
 .slide {
-  height: 100%;
   width: 100vw;
-  margin-right: 70px;
-}
-
-.slide img {
-  height: 100%;
-  width: 100%;
+  margin-right: 10px;
 }
 
 .slider-button {
   position: absolute;
-  top: 50%;
+  top: 55%;
   transform: translateY(-50%);
   width: 5%;
   height: 10%;
@@ -448,10 +392,10 @@ html {
 }
 
 .slide-about {
-  height: 20%;
+  max-height: 30%;
   width: 100%;
   position: absolute;
-  bottom: 0%;
+  top: 72.4%;
   background-color: rgba(54, 54, 54, .5);
 }
 
@@ -459,25 +403,15 @@ html {
   font-family: 'Fjalla One', sans-serif;
   color: white;
   letter-spacing: -2px;
-  font-size: 2rem;
+  font-size: 2.5rem;
 }
 
 .slide-about p {
   color: white;
-  width: 95%;
+  padding-top: 1%;
   padding-left: 10px;
-  word-wrap: break-word;
-  font-family: 'Open Sans', sans-serif;
-  margin-top: -1%;
-}
+  font-size: 1.75rem;
 
-.no-img {
-  position: relative;
-  left: -27%;
-}
-
-.project-header {
-  letter-spacing: -6px;
 }
 
 .slide ul {
@@ -492,43 +426,6 @@ html {
   margin: 0px 10px 10px 0px;
   background-color: #BED38E;
   color: #2A2A35;
-}
-
-.project-text {
-  background-color: #BED38E;
-  color: #2A2A35;
-  width: 100%;
-  font-size: 1.5rem;
-  margin-top: -5px;
-}
-
-.project-links {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.proj-icon {
-  font-size: 4rem;
-}
-
-.proj-icon:first-of-type {
-  margin-right: 50px;
-}
-
-.git {
-  display: flex;
-  flex-direction: column;
-}
-
-.git-link, .web-link {
-  opacity: 0;
-  margin-left: 2px;
-  background-color: #BED38E;
-  color: #2A2A35;
-  width: 50%;
-  align-self: flex-start;
-  text-align: center;
 }
 
 
@@ -609,104 +506,6 @@ html {
   text-align: center;
 }
 
-.about-styles {
-  width: 100%;
-  display: flex;
-  align-self: center;
-  align-content: center;
-  justify-content: space-around;
-  margin-top: 10%;
-}
-
-.style-icon {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.5rem;
-}
-
-.style-icon img {
-  width: 125px;
-  height: 125px;
-  margin-bottom: 15px;
-  color: white;
-}
-
-/* register */
-
-.register {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  text-align: center;
-}
-
-.register-select {
-  display: flex;
-  height: 100%;
-}
-
-.register-info {
-  width: 50%;
-  height: 100%;
-  background-color: #C3B7BC;
-}
-
-.register-info:nth-of-type(2) {
-  background-color: #B0A098;
-}
-
-.competitor, .volunteer {
-  padding-top: 15%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.25rem;
-}
-
-/*
-
-button {
-  width: 50%;
-  margin-top: 20px;
-  background-color: white;
-  color: black;
-  font-size: 1.5rem;
-  border: 1px white solid;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: black;
-  color: white;
-  cursor: not-allowed;
-  -webkit-box-shadow: 0px 2px 16px 1px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 2px 16px 1px rgba(0,0,0,0.75);
-  box-shadow: 0px 2px 16px 1px rgba(0,0,0,0.75);
-}
-
-label {
-  display: block;
-  font-size: 1.5rem;
-  margin-bottom: 3.5%;
-}
-
-input {
-  position: relative;
-  left: 25%;
-  display: block;
-  width: 50%;
-  padding: 1% 0 1% 0;
-  font-size: 1.5rem;
-  margin-bottom: 3.5%;
-}
-
-*/
 
 /* contact */
 
@@ -715,7 +514,7 @@ input {
   text-align: center;
   display: block;
   position: relative;
-
+  background-color: rgb(54, 54, 54);
 }
 
 .contact-info {
@@ -732,7 +531,6 @@ input {
   height: 100%;
   width: 100%;
   font-family: 'Fjalla One', sans-serif;
-  background-color: rgb(54, 54, 54);
   color: white;
   display: flex;
   flex-direction: column;
@@ -741,7 +539,7 @@ input {
 }
 
 .address {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
 }
 
 .contact-social {
@@ -765,189 +563,185 @@ input {
   text-align: center;
 }
 
-/* phone and tablets - portrait mode */
-@media screen and (max-width: 768px) {
+/* small to medium phones - portrait mode */
+@media screen and (max-width: 413px) {
 
-  .content {
-    margin-top: -2%;
-  }
 
   /* nav */
-  .navbar {
+  .mfc-navbar {
+    font-size: 1rem;
+    letter-spacing: -1px;
+  }
+
+  .nav-brand {
     display: none;
   }
 
-  /* home */
-  .landing {
-    top: -1%;
+  #login {
+    display: inline-block;
+    position: absolute;
+    right: 0%;
+    top: 15%;
+    background-color: rgba(0, 0, 0, .5);
   }
+
+  .nav-brand:hover {
+    color: white;
+  }
+
+  .guest-links {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    justify-content: space-around;
+    margin-left: auto;
+  }
+
+  .guest-links .nav-brand {
+    margin-right: 10px;
+  }
+
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    top: 10%;
+    width: 100%;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: hsl(0, 0%, 96%);
+  }
+
+  /* hero */
 
   .hero-banner {
     background-position: center;
   }
 
-  .hero-img {
-    display: block;
-    height: auto;
-    width: 100px;
-    align-self: center;
+  /* hero */
+  .mfc-title {
+    font-size: 2rem;
   }
 
-  .banner-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    font-size: 1rem;
-    top: 20%;
+  .subtitle, .banner-button {
+    font-size: 1.5rem;
   }
 
-  .subtitle {
-    margin-top: -3%;
+  /* dojo */
+
+  .dojo {
+    height: 100vh;
   }
 
-  .banner-buttons {
-    flex-direction: column;
+  .dojo-about {
+    top: 60%;
+    height: 100%;
+    max-width: 100%;
+    font-size: 3.1vw;
+    background-color: rgba(0, 0, 0, .5);
   }
 
-  .banner-button {
-    font-size: 1rem;
-    width: 90%;
+  .dojo-img {
+    background-size: cover;
+    background-position: center;
   }
 
-  .banner-button:nth-of-type(1) {
-    margin-bottom: 10px;
+  .dojo-img .title {
+    font-size: 2rem;
   }
-
-  /* message */
-
-  .message {
-    height: auto;
-    padding: 20px 0px 20px 0px;
-  }
-
-
-  .message-content {
-    flex-direction: column;
-  }
-
-  .sensei-img {
-    align-self: center;
-  }
-
-  .sensei-img img {
-    height: 100px;
-    width: 100px;
-  }
-
-  .sensei-msg {
-    width: 80%;
-    align-self: center;
-    font-size: 1rem;
-    text-align: center;
-  }
-
 
   /* about */
 
   .about {
-    height: auto;
-    flex-direction: column;
+    height: 100vh;
   }
 
-  .about-img {
-    height: 50%;
-    width: 100%;
+  .about-header {
+    font-size: 2rem;
+    position: absolute;
+    top: 40%;
+    left: 0;
   }
 
-  .about-img img {
+  .slide-about {
+    top: 70%;
     height: 100%;
     width: 100%;
+    background-color: rgba(0, 0, 0, .5);
   }
 
-  .about-info {
-    height: 50%;
-    width: 100%;
-    padding-bottom: 10%;
-  }
-
-  .about-styles {
-    position: relative;
-    top: 5%;
-    height: auto;
-    width: auto;
-    margin: 5% 0 5% -2.5%;
-  }
-
-  .style-icon {
-    font-size: 1.1rem;
-  }
-
-  .style-icon img {
-    width: 90px;
-    height: auto;
-  }
-
-  /* register */
-
-  .register {
-    height: auto;
-  }
-
-  .register h1 {
+  .slide-about span {
     font-size: 1.5rem;
   }
 
-  .register-select {
-    display: flex;
+  .slide-about p {
+    font-size: 3vw;
+    width: 90%;
+  }
+
+  .slider-button {
+    position: absolute;
+    top: 50%;
+  }
+
+  #right {
+    right: 5%;
+  }
+
+
+
+  /* pricing */
+
+  .pricing-header {
+    position: absolute;
+    top: 60%;
+  }
+
+  .features {
     flex-direction: column;
+    top: 12%;
   }
 
-  .register-info {
-    width: auto;
-    height: auto;
-    padding-bottom: 20%;
+  .feature {
+    width: 100%;
   }
 
-  .competitor, .volunteer {
-    font-size: 1rem;
+  .feature:last-of-type {
+    margin-top: 2.5%;
   }
 
-  /* button {
-    font-size: 1rem;
+  .feature-header {
+    font-size: 9vw;
   }
 
-  */
+  .feature-img {
+    display: none;
+  }
+
+  .feature div, .feature ul li{
+    font-size: 5vw;
+    letter-spacing: -2px;
+  }
+
 
   /* contact */
 
   .contact {
-    height: 90vh;
-  }
-
-  .contact-header {
-    margin-bottom: 10px;
-  }
-
-  .contact-info {
-    flex-direction: column-reverse;
-  }
-
-  .contact-img {
-    height: 50%;
-    width: 100%;
-  }
-
-  .contact-img img {
-    width: 100%;
-    height: 100%;
+    height: 100vh;
   }
 
   .address-container {
     width: 100%;
+    height: 50%;
+    position: relative;
+    top: 25%;
   }
 
   .address {
-    font-size: 1rem;
+    font-size: 7vw;
   }
 
   .contact-social {
@@ -955,6 +749,7 @@ input {
     height: auto;
     display: flex;
     justify-content: space-around;
+    margin-top: 5%;
     margin-bottom: 5%;
   }
 
@@ -967,313 +762,162 @@ input {
     display: flex;
     flex-direction: column;
     text-align: center;
-    font-size: .5rem;
+    font-size: .8rem;
   }
 
 }
 
-@media screen and (min-width: 768.5px) and (max-width: 1150px) {
+/* larger phones and small tablets - portrait mode */
+@media screen and (min-width: 414px) and (max-width: 763px) {
 
-  .content {
-    margin-top: -14%;
+
+  /* nav */
+
+  .nav-brand {
+    display: none;
   }
 
-  /* nav styles */
-
-  .navbar {
-    font-size: 1rem;
-  }
-
-  .nav-links {
-    margin-left: -5%;
-  }
-
-  /* hero image and banner text */
-
-  .banner-text {
-    top: 40%;
+  #login {
+    display: inline-block;
+    position: absolute;
+    right: 0%;
+    top: 15%;
+    background-color: rgba(0, 0, 0, .5);
     font-size: 1.5rem;
   }
 
-  /* message */
+  /* hero */
+  .hero-banner {
+    background-position: center;
+  }
 
-  .message {
+  .mfc-title {
+    font-size: 3rem;
+  }
+
+  .subtitle {
+    font-size: 2rem;
+  }
+
+  .banner-button {
+    font-size: 2rem;
+  }
+
+  /* dojo */
+
+  .dojo {
     height: 100vh;
-    width: 100vw;
-    display: block;
   }
 
-  .message-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-self: flex-start;
+  .dojo-about {
+    top: 60%;
+    height: 40%;
+    max-width: 100vw;
+    font-size: 3vw;
+    background-color: rgba(0, 0, 0, .5);
   }
 
-  .sensei-img {
-    width: 40%;
-    align-self: center;
-    text-align: center;
-  }
-
-  .sensei-img img {
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-  }
-
-  .sensei-msg {
-    width: 50%;
-    height: auto;
-    align-self: center;
-    font-size: 1rem;
-  }
-
-  .sensei-msg a {
-    text-decoration: none;
-    color: black;
-  }
-
-  .flyer {
-    width: 100%;
-    align-self: center;
-    border: 2px solid black;
-    border-radius: 5px;
-    padding: 10px 0px 10px 0px;
-    text-align: center;
-    cursor: pointer;
-  }
-
-  .flyer:hover {
-    border: 2px solid white;
-    background-color: black;
-    color: white;
+  .dojo-img {
+    background-position: center;
   }
 
   /* about */
 
   .about {
-    height: 70vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    align-self: center;
-    align-items: center;
-    justify-content: center;
-    background-color: green;
-  }
-
-  .about-img {
-    width: 50%;
-    height: 100%;
-  }
-
-  .about-img img {
-    height: 100%;
-    width: 100%;
-  }
-
-  .about-info {
-    width: 50%;
-    height: 100%;
-    background-color: #4A4843;
-    color: white;
-  }
-
-  .about-cost {
-    position: relative;
-    left: 5%;
-    width: 90%;
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    padding: 0px 0px 0px 0px;
-  }
-
-  .hidden {
-    visibility: hidden;
-  }
-
-  .fade-in-up {
-    animation: fadeInUp .5s ease-in;
-  }
-
-  @keyframes fadeInUp {
-      from {
-          transform: translate3d(0,40px,0);
-          opacity: 0
-      }
-
-      to {
-          transform: translate3d(0,0,0);
-          opacity: 1
-      }
-  }
-
-  @-webkit-keyframes fadeInUp {
-      from {
-          transform: translate3d(0,40px,0);
-
-      }
-
-      to {
-          transform: translate3d(0,0,0);
-          opacity: 1
-      }
-  }
-
-  .cost-info {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .about-styles {
-    width: 100%;
-    position: relative;
-    top: 5%;
-    display: flex;
-    align-self: center;
-    align-content: center;
-    justify-content: space-around;
-  }
-
-  .style-icon {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
-  .style-icon img {
-    width: 75px;
-    height: 75px;
-    margin-bottom: 15px;
-    color: white;
-  }
-
-  /* register */
-
-  .register {
     height: 100vh;
-    width: 100vw;
-    display: flex;
+  }
+
+  .about-header {
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+
+  .slide img {
+    height: 60%;
+  }
+
+  .slide-about {
+    bottom: 0%;
+    background-color: rgba(0, 0, 0, .5)
+  }
+
+  .slide-about span {
+    font-size: 2rem;
+  }
+
+  .slide-about p {
+    font-size: 2.5vw;
+    width: 85%;
+  }
+
+  .slider-button {
+    top: 50%;
+    z-index: 300;
+  }
+
+  #right {
+    right: 5%;
+  }
+
+
+  /* pricing */
+
+  .features {
     flex-direction: column;
-    justify-content: flex-start;
-    text-align: center;
+    top: 5%;
   }
 
-  .register-select {
-    display: flex;
-    height: 100%;
+  .feature {
+    width: 100%;
   }
 
-  .register-info {
-    width: 50%;
-    height: 100%;
-    background-color: #C3B7BC;
+  .feature-header {
+    font-size: 6vw;
   }
 
-  .register-info:nth-of-type(2) {
-    background-color: #B0A098;
+  .feature:last-of-type {
+    margin-top: 2.5%;
   }
 
-  .competitor, .volunteer {
-    padding-top: 15%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.25rem;
+  .feature-img {
+    display: none;
   }
 
-  /* button {
-    width: 50%;
-    margin-top: 20px;
-    background-color: white;
-    color: black;
-    font-size: 1.5rem;
-    border: 1px white solid;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
+  .feature div, .feature ul li{
+    font-size: 5vw;
+    letter-spacing: -2px;
   }
 
-  button:hover {
-    background-color: black;
-    color: white;
-    cursor: not-allowed;
-    -webkit-box-shadow: 0px 2px 16px 1px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 2px 16px 1px rgba(0,0,0,0.75);
-    box-shadow: 0px 2px 16px 1px rgba(0,0,0,0.75);
-  }
-
-  label {
-    display: block;
-    font-size: 1.5rem;
-    margin-bottom: 3.5%;
-  }
-
-  input {
-    position: relative;
-    left: 25%;
-    display: block;
-    width: 50%;
-    padding: 1% 0 1% 0;
-    : 'Fjalla One', sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 3.5%;
-  }
-
-  */
 
   /* contact */
 
   .contact {
-    height: 80vh;
-  }
-
-  .contact-info {
-    width: 100%;
-    height: 100%;
-  }
-
-  .contact-img {
-    width: 50%;
-    height: 100%;
-  }
-
-  .contact-img img {
-    width: 100%;
-    height: 100%;
-    margin-bottom: -5%;
+    height: 100vh;
   }
 
   .address-container {
-    height: 100%;
-    width: 50%;
-    background-color: #4A4843;
-    color: white;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: space-around;
+    width: 100%;
+    height: 50%;
+    position: relative;
+    top: 25%;
   }
 
   .address {
-    font-size: 1.5rem;
+    font-size: 5vw;
   }
 
   .contact-social {
     width: 100%;
+    height: auto;
     display: flex;
     justify-content: space-around;
+    margin-top: 5%;
+    margin-bottom: 5%;
   }
 
   .contact-social img {
-    height: 65px;
+    height: 50px;
     width: auto;
   }
 
@@ -1281,37 +925,182 @@ input {
     display: flex;
     flex-direction: column;
     text-align: center;
+    font-size: .8rem;
   }
+
 }
 
+/* tablets - portrait mode */
+@media screen and (min-width: 764px) and (max-width: 1160px) {
 
-@media screen and (min-width: 1150.5px) and (max-width: 1319.5px){
+  /* nav */
 
-  .content {
-    margin-top: -9%;
+  .nav-brand {
+    font-size: 1.25rem;
   }
-  /* message */
 
-  .sensei-msg {
-    font-size: 1.2rem;
+
+  /* hero */
+  .hero-banner {
+    background-position: center;
+  }
+
+  /* dojo */
+
+  .dojo-about {
+    top: 30%;
+    max-height: 60%;
+    max-width: 50%;
+    font-size: 2vw;
+    background-color: rgba(0, 0, 0, .5);
+  }
+
+  .dojo-img {
+    background-position: center;
+    background-size: cover;
+  }
+
+
+  /* about */
+
+  .about-header {
+    position: absolute;
+    top: 44.45%;
+    left: 0;
+  }
+
+  .slide img {
+    object-position: center;
+  }
+
+  .slide-about {
+    background-color: rgba(0, 0, 0, .5);
+    bottom: 0%;
+  }
+
+  .slide-about p {
+    font-size: 2.5vw;
+  }
+
+  /* pricing */
+
+  .feature {
+    font-size: 2rem;
+  }
+
+  .feature-header {
+    font-size: 2rem;
+  }
+
+  .feature-img {
+    height: 200px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .feature-img img {
+    height: 200px;
+    width: 100%;
+    object-position: bottom;
+  }
+
+
+
+}
+
+/* laptops - portrait mode */
+@media screen and (min-width: 1161px) and (max-width: 1675px) {
+
+  /* hero */
+  .hero-banner {
+    background-position: center;
+  }
+
+  /* dojo */
+
+  .dojo-about {
+    top: 30%;
+    max-height: 60%;
+    max-width: 30%;
+    font-size: 1.25vw;
+  }
+
+  .dojo-img {
+    background-position: right;
   }
 
   /* about */
 
-  .about-styles {
-    position: relative;
-    top: -2.5%;
+  .slide-about {
+    top: 70%;
+    height: 50%;
   }
 
-  .style-icon img {
-    width: 100px;
-    height: 100px;
+  .slide-about p {
+    font-size: 1.5vw;
+    max-width: 90%;
+    margin-top: -2.5%;
+  }
+
+  /* pricing */
+
+  .feature-img {
+    height: 250px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+  .feature-img img {
+    height: 250px;
+    width: 100%;
+    object-position: bottom;
+  }
+
+  .feature h1 {
+    font-size: 3vw;
+  }
+
+  .feature ul, .feature div {
+    font-size: 2vw;
   }
 
   /* contact */
 
-  .contact {
-    height: 80vh;
+  .address .mfc-title {
+    font-size: 3vw;
   }
 
+  .address p {
+    font-size: 2.5vw;
+  }
+
+  .contact-social img {
+    width: 75%;
+  }
+
+}
+
+/* monitors - portrait mode */
+@media screen and (min-width: 1676px) and (max-width: 2560px) {
+
+  /* about */
+
+  .about-header {
+    position: relative;
+    top: 0%;
+  }
+
+  .slide img {
+    position: absolute;
+    top: -7.6%;
+  }
+
+  .slide-about {
+    bottom: 28.5%;
+  }
+
+  .slide-about p {
+    margin-top: -1.5%;
+    font-size: 1.75rem;
+  }
 }

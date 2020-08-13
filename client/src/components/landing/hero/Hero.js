@@ -18,7 +18,6 @@ const Hero = () => {
                 About Us
             </div>
           </div>
-          <i className="fas fa-chevron-down" style={{ position: 'relative', bottom: '10%' }}/>
           </div>
         </div>
         </div>

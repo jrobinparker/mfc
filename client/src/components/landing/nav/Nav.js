@@ -18,10 +18,10 @@ const Nav = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
   const guestLinks = (
     <div className="guest-links">
-      <NavLink link={'About'} id={'about'} />
+      <NavLink link={'About'} id={'dojo'} />
       <NavLink link={'Pricing'} id={'pricing'} />
-      <NavLink link={'Contact'} id={'Contact'} />
-      <span className="nav-brand" onClick={() => toggleModal(true)}>Login / Sign Up</span>
+      <NavLink link={'Contact'} id={'contact'} />
+      <span className="nav-brand" id="login" onClick={() => toggleModal(true)}>Login / Sign Up</span>
     </div>
   )
 
@@ -55,7 +55,7 @@ const Nav = ({ auth: { isAuthenticated, loading, user }, logout }) => {
   return (
     <nav className="mfc-navbar">
         <img src={require('../../../assets/logo-transparent.png')} className="logo" alt="logo"/>
-        <NavLink link={'MFC Online University'} id={'home'} />
+        <NavLink link={'Modern Fighting Concepts'} id={'home'} />
         { isAuthenticated ? authLinks : guestLinks }
         { !modal ? <></> : <AuthModal toggleModal={toggleModal} /> }
     </nav>
