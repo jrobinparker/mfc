@@ -88,10 +88,6 @@
 
 @media all and (orientation: portrait) and (max-width: 415px) {
 
-  body, #root {
-    overflow: scroll;
-  }
-
   .container .box {
     width: 95vw;
     position: relative;
@@ -131,14 +127,6 @@
 }
 
 @media all and (orientation: landscape) and (max-width: 896px) {
-
-  body {
-    overflow-x: scroll;
-  }
-
-  #root {
-    overflow: scroll;
-  }
 
   .container .box {
     width: 95vw;

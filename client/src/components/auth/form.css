@@ -42,12 +42,6 @@ form .field {
 /* small to large phones tablets - portrait mode */
 @media all and (orientation: portrait) and (max-width: 415px) {
 
-
-    html {
-      overflow-x: hidden;
-      overflow-y: hidden;
-    }
-
     .modal {
       z-index: 900;
       height: 100vh;
@@ -84,12 +78,6 @@ form .field {
 /* phones and tablets - portrait mode */
 @media all and (orientation: portrait) and (min-width: 415px) and (max-width: 1024px) {
 
-
-    html {
-      overflow-x: hidden;
-      overflow-y: hidden;
-    }
-
     .modal {
       z-index: 900;
       height: 100vh;
@@ -124,11 +112,6 @@ form .field {
 
 /* phones - landscape mode */
 @media all and (orientation: landscape) and (max-width: 896px) {
-
-  html {
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
 
   .modal {
     z-index: 900;
@@ -165,11 +148,6 @@ form .field {
 
 /* phones - landscape mode */
 @media all and (orientation: landscape) and (max-width: 1366px) {
-
-  html {
-    overflow-x: hidden;
-    overflow-y: hidden;
-  }
 
   .modal {
     height: 100vh;

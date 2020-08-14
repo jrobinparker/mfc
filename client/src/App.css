@@ -609,6 +609,12 @@ html {
     color: white;
   }
 
+  .logo {
+    width: 10px;
+    height: auto;
+    margin-right: 10px;
+  }
+
   .guest-links {
     display: flex;
     flex-direction: row;
@@ -813,6 +819,12 @@ html {
     color: white;
   }
 
+  .logo {
+    width: 20px;
+    height: auto;
+    margin-right: 10px;
+  }
+
   .guest-links {
     display: flex;
     flex-direction: row;
@@ -990,6 +1002,12 @@ html {
 
   .nav-brand {
     display: none;
+  }
+
+  .logo {
+    width: 20px;
+    height: auto;
+    margin-right: 10px;
   }
 
   #login {

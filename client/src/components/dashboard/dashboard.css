@@ -129,10 +129,6 @@
 /* small to large phones - portrait mode */
 @media all and (orientation: landscape) and (max-width: 896px) {
 
-  body {
-    overflow-x: hidden;
-  }
-
   #root {
     height: 100vh;
   }
@@ -248,10 +244,6 @@
 /* mid to large monitors - landscape  mode */
 @media all and (orientation: landscape) and (min-width: 2000px) and (max-width: 2167px){
 
-  body {
-    overflow-x: hidden;
-  }
-
   .hero-stats {
     display: flex;
     width: 100%;
@@ -272,11 +264,6 @@
 
 /* large monitors - landscape  mode */
 @media all and (orientation: landscape) and (min-width: 2168px) and (max-width: 2562px){
-
-  body {
-    overflow-x: hidden;
-  }
-
 
   .hero-stats {
     display: flex;

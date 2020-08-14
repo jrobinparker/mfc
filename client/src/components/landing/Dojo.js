@@ -3,7 +3,7 @@ import React from 'react';
 const Dojo = () => {
 
   return (
-      <div className="dojo hidden" id="dojo">
+      <div className="dojo" id="dojo">
           <div className="dojo-img">
             <span className="title mfc-title">THE DOJO</span>
             <div className="dojo-about">
