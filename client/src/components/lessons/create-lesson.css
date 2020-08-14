@@ -1,0 +1,21 @@
+@media all and (orientation: portrait) and (max-width: 834px) {
+ .panel {
+   position: relative;
+   left: 5%;
+    max-width: 90vw;
+    max-height: 80vh;
+  }
+
+  .panel p {
+    font-size: 4vw;
+  }
+
+  .panel .form-wizard {
+    position: relative;
+    left: 0%;
+  }
+
+  .form-wizard label, .label, .select {
+    font-size: 3vw;
+  }
+}

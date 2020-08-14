@@ -6,6 +6,7 @@ import { createLesson, uploadVideo } from '../../actions/lesson';
 import { loadUser } from '../../actions/auth';
 import Loading from '../utils/Loading';
 import axios from 'axios';
+import './create-lesson.css';
 
 const CreateLesson = ({ loadUser, auth, createLesson, uploadVideo, history }) => {
 
