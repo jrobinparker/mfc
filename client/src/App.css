@@ -12,11 +12,16 @@ html {
   top: 0%;
   width: 100vw;
   display: flex;
+  justify-content: space-around;
   padding: 5px 10px 5px 30px;
-  background-color: rgba(54, 54, 54, 0);
+  background-color: rgba(54, 54, 54, 1);
   font-size: 1.75rem;
   margin-bottom: 10px;
   letter-spacing: -2px;
+}
+
+.auth-nav {
+  background-color: rgba(54, 54, 54, 1);
 }
 
 .logo {
@@ -29,6 +34,10 @@ html {
   cursor: pointer;
   color: white;
   align-self: center;
+}
+
+.mfc-navbar:nth-child(1) {
+  align-self: flex-start;
 }
 
 .nav-brand:hover {

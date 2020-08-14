@@ -1,29 +1,10 @@
 import React, { Fragment, useState } from 'react';
 import NavLink from './NavLink';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { logout } from '../../../actions/auth';
-import Menu from './Menu';
 import AuthModal from '../../auth/AuthModal';
 
-const Nav = ({ auth: { isAuthenticated, loading, user }, logout }) => {
+const GuestNav = props => {
   const [ modal, toggleModal ] = useState(false);
-
-  const authLinks = (
-    <Fragment>
-      <Menu logout={logout} toggleModal={toggleModal} />
-    </Fragment>
-  );
-
-  const guestLinks = (
-    <div className="guest-links">
-      <NavLink link={'About'} id={'dojo'} />
-      <NavLink link={'Pricing'} id={'pricing'} />
-      <NavLink link={'Contact'} id={'contact'} />
-      <span className="nav-brand" id="login" onClick={() => toggleModal(true)}>Login / Sign Up</span>
-    </div>
-  )
 
   const app = document.body
 
@@ -48,27 +29,21 @@ const Nav = ({ auth: { isAuthenticated, loading, user }, logout }) => {
     }
   }
 
-  // app.onscroll = () => {
-  //   setNavStyle()
-  // }
+  app.onscroll = () => {
+    setNavStyle()
+  }
 
   return (
     <nav className="mfc-navbar">
         <img src={require('../../../assets/logo-transparent.png')} className="logo" alt="logo"/>
         <NavLink link={'Modern Fighting Concepts'} id={'home'} />
-        { isAuthenticated ? authLinks : guestLinks }
+        <NavLink link={'About'} id={'dojo'} />
+        <NavLink link={'Pricing'} id={'pricing'} />
+        <NavLink link={'Contact'} id={'contact'} />
+        <span className="nav-brand" id="login" onClick={() => toggleModal(true)}>Login / Sign Up</span>
         { !modal ? <></> : <AuthModal toggleModal={toggleModal} /> }
     </nav>
   )
 }
 
-Nav.propTypes = {
-  logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
-}
-
-const mapStateToProps = state => ({
-  auth: state.auth
-})
-
-export default connect(mapStateToProps, { logout })(Nav);
+export default GuestNav;

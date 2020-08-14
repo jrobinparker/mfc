@@ -1,7 +1,6 @@
 import React from 'react';
 
-const NavLink = props => {
-  const { link, id } = props
+const NavLink = ({ link, id }) => {
   return (
     <div
       className="nav-brand"
