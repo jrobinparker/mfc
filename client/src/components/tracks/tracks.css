@@ -80,24 +80,3 @@
 .lesson-description {
   margin-top: 2.5%;
 }
-
-.admin-select {
-  font-size: 1.25rem;
-  margin-left: 1.75%;
-}
-
-.admin-buttons {
-  display: flex;
-  width: 100%;
-  margin-bottom: 1.5%;
-}
-
-.admin-buttons input {
-  width: 25%;
-  margin-right: 2%;
-}
-
-.admin-buttons a {
-  margin-left: auto;
-  color: white;
-}

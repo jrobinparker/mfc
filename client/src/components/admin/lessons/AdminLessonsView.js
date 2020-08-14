@@ -4,7 +4,7 @@ import Moment from 'react-moment';
 import Pagination from '../../utils/Pagination';
 import DeleteLesson from './DeleteLesson';
 import LessonCompletes from './LessonCompletes';
-import '../../tracks/tracks.css';
+import '../admin.css';
 
 const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
 

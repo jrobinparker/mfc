@@ -1,3 +1,78 @@
 select {
   border: 0px;
 }
+
+.admin-select {
+  font-size: 1.25rem;
+  margin-left: 1.75%;
+}
+
+.admin-buttons {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1.5%;
+}
+
+.admin-buttons input {
+  width: 25%;
+  margin-right: 2%;
+}
+
+.admin-buttons a {
+  margin-left: auto;
+  color: white;
+}
+
+.form-wizard {
+  padding: 20px;
+  background-color: white;
+  margin-bottom: 10px;
+}
+
+@media all and (orientation: portrait) and (max-width: 415px) {
+  .admin-select, .admin-select select {
+    width: 80vw;
+    font-size: 4vw;
+  }
+
+  .container .box {
+    height: 100%;
+  }
+
+  .form-wizard {
+    position: relative;
+    left: -4.25%;
+    width: 100%;
+  }
+
+  .admin-buttons {
+    flex-direction: column;
+    width: 80vw;
+    height: 25vh;
+    justify-content: space-around;
+  }
+
+  .admin-buttons input, .admin-buttons .select, .admin-buttons .select select, .admin-buttons a {
+    width: 100%;
+    align-self: center;
+  }
+
+  .admin-buttons input {
+    left: 1%;
+  }
+
+  table {
+    position: relative;
+    left: -1%;
+  }
+
+  tr, td {
+    height: 100%;
+  }
+
+  .admin-actions {
+   justify-content: space-between;
+   width: 120%;
+  }
+
+}
