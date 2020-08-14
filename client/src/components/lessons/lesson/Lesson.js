@@ -1,21 +1,17 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getLesson, addLike, removeLike, addComplete, removeComplete, addInProgress } from '../../../actions/lesson';
 import { getCurrentProfile } from '../../../actions/profile';
 import { setAlert } from '../../../actions/alert';
 import LessonHeader from './LessonHeader';
-import SkillIcon from './SkillIcon';
 import Loading from '../../utils/Loading';
 import './Lesson.css';
-import axios from 'axios';
 import ReactPlayer from 'react-player';
 
 
 const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, addComplete, addInProgress, lesson: { lesson, loading }, auth: { user }, match }) => {
-
-  const [ lessonVideo, setLessonVideo ] = useState('')
 
   useEffect(() => {
     getLesson(match.params.id)

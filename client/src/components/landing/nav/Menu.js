@@ -16,7 +16,6 @@ class Menu extends React.Component {
   expandMenu() {
       const menu = document.getElementById('menu')
       const navMenu = document.querySelector('.nav-menu')
-      const mobileMenu = document.querySelector('.mobile-menu')
       const icon = document.getElementById('menu-icon')
       if (window.innerWidth > 680) {
         menu.classList.remove('mobile-menu')
@@ -36,7 +35,7 @@ class Menu extends React.Component {
           gsap.to(menu, .25, {y: 0})
         } else {
           icon.classList.toggle('change-icon')
-          gsap.to(menu, .25, {y: -1000})         
+          gsap.to(menu, .25, {y: -1000})
         }
       }
     };

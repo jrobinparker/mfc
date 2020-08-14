@@ -1,28 +1,8 @@
 import React from 'react';
-import gsap from 'gsap';
-import { Power1 } from 'gsap';
-import VisibilitySensor from 'react-visibility-sensor';
 
-class Dojo extends React.Component {
-  state = {
-    visible: false
-  }
-
-  render() {
-    if (this.state.visible) {
-      const pricing = document.querySelector('.dojo')
-      pricing.classList.remove('hidden');
-      pricing.classList.add('fade-in');
-    }
+const Dojo = () => {
 
   return (
-    <VisibilitySensor
-      partialVisibility
-      onChange={isVisible => {
-        this.setState({
-          visible: isVisible
-        })
-      }}>
       <div className="dojo hidden" id="dojo">
           <div className="dojo-img">
             <span className="title mfc-title">THE DOJO</span>
@@ -32,9 +12,7 @@ class Dojo extends React.Component {
             </div>
           </div>
         </div>
-      </VisibilitySensor>
   )
-  }
 }
 
 export default Dojo;

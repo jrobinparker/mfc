@@ -1,9 +1,5 @@
-import React, { Fragment, useState, useRef, useEffect } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useRef, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { setAlert } from '../../actions/alert';
-import { register } from '../../actions/auth';
-import PropTypes from 'prop-types';
 import './form.css';
 
 const RegisterPayPal = ({ prevStep, onSubmit }) => {
@@ -36,7 +32,7 @@ const RegisterPayPal = ({ prevStep, onSubmit }) => {
         },
       })
       .render(payPalRef.current);
-  }, []);
+  }, [onSubmit]);
   return (
     <div className="paypal">
       <h1 className="title">MFC Online University Monthly Subscription - $20/month</h1>

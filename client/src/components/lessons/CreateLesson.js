@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createLesson, uploadVideo } from '../../actions/lesson';
@@ -26,7 +26,6 @@ const CreateLesson = ({ loadUser, auth, createLesson, uploadVideo, history }) =>
 
   const [ videoObj, setVideoObj ] = useState('');
   const [ videoObjName, setVideoObjName ] = useState('Choose Video');
-  const [ uploadedFile, setUploadedFile ] = useState({});
   const [ message, setMessage ] = useState('');
   const [ uploadPercentage, setUploadPercentage ] = useState(0);
   const [ displayProgress, setDisplayProgress ] = useState(false);

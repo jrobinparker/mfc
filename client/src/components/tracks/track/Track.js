@@ -1,13 +1,12 @@
-import React, { Fragment, useEffect, useState, useLayoutEffect } from 'react';
+import React, { useEffect, useState, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getTrack, addTrackComplete } from '../../../actions/track';
 import { addComplete } from '../../../actions/lesson';
 import { getCurrentProfile } from '../../../actions/profile';
 import { setAlert } from '../../../actions/alert';
 import TrackHeader from './TrackHeader';
-import SkillIcon from './SkillIcon';
 import Loading from '../../utils/Loading';
 import LessonCompleteIcon from './LessonCompleteIcon';
 import ReactPlayer from 'react-player';
@@ -16,7 +15,6 @@ import '../../tracks/track/track.css';
 const Track = ({ getTrack, addComplete, addTrackComplete, track: { track, trackLessons, loading }, auth: { user }, match }) => {
   const [ lesson, setLesson ] = useState({});
   const [ lessonLoading, setLessonLoading ] = useState(true);
-  const [ active, toggleActive ] = useState('');
   const [ completedLessons, setCompletedLessons ] = useState([])
   let userComplete = [];
 

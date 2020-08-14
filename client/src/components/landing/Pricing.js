@@ -1,27 +1,13 @@
 import React from 'react';
-import gsap from 'gsap';
-import { Power1 } from 'gsap';
-import VisibilitySensor from 'react-visibility-sensor';
 
-class Pricing extends React.Component {
-  state = {
-    visible: false
-  }
-
-  render() {
-    if (this.state.visible) {
-      const pricing = document.querySelector('.pricing')
-      pricing.classList.remove('hidden');
-      pricing.classList.add('fade-in');
-    }
-
+const Pricing = () => {
   return (
       <div className="pricing" id="pricing">
           <span className="title mfc-title pricing-header">MEMBERSHIP & PRICING</span>
           <div className="features">
             <div className="feature">
               <div className="feature-img">
-                <img src={require('../../assets/about-img.jpg')} />
+                <img src={require('../../assets/about-img.jpg')} alt="dojo-img" />
               </div>
               <h1 className="title mfc-title feature-header">DOJO MEMBERSHIP</h1>
                 <div>
@@ -45,7 +31,7 @@ class Pricing extends React.Component {
             </div>
             <div className="feature">
             <div className="feature-img">
-              <img src={require('../../assets/monitor.jpg')} id="monitor"/>
+              <img src={require('../../assets/monitor.jpg')} id="monitor" alt="mfc-online" />
             </div>
               <h1 className="title mfc-title feature-header">ONLINE UNIVERSITY MEMBERSHIP</h1>
                 <div>
@@ -65,7 +51,6 @@ class Pricing extends React.Component {
           </div>
       </div>
   )
-  }
 }
 
 export default Pricing;

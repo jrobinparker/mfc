@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Moment from 'react-moment';
 
 const LessonCompleteIcon = ({ completes, user }) => {
   const [ completed, setCompleted ] = useState(false);
@@ -8,7 +7,7 @@ const LessonCompleteIcon = ({ completes, user }) => {
     completes.filter(complete => complete.user === user._id).map(c => {
       setCompleted(true)
     })
-  }, [completes])
+  }, [completes, user])
 
 
   return (

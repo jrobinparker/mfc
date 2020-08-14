@@ -2,7 +2,6 @@ import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getTracks } from '../../actions/track';
-import Filter from './Filter';
 import TrackItem from './TrackItem';
 import Loading from '../utils/Loading';
 import Pagination from '../utils/Pagination';

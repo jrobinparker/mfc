@@ -14,7 +14,7 @@ const DashboardWidget = ({ items, type, header, nullMessage }) => {
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
-  let content, pageLink
+  let content
   if (currentItems.length === 0 || items === null) {
     content = <p>{nullMessage}</p>
   } else {

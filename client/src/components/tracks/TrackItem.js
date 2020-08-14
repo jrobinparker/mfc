@@ -4,7 +4,6 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import RankIcon from '../lessons/lesson/RankIcon';
 import StyleIcon from '../lessons/lesson/StyleIcon';
-import LikeIcon from '../lessons/lesson/LikeIcon';
 import '../lessons/lesson/Lesson.css';
 
 const TrackItem = ({ track: { _id, title, created, rank, style, likes, completes }}) => {

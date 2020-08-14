@@ -1,9 +1,7 @@
-import React, { Fragment, useEffect } from 'react';
+import React from 'react';
 import Moment from 'react-moment';
 import RankIcon from './RankIcon';
 import StyleIcon from './StyleIcon';
-import SkillIcon from './SkillIcon';
-import LikeIcon from './LikeIcon';
 import CompleteIcon from './CompleteIcon';
 
 const TrackHeader = ({ id, user, title, author, created, style, skills, rank, completes }) => {

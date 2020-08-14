@@ -1,6 +1,5 @@
-import React, { Fragment, useState, useLayoutEffect } from 'react';
-import { Link, withRouter, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React from 'react';
+import { withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createTrack } from '../../actions/track';
 import { getTrack, editTrack } from '../../actions/track';

@@ -4,11 +4,9 @@ import Moment from 'react-moment';
 import Pagination from '../../utils/Pagination';
 
 const TrackCompletes = ({ track, toggleCompleteModal, removeComplete }) => {
-  const [ trackData, setTrackData ] = useState([])
   const [ filteredUsers, setFilteredUsers ] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ usersPerPage ] = useState(10);
-  const [ search, setSearch ] = useState('');
 
   const indexOfLastUser = currentPage * usersPerPage;
 

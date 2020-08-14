@@ -8,7 +8,7 @@ const CompleteIcon = ({ id, completes, addComplete, removeComplete, user }) => {
     completes.filter(complete => complete.user === user).map(c => {
       setCompleteDate(c.date)
     })
-  }, [completes])
+  }, [completes, user])
 
 
   return (

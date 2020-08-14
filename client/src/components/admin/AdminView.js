@@ -1,12 +1,10 @@
-import React, { Fragment, useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { getLessons, deleteLesson, removeComplete } from '../../actions/lesson';
 import { getTracks, deleteTrack } from '../../actions/track';
-import { getCurrentProfile } from '../../actions/profile';
 import { loadUser } from '../../actions/auth';
-import { setAlert } from '../../actions/alert';
 import AdminLessonsView from './lessons/AdminLessonsView';
 import AdminTracksView from './tracks/AdminTracksView';
 import Loading from '../utils/Loading';

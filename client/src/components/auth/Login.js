@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { createPortal } from 'react-dom';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 import './form.css';

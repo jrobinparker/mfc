@@ -8,9 +8,6 @@ import '../../tracks/tracks.css';
 
 const AdminTracksView = ({ tracks, deleteTrack }) => {
 
-  const [ tracksData, setTrackData ] = useState([]);
-  const [ displayTracks, setToggleTracks ] = useState(false);
-  const [ search, setSearch ] = useState('');
   const [ filteredTracks, setFilteredTracks ] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ tracksPerPage ] = useState(10);

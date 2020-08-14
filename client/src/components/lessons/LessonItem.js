@@ -4,7 +4,6 @@ import Moment from 'react-moment';
 import { Link } from 'react-router-dom';
 import RankIcon from './lesson/RankIcon';
 import StyleIcon from './lesson/StyleIcon';
-import LikeIcon from './lesson/LikeIcon';
 import CompleteIcon from './lesson/CompleteIcon';
 import './lesson/Lesson.css';
 

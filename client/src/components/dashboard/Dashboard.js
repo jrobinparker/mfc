@@ -1,10 +1,8 @@
-import React, { Fragment, useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Loading from '../utils/Loading';
 import ProfileWidget from './ProfileWidget';
-import { loadUser } from '../../actions/auth';
 import { getLessons } from '../../actions/lesson';
 import { getTracks } from '../../actions/track';
 import DashboardWidget from './DashboardWidget';

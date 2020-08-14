@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 
 const TitleAndDesc = ({ mode, title, description, rank, style, skills, onChange, nextStep }) => {
 

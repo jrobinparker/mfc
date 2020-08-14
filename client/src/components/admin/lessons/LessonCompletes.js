@@ -5,11 +5,9 @@ import Pagination from '../../utils/Pagination';
 import '../admin.css';
 
 const LessonCompletes = ({ lesson, toggleCompleteModal, removeComplete }) => {
-  const [ lessonData, setLessonData ] = useState([])
   const [ filteredUsers, setFilteredUsers ] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ usersPerPage ] = useState(10);
-  const [ search, setSearch ] = useState('');
 
   const indexOfLastUser = currentPage * usersPerPage;
 

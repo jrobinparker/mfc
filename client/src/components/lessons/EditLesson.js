@@ -1,5 +1,5 @@
-import React, { Fragment, useState, useEffect, useLayoutEffect } from 'react';
-import { Link, withRouter, Redirect } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { withRouter, Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { editLesson, getLesson } from '../../actions/lesson';
@@ -29,7 +29,7 @@ const EditLesson = ({ auth, lesson: { lesson, loading }, editLesson, getLesson, 
       description: loading || !lesson.description ? '' : lesson.description,
       id:  loading || !lesson._id ? '' : lesson._id
     });
-  }, [loading, loadUser, match.params.id, getLesson])
+  }, [loading, loadUser, match.params.id, getLesson, lesson])
 
 
 
