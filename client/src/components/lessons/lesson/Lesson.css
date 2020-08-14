@@ -1,4 +1,10 @@
-.lesson-header, .lesson-description, .lesson-comments {
+body {
+  overflow-x: hidden;
+}
+
+#root {
+  height: 100vh;
+  overflow: hidden;
 }
 
 .lesson-header {
@@ -86,4 +92,50 @@
 .lesson-title i {
   position: relative;
   color: hsl(141, 53%, 53%);
+}
+
+@media all and (orientation: portrait) and (max-width: 415px) {
+
+  .container .box {
+    width: 95vw;
+    position: relative;
+    left: 2.5%;
+  }
+
+  .container .box .lessons-title {
+    font-size: 7vw;
+  }
+
+  .container .box .lessons-subtitle {
+    font-size: 4vw;
+  }
+
+
+}
+
+@media all and (orientation: landscape) and (max-width: 896px) {
+
+  body {
+    overflow-x: scroll;
+  }
+
+  #root {
+    overflow: scroll;
+  }
+
+  .container .box {
+    width: 95vw;
+    position: relative;
+    left: 2.5%;
+  }
+
+  .container .box .lessons-title {
+    font-size: 3vw;
+  }
+
+  .container .box .lessons-subtitle {
+    font-size: 2vw;
+  }
+
+
 }
