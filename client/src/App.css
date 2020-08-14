@@ -13,7 +13,7 @@ html {
   width: 100vw;
   display: flex;
   justify-content: space-around;
-  padding: 5px 10px 5px 30px;
+  padding: 5px 30px 5px 30px;
   background-color: rgba(54, 54, 54, 1);
   font-size: 1.75rem;
   margin-bottom: 10px;
@@ -46,6 +46,7 @@ html {
 
 .menu-icon {
   z-index: 300;
+  margin-left: 2.5%;
   width: 2.5%;
   align-self: center;
   margin-left: auto;
@@ -98,6 +99,16 @@ html {
   transform: translateX(100%);
   right: 0;
   margin-top: -2.5%;
+  background-color: hsl(0, 0%, 4%);
+}
+
+.mobile-menu {
+  position: absolute;
+  height: 105vh;
+  width: 100vw;
+  transform: translateY(-100%);
+  margin-top: -2.5%;
+  margin-left: -1%;
   background-color: hsl(0, 0%, 4%);
 }
 

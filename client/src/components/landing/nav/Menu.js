@@ -14,14 +14,30 @@ class Menu extends React.Component {
   };
 
   expandMenu() {
-      const menu = document.querySelector('.nav-menu')
+      const menu = document.getElementById('menu')
+      const navMenu = document.querySelector('.nav-menu')
+      const mobileMenu = document.querySelector('.mobile-menu')
       const icon = document.getElementById('menu-icon')
-      if (!this.state.expand) {
-        icon.classList.toggle('change-icon')
-        gsap.to(menu, .25, {x: 0})
+      if (window.innerWidth > 680) {
+        menu.classList.remove('mobile-menu')
+        menu.classList.add('nav-menu')
+        if (!this.state.expand) {
+          icon.classList.toggle('change-icon')
+          gsap.to(navMenu, .25, {x: 0})
+        } else {
+          icon.classList.toggle('change-icon')
+          gsap.to(navMenu, .25, {x: 500})
+        }
       } else {
-        icon.classList.toggle('change-icon')
-        gsap.to(menu, .25, {x: 300})
+        menu.classList.remove('nav-menu')
+        menu.classList.add('mobile-menu')
+        if (!this.state.expand) {
+          icon.classList.toggle('change-icon')
+          gsap.to(menu, .25, {y: 0})
+        } else {
+          icon.classList.toggle('change-icon')
+          gsap.to(menu, .25, {y: -1000})         
+        }
       }
     };
 
@@ -38,7 +54,7 @@ class Menu extends React.Component {
           <div id="line2" className="line">&nbsp;</div>
           <div id="line3" className="line">&nbsp;</div>
         </div>
-        <div className="nav-menu" id="nav-menu">
+        <div className="nav-menu" id="menu">
           <MenuLinks toggleMenu={() => this.toggleMenu()} expandMenu={() => this.expandMenu()} logout={this.props.logout} toggleModal={this.props.toggleModal}/>
         </div>
       </Fragment>
