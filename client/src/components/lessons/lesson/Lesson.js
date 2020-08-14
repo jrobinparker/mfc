@@ -6,8 +6,6 @@ import { getLesson, addLike, removeLike, addComplete, removeComplete, addInProgr
 import { getCurrentProfile } from '../../../actions/profile';
 import { setAlert } from '../../../actions/alert';
 import LessonHeader from './LessonHeader';
-import LessonComments from './LessonComments';
-import LessonCommentForm from './LessonCommentForm';
 import SkillIcon from './SkillIcon';
 import Loading from '../../utils/Loading';
 import './Lesson.css';

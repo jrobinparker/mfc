@@ -1,10 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getLessons } from '../../actions/lesson';
 import { loadUser } from '../../actions/auth';
 import LessonItem from './LessonItem';
-import Filter from './Filter';
 import Loading from '../utils/Loading';
 import Pagination from '../utils/Pagination';
 import './lessons.css';

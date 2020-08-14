@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Moment from 'react-moment';
 import RankIcon from './RankIcon';
 import StyleIcon from './StyleIcon';
@@ -7,7 +7,7 @@ import LikeIcon from './LikeIcon';
 import CompleteIcon from './CompleteIcon';
 
 const LessonHeader = props => {
-  const { id, user, title, author, date, style, skills, rank, likes, completes, addLike, removeLike } = props;
+  const { id, user, title, date, style, skills, rank, likes, completes, addLike, removeLike } = props;
 
   return (
     <div className="lesson-header">
