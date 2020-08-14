@@ -1,14 +1,22 @@
+
+.dashboard {
+  height: 100vh;
+  width: 100%;
+}
+
 .profile-header {
   margin-top: 20px;
 }
 
 .hero {
   position: relative;
-  left: -5%;
-  top: -10%;
-  margin-top: -1%;
-  width: 100vw;
+  top: -1%;
   margin-bottom: 1%;
+}
+
+.hero-body {
+  align-self: center;
+  width: 100%;
 }
 
 .field {
@@ -39,7 +47,9 @@
 }
 
 .profile-lessons {
-  width: 100%;
+  position: relative;
+  left: 5%;
+  width: 90%;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
@@ -87,15 +97,7 @@
 }
 
 /* small to large phones - portrait mode */
-@media all and (orientation: portrait) and (max-width: 415px) {
-
-  body {
-    overflow: hidden;
-  }
-
-  #root {
-    height: 100vh;
-  }
+@media all and (orientation: portrait) and (max-width: 942px) {
 
   .hero-body {
     display: none;
@@ -110,6 +112,7 @@
   }
 
   .profile-lessons .box {
+    height: 25%;
     width: 90%;
   }
 
@@ -161,27 +164,8 @@
 }
 
 /* tablets - portrait mode */
-@media all and (orientation: portrait) and (min-width: 415px) and (max-width: 1024px) {
+@media all and (orientation: portrait) and (min-width: 940px) and (max-width: 1024px) {
 
-  body {
-    overflow-x: hidden;
-  }
-
-  #root {
-    height: 100vh;
-  }
-
-  .hero {
-    position: relative;
-    left: 0%;
-    top: -10%;
-  }
-
-  .hero-stats {
-    display: flex;
-    width: 100%;
-    margin-top: 5%;
-  }
 
   .hero-stat {
     display: flex;
@@ -207,27 +191,6 @@
 /* tablets - landscape  mode */
 @media all and (orientation: landscape) and (min-width: 1024px) and (max-width: 1111px){
 
-  body {
-    overflow-x: hidden;
-  }
-
-  #root {
-    height: 100vh;
-  }
-
-  .hero {
-    width: 101vw;
-    position: relative;
-    left: -3.5%;
-    top: -10%;
-  }
-
-  .hero-stats {
-    display: flex;
-    width: 100%;
-    margin-top: 5%;
-  }
-
   .hero-stat {
     display: flex;
     flex-direction: column;
@@ -251,33 +214,6 @@
 /* large tablets - landscape  mode */
 @media all and (orientation: landscape) and (min-width: 1112px) and (max-width: 1439px){
 
-  body {
-    overflow-x: hidden;
-  }
-
-  #root {
-    height: 100vh;
-  }
-
-  .hero {
-    width: 102vw;
-    position: relative;
-    left: -10%;
-    top: -10%;
-  }
-
-  .hero-stats {
-    display: flex;
-    width: 100%;
-    margin-top: 5%;
-  }
-
-  .hero-stat {
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-  }
-
   .profile-lessons {
     position: relative;
     left: 5%;
@@ -295,33 +231,6 @@
 /* large tablets - portrait mode */
 @media all and (orientation: portrait) and (min-width: 1024px) {
 
-  body {
-    overflow-x: hidden;
-  }
-
-  #root {
-    height: 100vh;
-  }
-
-  .hero {
-    width: 101vw;
-    position: relative;
-    left: -3.5%;
-    top: -10%;
-  }
-
-  .hero-stats {
-    display: flex;
-    width: 100%;
-    margin-top: 5%;
-  }
-
-  .hero-stat {
-    display: flex;
-    flex-direction: column;
-    width: 20%;
-  }
-
   .profile-lessons {
     position: relative;
     left: 5%;
@@ -332,6 +241,56 @@
 
   .profile-lessons .box {
     width: 90%;
+  }
+
+}
+
+/* mid to large monitors - landscape  mode */
+@media all and (orientation: landscape) and (min-width: 2000px) and (max-width: 2167px){
+
+  body {
+    overflow-x: hidden;
+  }
+
+  .hero-stats {
+    display: flex;
+    width: 100%;
+    margin-top: 5%;
+  }
+
+  .profile-lessons {
+    position: relative;
+    left: 5%;
+    width: 90%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+
+}
+
+
+/* large monitors - landscape  mode */
+@media all and (orientation: landscape) and (min-width: 2168px) and (max-width: 2562px){
+
+  body {
+    overflow-x: hidden;
+  }
+
+
+  .hero-stats {
+    display: flex;
+    width: 100%;
+    margin-top: 5%;
+  }
+
+  .profile-lessons {
+    position: relative;
+    left: 5%;
+    width: 90%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
   }
 
 }

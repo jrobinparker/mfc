@@ -51,7 +51,7 @@ const Dashboard = ({ getLessons, getTracks, loadUser, auth: { user, newUser }, l
   }, [lessons, tracks, user])
 
   return loading ? <Loading /> : (
-              <Fragment>
+              <div className="dashboard">
                 <ProfileWidget
                   name={user && user.name.toUpperCase()}
                   inProgress={inProgress.length.toString()}
@@ -79,7 +79,7 @@ const Dashboard = ({ getLessons, getTracks, loadUser, auth: { user, newUser }, l
                   />
                 </div>
                 {newUser && newUserModal ? <NewUserModal name={user.name} toggleModal={toggleModal} /> : <></>}
-              </Fragment>
+              </div>
           );
 };
 

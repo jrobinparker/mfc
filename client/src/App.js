@@ -40,7 +40,6 @@ const App = () => {
         <Fragment>
             <Nav />
             <Route exact path="/" component={Main} />
-            <div className="container">
               <Alert />
               <Switch>
                 <Route exact path="/register" component={Register} />
@@ -55,7 +54,6 @@ const App = () => {
                 <PrivateRoute exact path="/track/:id/edit" component={EditTrack} />
                 <PrivateRoute exact path="/admin" component={AdminView} />
               </Switch>
-            </div>
         </Fragment>
       </Router>
     </Provider>
