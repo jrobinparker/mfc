@@ -8,9 +8,6 @@ import '../admin.css';
 
 const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
 
-  const [ lessonsData, setLessonData ] = useState([]);
-  const [ displayLessons, setToggleLessons ] = useState(false);
-  const [ search, setSearch ] = useState('');
   const [ filteredLessons, setFilteredLessons ] = useState([]);
   const [ currentPage, setCurrentPage ] = useState(1);
   const [ lessonsPerPage ] = useState(10);
