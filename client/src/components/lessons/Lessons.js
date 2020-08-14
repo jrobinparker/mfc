@@ -116,7 +116,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
     }
 
   return loading ? <Loading /> : (
-    <Fragment>
+    <div className="lessons">
     <div class="hero is-small">
        <div class="hero-body">
          <div class="container hero-container">
@@ -183,7 +183,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
           </div>
         </div>
     </div>
-    </Fragment>
+    </div>
   );
 };
 
