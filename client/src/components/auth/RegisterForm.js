@@ -21,7 +21,7 @@ const RegisterForm = ({ errMessage, onChange, name, email, password, password2, 
   };
 
   return (
-      <form>
+      <form className="registration-form">
         {alert ? <div className="fade-in reg-notification notification is-danger">{msg}</div> : <Fragment></Fragment>}
         <div className="field">
           <label className="label">Full Name</label>

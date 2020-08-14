@@ -28,10 +28,177 @@
   margin-right: 10px;
 }
 
+form .field {
+  width: 100%;
+}
 .paypal {
   text-align: center;
 }
 
 .paypal p {
   margin-bottom: 5%;
+}
+
+/* small to large phones tablets - portrait mode */
+@media all and (orientation: portrait) and (max-width: 415px) {
+
+
+    html {
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+
+    .modal {
+      z-index: 900;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .modal-card {
+      position: absolute;
+      top: 5%;
+      max-height: 75vh;
+      max-width: 70vw;
+    }
+
+    .modal-buttons .button{
+      font-size: 3.5vw;
+    }
+
+    .registration-form {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    form .field {
+      width: 100%;
+      margin-right: 10px;
+    }
+    form .field .label, form .field input, form .button {
+      font-size: 3.5vw;
+    }
+}
+
+/* phones and tablets - portrait mode */
+@media all and (orientation: portrait) and (min-width: 415px) and (max-width: 1024px) {
+
+
+    html {
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+
+    .modal {
+      z-index: 900;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    .modal-card {
+      position: absolute;
+      top: 5%;
+      max-height: 75vh;
+      max-width: 70vw;
+    }
+
+    .modal-buttons .button{
+      font-size: 2vw;
+    }
+
+    .registration-form {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    form .field {
+      margin-right: 10px;
+    }
+    form .field .label, form .field input, form .button {
+      font-size: 2vw;
+    }
+}
+
+/* phones - landscape mode */
+@media all and (orientation: landscape) and (max-width: 896px) {
+
+  html {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .modal {
+    z-index: 900;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .modal-card {
+    position: absolute;
+    top: 5%;
+    max-height: 60vh;
+    max-width: 40vw;
+  }
+
+  .modal-buttons .button{
+    font-size: 1.5vw;
+  }
+
+  .registration-form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .registration-form .field {
+    width: 40%;
+    margin-right: 10px;
+  }
+  form .field .label, form .field input, form .button {
+    font-size: 1.5vw;
+  }
+}
+
+/* phones - landscape mode */
+@media all and (orientation: landscape) and (max-width: 1366px) {
+
+  html {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .modal {
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .modal-card {
+    position: absolute;
+    top: 5%;
+    max-height: 60vh;
+    max-width: 40vw;
+  }
+
+  .modal-buttons .button{
+    font-size: 1.5vw;
+  }
+
+  .registration-form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .registration-form .field {
+    width: 40%;
+    margin-right: 10px;
+  }
+  form .field .label, form .field input, form .button {
+    font-size: 1.5vw;
+  }
 }
