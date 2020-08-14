@@ -4,7 +4,8 @@
 
 .hero {
   position: relative;
-  left: -3.6%;
+  left: -5%;
+  top: -10%;
   margin-top: -1%;
   width: 100vw;
   margin-bottom: 1%;
@@ -83,4 +84,254 @@
 .new-user-modal p {
   font-family: 'Fjalla One', sans-serif;
   margin-bottom: 5px;
+}
+
+/* small to large phones - portrait mode */
+@media all and (orientation: portrait) and (max-width: 415px) {
+
+  body {
+    overflow: hidden;
+  }
+
+  #root {
+    height: 100vh;
+  }
+
+  .hero-body {
+    display: none;
+  }
+
+  .profile-lessons {
+    position: relative;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .profile-lessons .box {
+    width: 90%;
+  }
+
+  .box .profile-widget-title {
+    font-size: 9vw;
+  }
+
+  .box ul li {
+    font-size: 3vw;
+  }
+
+}
+
+/* small to large phones - portrait mode */
+@media all and (orientation: landscape) and (max-width: 896px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #root {
+    height: 100vh;
+  }
+
+  .hero-body {
+    display: none;
+  }
+
+  .profile-lessons {
+    position: relative;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .profile-lessons .box {
+    width: 80%;
+  }
+
+  .box .profile-widget-title {
+    font-size: 2.5vw;
+  }
+
+  .box ul li {
+    font-size: 1.5vw;
+  }
+
+}
+
+/* tablets - portrait mode */
+@media all and (orientation: portrait) and (min-width: 415px) and (max-width: 1024px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #root {
+    height: 100vh;
+  }
+
+  .hero {
+    position: relative;
+    left: 0%;
+    top: -10%;
+  }
+
+  .hero-stats {
+    display: flex;
+    width: 100%;
+    margin-top: 5%;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+  }
+
+  .profile-lessons {
+    position: relative;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .profile-lessons .box {
+    width: 90%;
+  }
+
+}
+
+
+/* tablets - landscape  mode */
+@media all and (orientation: landscape) and (min-width: 1024px) and (max-width: 1111px){
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #root {
+    height: 100vh;
+  }
+
+  .hero {
+    width: 101vw;
+    position: relative;
+    left: -3.5%;
+    top: -10%;
+  }
+
+  .hero-stats {
+    display: flex;
+    width: 100%;
+    margin-top: 5%;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+  }
+
+  .profile-lessons {
+    position: relative;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .profile-lessons .box {
+    width: 90%;
+  }
+
+}
+
+/* large tablets - landscape  mode */
+@media all and (orientation: landscape) and (min-width: 1112px) and (max-width: 1439px){
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #root {
+    height: 100vh;
+  }
+
+  .hero {
+    width: 102vw;
+    position: relative;
+    left: -10%;
+    top: -10%;
+  }
+
+  .hero-stats {
+    display: flex;
+    width: 100%;
+    margin-top: 5%;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+  }
+
+  .profile-lessons {
+    position: relative;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .profile-lessons .box {
+    width: 90%;
+  }
+
+}
+
+/* large tablets - portrait mode */
+@media all and (orientation: portrait) and (min-width: 1024px) {
+
+  body {
+    overflow-x: hidden;
+  }
+
+  #root {
+    height: 100vh;
+  }
+
+  .hero {
+    width: 101vw;
+    position: relative;
+    left: -3.5%;
+    top: -10%;
+  }
+
+  .hero-stats {
+    display: flex;
+    width: 100%;
+    margin-top: 5%;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+  }
+
+  .profile-lessons {
+    position: relative;
+    left: 5%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .profile-lessons .box {
+    width: 90%;
+  }
+
 }

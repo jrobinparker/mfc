@@ -42,7 +42,7 @@ const Nav = ({ auth: { isAuthenticated, loading, user }, logout }) => {
       nav.style.color = 'black'
       logo.width = '50'
     } else {
-      nav.style.backgroundColor = `rgba(54,54,54,${scrollPercent})`;
+      nav.style.backgroundColor = '';
       nav.style.boxShadow = `0px 0px 21px 0px rgba(10,10,10,${scrollPercent})`;
       nav.style.color = 'white'
     }
