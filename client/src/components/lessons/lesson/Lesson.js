@@ -43,6 +43,9 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, a
             width='100%'
             height='50%'
             playsInline
+            loop
+            muted
+            autoPlay
             onStart={() => addInProgress(lesson._id)}
             onEnded={() => addComplete(lesson._id)}
           />
