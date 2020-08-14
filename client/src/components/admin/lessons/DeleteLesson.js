@@ -1,5 +1,6 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
+import '../admin.css';
 
 const DeleteLesson = ({ lesson, deleteLesson, toggleDeleteModal }) => {
 

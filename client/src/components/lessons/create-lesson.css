@@ -18,4 +18,10 @@
   .form-wizard label, .label, .select {
     font-size: 3vw;
   }
+
+  .selected-lessons {
+    width: 90vw;
+    position: relative;
+    left: 5%;
+  }
 }

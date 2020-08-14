@@ -75,4 +75,37 @@ select {
    width: 120%;
   }
 
+  .modal {
+    z-index: 900;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  .modal-card {
+    max-height: 70vh;
+    max-width: 80vw;
+  }
+
+  .modal-buttons .button{
+    font-size: 3.5vw;
+  }
+
+  .modal-card-head p {
+    font-size: 5vw;
+  }
+
+  .registration-form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  form .field {
+    width: 100%;
+    margin-right: 10px;
+  }
+  form .field .label, form .field input, form .button {
+    font-size: 3.5vw;
+  }
 }

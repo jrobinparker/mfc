@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import Pagination from '../utils/Pagination';
 import './tracks.css';
 
-const AddLessons = ({ lessons, selectedLessons, addLessons, nextStep, prevStep }) => {
+const AddLessons = ({ lessons, selectedLessons, addLessons, nextStep, prevStep, mode }) => {
 
   const [ lessonsData, setLessonData ] = useState([]);
   const [ displayLessons, setToggleLessons ] = useState(false);
@@ -50,7 +50,7 @@ const AddLessons = ({ lessons, selectedLessons, addLessons, nextStep, prevStep }
   return (
       <Fragment>
         <div className="container">
-          <h1 className="title">Create a New Track</h1>
+          <h1 className="title">{mode}</h1>
             <div className="panel">
               <p className="panel-heading">Add Lessons</p>
               <div className="form-wizard">
@@ -122,7 +122,7 @@ const AddLessons = ({ lessons, selectedLessons, addLessons, nextStep, prevStep }
                 </div>
             </div>
           </div>
-          <div className="box" style={{ marginTop: '20px' }}>
+          <div className="box selected-lessons" style={{ marginTop: '20px' }}>
             <h1>
               Selected Lessons ({lessonsData.length})
               <i

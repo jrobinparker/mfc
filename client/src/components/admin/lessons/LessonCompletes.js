@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import Moment from 'react-moment';
 import Pagination from '../../utils/Pagination';
+import '../admin.css';
 
 const LessonCompletes = ({ lesson, toggleCompleteModal, removeComplete }) => {
   const [ lessonData, setLessonData ] = useState([])
