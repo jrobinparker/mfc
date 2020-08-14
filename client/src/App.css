@@ -3,6 +3,10 @@ html {
    background-color: hsl(0, 0%, 96%);
  }
 
+ body {
+   overflow-x: hidden;
+ }
+
 /* nav styles */
 
 .mfc-navbar {
@@ -611,7 +615,7 @@ html {
 
   .logo {
     width: 20px;
-    height: 20px;
+    height: 30px;
     margin-right: 10px;
   }
 
@@ -821,7 +825,7 @@ html {
 
   .logo {
     width: 20px;
-    height: 20px;
+    height: 30px;
     margin-right: 10px;
   }
 
@@ -1006,7 +1010,7 @@ html {
 
   .logo {
     width: 20px;
-    height: 20px;
+    height: 30px;
     margin-right: 10px;
   }
 
