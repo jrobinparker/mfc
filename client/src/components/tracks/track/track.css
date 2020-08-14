@@ -1,11 +1,3 @@
-body {
-  overflow-x: hidden;
-}
-
-#root {
-  height: 100vh;
-  overflow: hidden;
-}
 
 .lesson-header {
   margin-bottom: 10px;
@@ -96,6 +88,10 @@ body {
 
 @media all and (orientation: portrait) and (max-width: 415px) {
 
+  body, #root {
+    overflow: scroll;
+  }
+
   .container .box {
     width: 95vw;
     position: relative;
@@ -110,9 +106,26 @@ body {
     font-size: 4vw;
   }
 
+  .lesson-container {
+    height: 100vw;
+  }
+
+  .box {
+    height: 87vh;
+  }
+
   .track-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
+  }
+
+  .lesson-content {
+    width: 100%;
+    height: 35vh;
+  }
+
+  .menu {
+    width: 100%;
   }
 
 }

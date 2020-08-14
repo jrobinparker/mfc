@@ -11,7 +11,7 @@ import SkillIcon from './SkillIcon';
 import Loading from '../../utils/Loading';
 import LessonCompleteIcon from './LessonCompleteIcon';
 import ReactPlayer from 'react-player';
-import '../../lessons/lesson/Lesson.css';
+import '../../tracks/track/track.css';
 
 const Track = ({ getTrack, addComplete, addTrackComplete, track: { track, trackLessons, loading }, auth: { user }, match }) => {
   const [ lesson, setLesson ] = useState({});
@@ -91,6 +91,7 @@ const Track = ({ getTrack, addComplete, addTrackComplete, track: { track, trackL
                     controls={true}
                     height={'100%'}
                     width={'100%'}
+                    className="player"
                     onEnded={() => {
                       addComplete(lesson._id)
                       getTrack(track._id)
