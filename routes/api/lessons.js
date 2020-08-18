@@ -6,9 +6,18 @@ const path = require('path');
 
 const crypto = require('crypto');
 const mongoose = require('mongoose');
+const mongo = require('mongodb');
+const MongoClient = require('mongodb').MongoClient;
+const GridStore = mongo.GridStore;
+const ObjectID = require('mongodb').ObjectID;
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
+const fs = require('fs');
+const { stat, createReadStream } = require("fs");
+const { promisify } = require("util");
+const { pipeline } = require("stream");
+const fileInfo = promisify(stat);
 
 const Lesson = require('../../models/Lesson');
 const Profile = require('../../models/Profile');
@@ -27,6 +36,12 @@ conn.once('open', () => {
   // Init stream
   gfs = Grid(conn.db, mongoose.mongo);
   gfs.collection('videos');
+});
+
+// Initialize MongoDB connection once
+mongoose.connect(uri, function(err, database) {
+  if(err) throw err;
+  db = database;
 });
 
 // Create storage engine
@@ -108,16 +123,82 @@ router.post('/videos', [ auth,
 router.get('/videos/:filename', (req, res) => {
   gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
-    if (!file || file.length === 0) {
+  if (!file || file.length === 0) {
       return res.status(404).json({
         err: 'No file exists'
       });
     }
-    // Read output to browser
-    const readstream = gfs.createReadStream(file.filename);
-    readstream.pipe(res);
-  });
-});
+    /** Calculate Size of file */
+      const { length } = file;
+      const range = req.headers.range;
+
+      /** Check for Range header */
+      if (range) {
+        /** Extracting Start and End value from Range Header */
+        let [start, end] = range.replace(/bytes=/, "").split("-");
+        start = parseInt(start, 10);
+        end = end ? parseInt(end, 10) : length - 1;
+
+        if (!isNaN(start) && isNaN(end)) {
+          start = start;
+          end = length - 1;
+        }
+        if (isNaN(start) && !isNaN(end)) {
+          start = length - end;
+          end = length - 1;
+        }
+
+        // Handle unavailable range request
+        if (start >= length || end >= length) {
+          // Return the 416 Range Not Satisfiable.
+          res.writeHead(416, {
+            "Content-Range": `bytes */${length}`
+          });
+          return res.end();
+        }
+
+        /** Sending Partial Content With HTTP Code 206 */
+        res.writeHead(206, {
+          "Content-Range": `bytes ${start}-${end}/${length}`,
+          "Accept-Ranges": "bytes",
+          "Content-Length": end - start + 1,
+          "Content-Type": "video/mp4"
+        });
+
+        let readstream = gfs.createReadStream({
+          _id: file._id,
+          range: {
+            startPos: start,
+            endPos: end
+          }
+        });
+        readstream.pipe(res);
+
+      } else {
+
+        res.writeHead(200, {
+          "Content-Length": size,
+          "Content-Type": "video/mp4"
+        });
+
+        let readable = gfs.createReadStream({
+          _id: file._id,
+          range: {
+            startPos: start,
+            endPos: end
+          }
+        });
+        pipeline(readable, res, err => {
+          console.log(err);
+        });
+
+      }
+
+     // let readstream = gfs.createReadStream(file.filename);
+     // readstream.pipe(res);
+
+   }
+)});
 
 // @route PUT api/lessons/:id
 // @desc Edit lesson

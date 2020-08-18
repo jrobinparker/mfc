@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 
 const Slider = ({ items }) => {
   const [ x, setX ] = useState(0);
 
   const goLeft = () => {
-    x === 0 ? setX(-100 * (items.length - 2)) : setX(x + 100)
+    x === 0 ? setX(-100 * (items.length - 1)) : setX(x + 100)
   }
 
   const goRight = () => {
-    x === -100 * (items.length - 2) ? setX(0) : setX(x - 100)
+    x === -100 * (items.length - 1) ? setX(0) : setX(x - 100)
   }
 
   return (
@@ -16,7 +16,8 @@ const Slider = ({ items }) => {
         {items.map((item, i) => {
           let bgImg = require(`../../../assets/${item.image}`);
           return (
-              <div key={i} style={{ transform: `translateX(${x}%)`, transition: '0.5s', backgroundImage: `url(${bgImg})`, backgroundSize: 'cover' }} >
+              <div key={i} style={{ transform: `translateX(${x}%)`, transition: '0.5s' }} >
+              <img src={`${bgImg}`} />
                 <div className="slide">
                     <div className="slide-about">
                       <span className="title mfc-title slide-header" style={{ marginBottom: '-2.5%' }}>{item.header}</span>

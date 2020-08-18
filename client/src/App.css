@@ -30,7 +30,7 @@ html {
 
 .logo {
   width: 50px;
-  height: auto;
+  height: 50px;
   margin-right: 10px;
 }
 
@@ -98,7 +98,7 @@ html {
 .nav-menu {
   position: absolute;
   z-index: 200;
-  height: 105vh;
+  height: 200vh;
   width: 20vw;
   transform: translateX(100%);
   right: 0;
@@ -357,14 +357,12 @@ html {
   height: 100vh;
   width: 100vw;
   background-color: #2A2A35;
+  display: block;
 }
 
 .about-header {
-  position: absolute;
-  top: 44.4%;
-  left: 0;
   z-index: 100;
-  display: inline-block;
+  position: absolute;
 }
 
 .slider {
@@ -377,6 +375,12 @@ html {
 .slide {
   width: 100vw;
   margin-right: 10px;
+}
+
+.slider img {
+  height: 100vh;
+  width: 100%;
+  object-fit: cover;
 }
 
 .slider-button {
@@ -606,7 +610,6 @@ html {
     position: absolute;
     right: 0%;
     top: 15%;
-    background-color: rgba(0, 0, 0, .5);
   }
 
   .nav-brand:hover {
@@ -614,7 +617,7 @@ html {
   }
 
   .logo {
-    width: 20px;
+    width: 30px;
     height: 30px;
     margin-right: 10px;
   }
@@ -691,9 +694,6 @@ html {
 
   .about-header {
     font-size: 2rem;
-    position: absolute;
-    top: 40%;
-    left: 0;
   }
 
   .slide-about {
@@ -816,7 +816,6 @@ html {
     position: absolute;
     right: 0%;
     top: 15%;
-    background-color: rgba(0, 0, 0, .5);
   }
 
   .nav-brand:hover {
@@ -901,9 +900,6 @@ html {
 
   .about-header {
     font-size: 2rem;
-    position: absolute;
-    top: 40%;
-    left: 0;
   }
 
   .slide-about {
@@ -1009,7 +1005,7 @@ html {
   }
 
   .logo {
-    width: 20px;
+    width: 30px;
     height: 30px;
     margin-right: 10px;
   }
@@ -1019,7 +1015,6 @@ html {
     position: absolute;
     right: 0%;
     top: 15%;
-    background-color: rgba(0, 0, 0, .5);
     font-size: 1.5rem;
   }
 
@@ -1186,7 +1181,6 @@ html {
     position: absolute;
     right: 0%;
     top: 15%;
-    background-color: rgba(0, 0, 0, .5);
   }
 
   .nav-brand:hover {
