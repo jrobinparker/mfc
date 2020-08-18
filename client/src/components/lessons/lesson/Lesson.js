@@ -38,7 +38,7 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, a
         />
 
           <ReactPlayer
-            url={`http://localhost:5000/api/lessons/videos/${lesson.video}`}
+            url={`https://modernfightingconcepts.herokuapp.com/api/lessons/videos/${lesson.video}`}
             controls={true}
             width='100%'
             height='50%'
