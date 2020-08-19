@@ -76,3 +76,104 @@
 .lesson-description {
   margin-top: 2.5%;
 }
+
+
+@media all and (orientation: portrait) and (max-width: 415px) {
+
+  .lessons {
+    width: 100vw;
+  }
+
+  .lessons-subcontainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filter-container {
+    max-width: 90vw;
+    margin-bottom: 2.5%;
+  }
+
+  .filter-container .field .control .label, .filter-container .field .control .select, .filter-container .field .control .select select, .filter-container .field .control .select option {
+    width: 100%;
+  }
+
+  .filter-container .field .control .label, .filter-container .field .control .select {
+    font-size: 3vw;
+  }
+
+  .lessons-subcontainer .lessons-container {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    margin-left: -3%;
+  }
+
+  .box {
+    width: 90vw;
+  }
+
+  .box, .lesson-item-title {
+    font-size: 4vw;
+  }
+
+  .lessons-subcontainer .lessons-container .pagination {
+    align-self: flex-start;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    margin-left: 2.5%;
+    font-size: 3vw;
+  }
+
+}
+
+@media all and (orientation: landscape) and (max-width: 897px) {
+
+  .lessons {
+    width: 100vw;
+  }
+
+  .lessons-subcontainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filter-container {
+    width: 100%;
+    position: relative;
+    left: -2.5%;
+  }
+
+  .filter-container .field .control .label, .filter-container .field .control .select, .filter-container .field .control .select select, .filter-container .field .control .select option {
+    width: 95%;
+  }
+
+  .filter-container .field .control .label, .filter-container .field .control .select {
+    font-size: 2vw;
+  }
+
+  .lessons-subcontainer .lessons-container {
+    position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-around;
+    left: -5%;
+    margin-top: 2.5%;
+  }
+
+  .box {
+    width: 85vw;
+  }
+
+  .box, .lesson-item-title {
+    font-size: 2vw;
+  }
+
+  .lessons-subcontainer .lessons-container .pagination {
+    align-self: flex-start;
+    margin-bottom: 2.5%;
+    font-size: 3vw;
+  }
+
+}

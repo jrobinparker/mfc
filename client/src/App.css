@@ -358,6 +358,7 @@ html {
   width: 100vw;
   background-color: #2A2A35;
   display: block;
+  overflow-x: hidden;
 }
 
 .about-header {
@@ -648,6 +649,31 @@ html {
     color: hsl(0, 0%, 96%);
   }
 
+  .line {
+    height: 2px;
+    width: 20px;
+  }
+
+  .change-icon #line1 {
+    transform: translateY(0px) rotateZ(-45deg);
+  }
+
+  .change-icon #line3 {
+    transform: translateY(-4px) rotateZ(45deg);
+  }
+
+  .change-icon #line2 {
+    opacity: 0;
+  }
+
+  .mobile-menu {
+    width: 110vw;
+    margin-left: 2%;
+  }
+
+  .nav-links a {
+    font-size: 2rem;
+  }
   /* hero */
 
   .hero-banner {
@@ -656,7 +682,7 @@ html {
 
   /* hero */
   .mfc-title {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
 
   .subtitle, .banner-button {
@@ -1016,6 +1042,28 @@ html {
     right: 0%;
     top: 15%;
     font-size: 1.5rem;
+  }
+
+  .line {
+    height: 2px;
+    width: 20px;
+  }
+
+  .change-icon #line1 {
+    transform: translateY(0px) rotateZ(-45deg);
+  }
+
+  .change-icon #line3 {
+    transform: translateY(-4px) rotateZ(45deg);
+  }
+
+  .change-icon #line2 {
+    opacity: 0;
+  }
+
+  .mobile-menu {
+    width: 110vw;
+    margin-left: 2%;
   }
 
   /* hero */

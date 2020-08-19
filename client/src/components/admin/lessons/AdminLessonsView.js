@@ -74,26 +74,27 @@ const AdminLessonsView = ({ lessons, deleteLesson, removeComplete }) => {
                           <td>{lesson.title}</td>
                           <td>{lesson.rank}</td>
                           <td><Moment format='MM/DD/YYYY'>{lesson.date}</Moment></td>
-                          <td className="admin-actions">
-
-                            <i className="fas fa-users"
-                              style={{ cursor: 'pointer' }}
-                              onClick={() => {
-                                setSelectedLesson(lesson)
-                                toggleCompleteModal(true)
-                              }}
-                            />
-                            <Link to={`/lesson/${lesson._id}/edit`} target="_blank">
-                              <i className="fas fa-edit" />
-                            </Link>
-                            <i
-                              className="fas fa-times"
-                              style={{ color: 'red', cursor: 'pointer' }}
-                              onClick={() => {
-                                setSelectedLesson(lesson)
-                                toggleDeleteModal(true)
-                              }}
-                            />
+                          <td>
+                            <div className="admin-actions">
+                              <i className="fas fa-users"
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => {
+                                  setSelectedLesson(lesson)
+                                  toggleCompleteModal(true)
+                                }}
+                              />
+                              <Link to={`/lesson/${lesson._id}/edit`} target="_blank">
+                                <i className="fas fa-edit" />
+                              </Link>
+                              <i
+                                className="fas fa-times"
+                                style={{ color: 'red', cursor: 'pointer' }}
+                                onClick={() => {
+                                  setSelectedLesson(lesson)
+                                  toggleDeleteModal(true)
+                                }}
+                              />
+                            </div>
                           </td>
                         </tr>
                       )

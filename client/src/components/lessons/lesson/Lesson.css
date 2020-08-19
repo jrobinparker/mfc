@@ -88,7 +88,7 @@
 @media all and (orientation: portrait) and (max-width: 415px) {
 
   .container .box {
-    width: 95vw;
+    max-width: 95vw;
     position: relative;
     left: 2.5%;
   }

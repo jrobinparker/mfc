@@ -74,25 +74,27 @@ const AdminTracksView = ({ tracks, deleteTrack }) => {
                           <td>{track.title}</td>
                           <td>{track.rank}</td>
                           <td><Moment format='MM/DD/YYYY'>{track.created}</Moment></td>
-                          <td className="admin-actions">
-                            <i className="fas fa-users"
-                              style={{ cursor: 'pointer' }}
-                              onClick={() => {
-                                setSelectedTrack(track)
-                                toggleCompleteModal(true)
-                              }}
-                            />
-                            <Link to={`/track/${track._id}/edit`}>
-                              <i className="fas fa-edit" />
-                            </Link>
-                            <i
-                              className="fas fa-times"
-                              style={{ color: 'red', cursor: 'pointer' }}
-                              onClick={() => {
-                                setSelectedTrack(track)
-                                toggleDeleteModal(true)
-                              }}
-                            />
+                          <td>
+                            <div className="admin-actions">
+                              <i className="fas fa-users"
+                                style={{ cursor: 'pointer' }}
+                                onClick={() => {
+                                  setSelectedTrack(track)
+                                  toggleCompleteModal(true)
+                                }}
+                              />
+                              <Link to={`/track/${track._id}/edit`}>
+                                <i className="fas fa-edit" />
+                              </Link>
+                              <i
+                                className="fas fa-times"
+                                style={{ color: 'red', cursor: 'pointer' }}
+                                onClick={() => {
+                                  setSelectedTrack(track)
+                                  toggleDeleteModal(true)
+                                }}
+                              />
+                            </div>
                           </td>
                         </tr>
                       )
