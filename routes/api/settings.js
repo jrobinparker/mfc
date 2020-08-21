@@ -14,7 +14,7 @@ router.post('/', auth,
 
       const newSettings = new Settings({
         dojo: req.body.dojo,
-        about: req.body.about,
+        about: req.body.about
       });
 
       const settings = await newSettings.save();
