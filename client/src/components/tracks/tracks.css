@@ -111,7 +111,8 @@
   }
 
   .box {
-    width: 90vw;
+    max-width: 90vw;
+    padding: 5px;
   }
 
   .box, .lesson-item-title {
@@ -163,7 +164,8 @@
   }
 
   .box {
-    width: 85vw;
+    max-width: 90vw;
+    padding: 5px;
   }
 
   .box, .lesson-item-title {

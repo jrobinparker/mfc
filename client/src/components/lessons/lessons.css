@@ -43,6 +43,7 @@
 
   .box {
     max-width: 90vw;
+    padding: 5px;
   }
 
   .box, .lesson-item-title {
@@ -61,9 +62,6 @@
 
 @media all and (orientation: landscape) and (max-width: 897px) {
 
-  body {
-    overflow: scroll;
-  }
   .lessons {
     width: 100vw;
   }
@@ -97,7 +95,8 @@
   }
 
   .box {
-    width: 85vw;
+    max-width: 90vw;
+    padding: 5px;
   }
 
   .box, .lesson-item-title {
