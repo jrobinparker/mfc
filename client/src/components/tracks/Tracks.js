@@ -35,21 +35,21 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
 
   let filteredTracks
 
-  if (filter.rank === 'white') {
+  if (filter.rank === 'beg') {
     filteredTracks = currentTracks
-      .filter(track => track.rank === 'beg')
+      .filter(track => track.rank === 'Beginner')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
-  if (filter.rank === 'yellow') {
+  if (filter.rank === 'int') {
     filteredTracks = currentTracks
-      .filter(track => track.rank === 'int')
+      .filter(track => track.rank === 'Intermediate')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
-  if (filter.rank === 'green') {
+  if (filter.rank === 'exp') {
     filteredTracks = currentTracks
-      .filter(track => track.rank === 'exp')
+      .filter(track => track.rank === 'Expert')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
