@@ -20,6 +20,7 @@ app.use('/api/auth', require('./routes/api/auth'));
 app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/lessons', require('./routes/api/lessons'));
 app.use('/api/tracks', require('./routes/api/tracks'));
+app.use('/api/settings', require('./routes/api/settings'));
 
 
 // serve static assets in production

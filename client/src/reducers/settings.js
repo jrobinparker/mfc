@@ -1,7 +1,8 @@
-import { GET_SETTINGS, UPDATE_SETTINGS, } from '../actions/types';
+import { GET_SETTINGS, GET_SETTING, UPDATE_SETTINGS, SETTINGS_ERROR } from '../actions/types';
 
 const initialState = {
   settings: [],
+  setting: null,
   loading: true,
   error: {}
 };
@@ -15,6 +16,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         settings: payload,
+        loading: false
+      };
+    case GET_SETTING:
+      return {
+        ...state,
+        setting: payload,
         loading: false
       };
     case SETTINGS_ERROR:

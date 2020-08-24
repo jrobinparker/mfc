@@ -1,12 +1,27 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_SETTINGS, UPDATE_SETTINGS } from './types';
+import { GET_SETTINGS, GET_SETTING, UPDATE_SETTINGS, SETTINGS_ERROR } from './types';
 
 export const getSettings = () => async dispatch => {
   try {
     const res = await axios.get('/api/settings');
     dispatch({
       type: GET_SETTINGS,
+      payload: res.data
+    })
+  } catch(err) {
+    dispatch({
+      type: SETTINGS_ERROR,
+      payload: ({ msg: err.response.statusText, status: err.response.status })
+    })
+  }
+};
+
+export const getSetting = id => async dispatch => {
+  try {
+    const res = await axios.get(`/api/settings/${id}`);
+    dispatch({
+      type: GET_SETTING,
       payload: res.data
     })
   } catch(err) {
@@ -32,9 +47,12 @@ export const createSettings = (formData, history, edit = false) => async dispatc
       payload: res.data
     });
 
+    dispatch(
+      getSettings()
+    )
+
     dispatch(setAlert(edit ? 'Settings updated!' : 'Settings created!', 'success'));
 
-    history.push('/dashboard');
   } catch(err) {
     const errors = err.response.data.errors;
 
@@ -59,14 +77,12 @@ export const editSettings = (id, formData, history, edit = true) => async dispat
 
     const res = await axios.patch(`/api/settings/${id}`, formData, config)
 
-    dispatch({
-      type: GET_SETTINGS,
-      payload: res.data
-    });
+    dispatch(
+      getSettings()
+    )
 
     dispatch(setAlert('Settings updated!', 'success'));
 
-    history.push('/dashboard');
   } catch(err) {
     const errors = err.response.data.errors;
 

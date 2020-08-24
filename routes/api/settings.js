@@ -10,11 +10,11 @@ const User = require('../../models/User');
 // @access Private
 router.post('/', auth,
   async (req, res) => {
-      const user = await User.findById(req.user.id).select('-password');
-
+    try {
       const newSettings = new Settings({
-        dojo: req.body.dojo,
-        about: req.body.about
+        area: req.body.area,
+        title: req.body.title,
+        text: req.body.text
       });
 
       const settings = await newSettings.save();
@@ -26,18 +26,40 @@ router.post('/', auth,
     }
   });
 
+// @route GET api/lessons/:id
+// @desc Get lesson by ID
+// @access Private
+router.get('/:id', auth, async (req, res) => {
+  try {
+    const setting = await Setting.findById(req.params.id);
+
+    if (!setting) {
+      return res.status(404).json({ msg: 'Setting not found' });
+    }
+
+    res.json(setting);
+  } catch(err) {
+    if (err.kind === 'ObjectId') {
+      return res.status(404).json({ msg: 'Setting not found' });
+    }
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
+
 // @route PUT api/settings/:id
 // @desc Edit lesson
 // @access Private
 
 router.patch('/:id', auth, async (req, res) => {
 
-      const { dojo, about } = req.body;
+      const { area, title, text } = req.body;
 
       // build profile object
       const settingsFields = {};
-      if (dojo) settingsFields.dojo = dojo;
-      if (about) settingsFields.about = settings;
+      if (area) settingsFields.area = area;
+      if (title) settingsFields.title = title;
+      if (text) settingsFields.text = text;
 
       let settings = await Settings.findById(req.params.id);
 
@@ -50,5 +72,15 @@ router.patch('/:id', auth, async (req, res) => {
           console.log(settingsFields)
           res.json(settings)
       });
+
+router.get('/', async (req, res) => {
+  try {
+    const settings = await Settings.find();
+    res.json(settings);
+  } catch(err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+});
 
 module.exports = router;

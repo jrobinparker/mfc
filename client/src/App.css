@@ -359,6 +359,7 @@ html {
   background-color: #2A2A35;
   display: block;
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .about-header {
