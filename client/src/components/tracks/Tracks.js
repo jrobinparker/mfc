@@ -37,43 +37,19 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
 
   if (filter.rank === 'white') {
     filteredTracks = currentTracks
-      .filter(track => track.rank === 'White')
+      .filter(track => track.rank === 'beg')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.rank === 'yellow') {
     filteredTracks = currentTracks
-      .filter(track => track.rank === 'Yellow')
+      .filter(track => track.rank === 'int')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
   if (filter.rank === 'green') {
     filteredTracks = currentTracks
-      .filter(track => track.rank === 'Green')
-      .map(track => <TrackItem key={track._id} track={track}  />)
-  }
-
-  if (filter.rank === 'blue') {
-    filteredTracks = currentTracks
-      .filter(track => track.rank === 'Blue')
-      .map(track => <TrackItem key={track._id} track={track}  />)
-  }
-
-  if (filter.rank === 'purple') {
-    filteredTracks = currentTracks
-      .filter(track => track.rank === 'Purple')
-      .map(track => <TrackItem key={track._id} track={track}  />)
-  }
-
-  if (filter.rank === 'brown') {
-    filteredTracks = currentTracks
-      .filter(track => track.rank === 'Brown')
-      .map(track => <TrackItem key={track._id} track={track}  />)
-  }
-
-  if (filter.rank === 'black') {
-    filteredTracks = currentTracks
-      .filter(track => track.rank === 'Black')
+      .filter(track => track.rank === 'exp')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
@@ -133,13 +109,9 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
               <div class="select">
                 <select onChange={e => onChange(e)} name="rank">
                 <option value="all" selected>All Ranks</option>
-                <option value="white">White</option>
-                <option value="yellow">Yellow</option>
-                <option value="green">Green</option>
-                <option value="blue">Blue</option>
-                <option value="purple">Purple</option>
-                <option value="brown">Brown</option>
-                <option value="black">Black</option>
+                <option value="beg">Beginner</option>
+                <option value="int">Intermediate</option>
+                <option value="exp">Expert</option>
                 </select>
               </div>
             </div>

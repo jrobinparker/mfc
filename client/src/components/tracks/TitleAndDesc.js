@@ -46,13 +46,10 @@ const TitleAndDesc = ({ mode, title, description, rank, style, skills, onChange,
                   <label className="label">Rank</label>
                     <div class="select">
                       <select onChange={e => onChange(e)} name="rank" value={rank}>
-                        <option value="" disabled selected>Select your rank</option>
-                        <option name="rank">White</option>
-                        <option name="rank">Yellow</option>
-                        <option name="rank">Green</option>
-                        <option name="rank">Purple</option>
-                        <option name="rank">Brown</option>
-                        <option name="rank">Black</option>
+                        <option value="" disabled selected>Select rank</option>
+                        <option name="rank">Beginner</option>
+                        <option name="rank">Intermediate</option>
+                        <option name="rank">Expert</option>
                       </select>
                     </div>
                   </div>

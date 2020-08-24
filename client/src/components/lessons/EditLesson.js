@@ -86,14 +86,10 @@ const EditLesson = ({ auth, lesson: { lesson, loading }, editLesson, getLesson, 
                 <label className="label">Rank</label>
                   <div class="select">
                     <select onChange={e => onChange(e)} name="rank" value={rank}>
-                      <option value="">None</option>
-                      <option>White</option>
-                      <option>Yellow</option>
-                      <option>Green</option>
-                      <option>Blue</option>
-                      <option>Purple</option>
-                      <option>Brown</option>
-                      <option>Black</option>
+                    <option value="" disabled selected>Select rank</option>
+                    <option name="rank">Beginner</option>
+                    <option name="rank">Intermediate</option>
+                    <option name="rank">Expert</option>
                     </select>
                   </div>
                 </div>

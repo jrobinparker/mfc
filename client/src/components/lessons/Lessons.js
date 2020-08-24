@@ -36,45 +36,21 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
 
   let filteredLessons
 
-  if (filter.rank === 'white') {
+  if (filter.rank === 'beg') {
     filteredLessons = currentLessons
-      .filter(lesson => lesson.rank === 'White')
+      .filter(lesson => lesson.rank === 'Beginner')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
-  if (filter.rank === 'yellow') {
+  if (filter.rank === 'int') {
     filteredLessons = currentLessons
-      .filter(lesson => lesson.rank === 'Yellow')
+      .filter(lesson => lesson.rank === 'Intermediate')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
-  if (filter.rank === 'green') {
+  if (filter.rank === 'exp') {
     filteredLessons = currentLessons
-      .filter(lesson => lesson.rank === 'Green')
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
-  }
-
-  if (filter.rank === 'blue') {
-    filteredLessons = currentLessons
-      .filter(lesson => lesson.rank === 'Blue')
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
-  }
-
-  if (filter.rank === 'purple') {
-    filteredLessons = currentLessons
-      .filter(lesson => lesson.rank === 'Purple')
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
-  }
-
-  if (filter.rank === 'brown') {
-    filteredLessons = currentLessons
-      .filter(lesson => lesson.rank === 'Brown')
-      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
-  }
-
-  if (filter.rank === 'black') {
-    filteredLessons = currentLessons
-      .filter(lesson => lesson.rank === 'Black')
+      .filter(lesson => lesson.rank === 'Expert')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
@@ -134,13 +110,9 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
               <div class="select">
                 <select onChange={e => onChange(e)} name="rank">
                 <option value="all" selected>All Ranks</option>
-                <option value="white">White</option>
-                <option value="yellow">Yellow</option>
-                <option value="green">Green</option>
-                <option value="blue">Blue</option>
-                <option value="purple">Purple</option>
-                <option value="brown">Brown</option>
-                <option value="black">Black</option>
+                <option value="beg">Beginner</option>
+                <option value="int">Intermediate</option>
+                <option value="exp">Expert</option>
                 </select>
               </div>
             </div>
@@ -152,6 +124,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
                 <select onChange={e => onChange(e)} name="style">
                   <option value="all" selected>All</option>
                   <option value="eskrima">Eskrima</option>
+
                 </select>
               </div>
             </div>
