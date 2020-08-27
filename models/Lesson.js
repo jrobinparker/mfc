@@ -20,6 +20,9 @@ const LessonSchema = new Schema({
   video: {
     type: String
   },
+  thumbnail: {
+    type: String
+  },
   style: {
     type: String
   },

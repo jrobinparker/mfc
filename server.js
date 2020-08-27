@@ -3,6 +3,7 @@ const connectDB = require('./config/db');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 const path = require('path');
+const expressFileUpload = require('express-fileupload');
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use('/api/profile', require('./routes/api/profile'));
 app.use('/api/lessons', require('./routes/api/lessons'));
 app.use('/api/tracks', require('./routes/api/tracks'));
 app.use('/api/settings', require('./routes/api/settings'));
+app.use('/uploads', express.static('uploads'));
 
 
 // serve static assets in production

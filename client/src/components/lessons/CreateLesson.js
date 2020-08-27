@@ -16,7 +16,8 @@ const CreateLesson = ({ loadUser, auth, createLesson, uploadVideo, history }) =>
     style: '',
     skills: '',
     description: '',
-    video: ''
+    video: '',
+    thumbnail: ''
   });
 
   useEffect(() => {
@@ -26,6 +27,9 @@ const CreateLesson = ({ loadUser, auth, createLesson, uploadVideo, history }) =>
 
   const [ videoObj, setVideoObj ] = useState('');
   const [ videoObjName, setVideoObjName ] = useState('Choose Video');
+  const [filePath, setFilePath] = useState("");
+  const [duration, setDuration] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
   const [ message, setMessage ] = useState('');
   const [ uploadPercentage, setUploadPercentage ] = useState(0);
   const [ displayProgress, setDisplayProgress ] = useState(false);
@@ -42,8 +46,9 @@ const CreateLesson = ({ loadUser, auth, createLesson, uploadVideo, history }) =>
     setVideoObjName(e.target.files[0].name);
   }
 
+  let videoFile, thumbFile
 
-  const onVideoSubmit = async e => {
+  const onVideoSubmit = e => {
    e.preventDefault();
    const videoData = new FormData();
    videoData.append('video', videoObj);
@@ -56,7 +61,7 @@ const CreateLesson = ({ loadUser, auth, createLesson, uploadVideo, history }) =>
        }
      }
 
-     const res = await axios.post('/api/lessons/videos', videoData,
+     const res = axios.post('/api/lessons/videos', videoData,
      { config,
        onUploadProgress: progressEvent => {
          setDisplayProgress(true);
@@ -66,10 +71,14 @@ const CreateLesson = ({ loadUser, auth, createLesson, uploadVideo, history }) =>
             )
           );
         }
+      }).then(async res => {
+        const { filename } = res.data.file;
+        setUploadStage(2)
+        videoFile = filename
+        await extractThumbnail(filename)
+      }).then(res => {
+        setFormData({...formData, video: videoFile, thumbnail: thumbFile})
       })
-      const { filename } = res.data.file
-      setFormData({...formData, video: filename})
-      setUploadStage(2)
     } catch(err) {
       if (err.response.status === 500) {
         setMessage('There was a problem with the server');
@@ -77,7 +86,21 @@ const CreateLesson = ({ loadUser, auth, createLesson, uploadVideo, history }) =>
         setMessage(err.response.data.msg);
       }
     }
+
   }
+
+  const extractThumbnail = async filename => {
+    let fileData = { url: `http://localhost:5000/api/lessons/videos/${filename}` }
+
+    let fileName
+    const response = await axios.post('/api/lessons/temp-thumbnails', fileData)
+                    .then(response => {
+                          const { success } = response.data
+                          console.log(success)
+                          thumbFile = success
+                          setUploadStage(3)
+                        })
+    }
 
 
   const onSubmit = e => {
@@ -97,7 +120,14 @@ const CreateLesson = ({ loadUser, auth, createLesson, uploadVideo, history }) =>
           </Fragment>
         )
       case 2:
-        return <p>Upload complete!</p>
+        return (
+          <Fragment>
+            <p>Creating video thumbnail... </p>
+            <progress class="progress is-small is-primary" max="100">15%</progress>
+          </Fragment>
+        )
+      case 3:
+        return <p>Complete!</p>
       default:
         return <></>
     }

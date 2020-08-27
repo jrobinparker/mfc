@@ -3,7 +3,8 @@ const router = express.Router();
 const { check, validationResult } = require('express-validator/check');
 const auth = require('../../middleware/auth');
 const path = require('path');
-
+const fs = require('fs');
+const request = require('request');
 const crypto = require('crypto');
 const mongoose = require('mongoose');
 const mongo = require('mongodb');
@@ -13,12 +14,7 @@ const ObjectID = require('mongodb').ObjectID;
 const multer = require('multer');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
-const fs = require('fs');
-const { stat, createReadStream } = require("fs");
-const { promisify } = require("util");
-const { pipeline } = require("stream");
-const fileInfo = promisify(stat);
-
+const ffmpeg = require('fluent-ffmpeg');
 const Lesson = require('../../models/Lesson');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
@@ -30,12 +26,15 @@ const uri = "mongodb+srv://mfc-online-admin:mfcAdmin0520@mfc-online-db-c7fzs.mon
 const conn = mongoose.createConnection(uri);
 
 // Init gfs
-let gfs;
+let videos, thumbs;
 
 conn.once('open', () => {
   // Init stream
-  gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection('videos');
+  videos = Grid(conn.db, mongoose.mongo);
+  videos.collection('videos');
+
+  thumbs = Grid(conn.db, mongoose.mongo);
+  thumbs.collection('thumbnails');
 });
 
 // Initialize MongoDB connection once
@@ -44,8 +43,8 @@ mongoose.connect(uri, function(err, database) {
   db = database;
 });
 
-// Create storage engine
-const storage = new GridFsStorage({
+// Create video storage engine
+const videoStorage = new GridFsStorage({
   url: uri,
   file: (req, file) => {
     return new Promise((resolve, reject) => {
@@ -63,7 +62,52 @@ const storage = new GridFsStorage({
     });
   }
 });
-const upload = multer({ storage });
+
+const videoUpload = multer({ storage: videoStorage });
+
+// temp file storage
+let tempStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "tmp/");
+    },
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}_${file.originalname}`);
+    },
+    fileFilter: (req, file, cb) => {
+        const ext = path.extname(file.originalname)
+        if (ext !== '.jpg' && ext !== '.png') {
+            return cb(res.status(400).end('only jpg, png, mp4 is allowed'), false);
+        }
+        cb(null, true)
+    }
+});
+
+const tempUpload = multer({ storage: tempStorage })
+
+// Create thumbnail storage engine
+const thumbStorage = new GridFsStorage({
+  url: uri,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = file.originalname;
+        const fileInfo = {
+          filename: filename,
+          bucketName: 'thumbnails'
+        };
+        resolve(fileInfo);
+        console.log(fileInfo);
+      });
+    });
+    console.log(req)
+  }
+});
+
+const thumbUpload = multer({ storage: thumbStorage })
+
 
 // @route POST api/lessons
 // @desc Create a lesson
@@ -82,7 +126,7 @@ router.post('/', [ auth, [
     try {
       const user = await User.findById(req.user.id).select('-password');
 
-      const { title, rank, description, style, skills, about, video } = req.body;
+      const { title, rank, description, style, skills, about, video, thumbnail } = req.body;
 
       const lessonFields = {}
 
@@ -91,6 +135,7 @@ router.post('/', [ auth, [
       lessonFields.title = title;
       lessonFields.description = description;
       lessonFields.video = video;
+      lessonFields.thumbnail = thumbnail;
       if (rank) lessonFields.rank = rank;
       if (style) lessonFields.style = style;
       if (skills) {
@@ -112,16 +157,74 @@ router.post('/', [ auth, [
 // @desc Upload a video
 // @access Private
 router.post('/videos', [ auth,
-  upload.single('video') ],
+  videoUpload.single('video') ],
   async (req, res) => {
     const data = await res.json({ file: req.file })
-    console.log(data);
   });
 
+// @route POST api/lessons/temp-thumbnails
+// @desc Create thumbnail from uploaded video
+// @access Private
+router.post("/temp-thumbnails", (req, res) => {
+
+    let fileName, filePath, fileDuration
+
+    ffmpeg.ffprobe(req.body.url, function(err, metadata) {
+        fileDuration = metadata.format.duration
+    });
+
+    ffmpeg(req.body.url)
+        .on('filenames', function (filenames) {
+            console.log(filenames)
+            fileName = filenames[0];
+            filePath =  "uploads/thumbnails/" + filenames[0];
+        })
+        .on('end', function (filenames) {
+            console.log('Screenshots taken for ' + fileName);
+            const returnFile = filePath.replace(/^.*[\\\/]/, '')
+            res.json({ success: returnFile })
+            uploadThumbnail(filePath)
+        })
+        .on('error', function (err) {
+            console.error(err);
+            return res.json({ success: false, err });
+        })
+        .screenshots({
+            count: 1,
+            folder: 'uploads/thumbnails',
+            size: '320x240',
+            filename: 'thumbnail-%b.png'
+        });
+
+});
+
+function uploadThumbnail(filePath) {
+  const formData = {
+      file: fs.createReadStream(filePath),
+  }
+  request.post({url: 'http://localhost:5000/api/lessons/thumbnails', formData: formData},
+    function optionalCallback(err, httpResponse, body) {
+    if (err) {
+      return console.error('upload failed:', err);
+    }
+    console.log('Upload successful!  Server responded with:', body);
+  })
+}
+
+// @route POST api/lessons/thumbnails
+// @desc Upload a video thumbnail
+// @access Private
+router.post('/thumbnails',
+  thumbUpload.any(),
+  async (req, res) => {
+    const data = await res.json({ file: req.file })
+  });
+;
+
 // @route GET /videos/:filename
-// @desc Display Image
+// @desc Get video
 router.get('/videos/:filename', (req, res) => {
-  gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+  videos.files.findOne({ filename: req.params.filename }, (err, file) => {
     // Check if file
   if (!file || file.length === 0) {
       return res.status(404).json({
@@ -165,7 +268,7 @@ router.get('/videos/:filename', (req, res) => {
           "Content-Type": "video/mp4"
         });
 
-        let readstream = gfs.createReadStream({
+        let readstream = videos.createReadStream({
           _id: file._id,
           range: {
             startPos: start,
@@ -181,7 +284,7 @@ router.get('/videos/:filename', (req, res) => {
           "Content-Type": "video/mp4"
         });
 
-        let readable = gfs.createReadStream({
+        let readable = videos.createReadStream({
           _id: file._id,
           range: {
             startPos: start,
@@ -199,6 +302,30 @@ router.get('/videos/:filename', (req, res) => {
 
    }
 )});
+
+// @route GET /thumbnails/:filename
+// @desc Get thumbnail
+router.get('/thumbnails/:filename', (req, res) => {
+  thumbs.files.findOne({ filename: req.params.filename }, (err, file) => {
+    // Check if file
+    if (!file || file.length === 0) {
+      return res.status(404).json({
+        err: 'No file exists'
+      });
+    }
+
+    // Check if image
+    if (file.contentType === 'image/jpeg' || file.contentType === 'image/png') {
+      // Read output to browser
+      const readstream = thumbs.createReadStream(file.filename);
+      readstream.pipe(res);
+    } else {
+      res.status(404).json({
+        err: 'Not an image'
+      });
+    }
+  });
+});
 
 // @route PUT api/lessons/:id
 // @desc Edit lesson
