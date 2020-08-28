@@ -182,7 +182,7 @@ html {
 
 .hero-banner {
   height: 100%;
-  background: url('./assets/bats-banner-1.gif');
+  background-image: url("https://lh3.googleusercontent.com/u9ZOwjkrTBNEsFpZU0S4xMRJZei7-7i91kyn7D1uGeCCMAABxgd1WIuKd-twMsZOwdzbXsXLKC5fpTVfMV2PFKqI6KuwBjthd9Te0Kc-aA=s1600");
   background-size: cover;
   background-repeat: no-repeat;
 }
