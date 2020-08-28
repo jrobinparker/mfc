@@ -156,7 +156,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
                 {
                   filteredLessons
                 }
-              </div>
+                </div>
             </div>
             {lessons.length <= 12 ? <></> : <Pagination itemsPerPage={lessonsPerPage} totalItems={lessons.length} paginate={paginate} />}
           </div>

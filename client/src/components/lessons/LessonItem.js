@@ -6,6 +6,7 @@ import RankIcon from './lesson/RankIcon';
 import StyleIcon from './lesson/StyleIcon';
 import CompleteIcon from './lesson/CompleteIcon';
 import './lesson/Lesson.css';
+import './lessons.css';
 
 const LessonItem = ({ lesson: { _id, title, date, rank, style, likes, completes, description, thumbnail }}, user ) => {
   const [ thumb, setThumb ] = useState('')
@@ -19,24 +20,29 @@ const LessonItem = ({ lesson: { _id, title, date, rank, style, likes, completes,
 
   return (
     <div className="column is-3">
-      <div className="card">
-        <div className="card-image">
-          <figure className="image">
-            <img src={thumb} />
-          </figure>
-        </div>
-        <div className="card-content">
-          <div className="content">
-            <p className="lesson-item-title"><Link to={`/lesson/${_id}`}>{title}</Link></p>
-            <div class="field is-grouped is-grouped-multiline lesson-metadata">
-              <RankIcon rank={rank}/>
-              <StyleIcon style={style} />
-              <CompleteIcon completes={completes} user={user} />
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img src={thumb} />
+            </figure>
+          </div>
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4"><Link to={`/lesson/${_id}`}>{title}</Link></p>
+                <p class="subtitle is-6" style={{ color: 'black' }}><Moment format='MM/DD/YYYY'>{date}</Moment></p>
+              </div>
             </div>
-            <small><Moment format='MM/DD/YYYY'>{date}</Moment></small>
+
+            <div class="content">
+              <div class="field is-grouped is-grouped-multiline lesson-metadata">
+                <RankIcon rank={rank}/>
+                <StyleIcon style={style} />
+                <CompleteIcon completes={completes} user={user} />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
     </div>
   )
 }
