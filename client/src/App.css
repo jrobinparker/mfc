@@ -4,7 +4,6 @@ html {
  }
 
  html, body, #root {
-   overflow-x: hidden;
  }
 
 /* nav styles */

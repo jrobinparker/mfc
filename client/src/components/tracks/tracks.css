@@ -92,6 +92,8 @@
   .lessons-subcontainer {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    width: 100%;
   }
 
   .filter-container {
@@ -109,19 +111,12 @@
 
   .lessons-subcontainer .lessons-container {
     position: relative;
+    top: 40%;
+    left: -10%;
+    width: 95vw;
     display: flex;
     flex-direction: column-reverse;
     justify-content: space-around;
-    margin-left: -3%;
-  }
-
-  .box {
-    max-width: 90vw;
-    padding: 5px;
-  }
-
-  .box, .lesson-item-title {
-    font-size: 4vw;
   }
 
   .lessons-subcontainer .lessons-container .pagination {
@@ -166,15 +161,6 @@
     justify-content: space-around;
     left: -5%;
     margin-top: 2.5%;
-  }
-
-  .box {
-    max-width: 90vw;
-    padding: 5px;
-  }
-
-  .box, .lesson-item-title {
-    font-size: 2vw;
   }
 
   .lessons-subcontainer .lessons-container .pagination {

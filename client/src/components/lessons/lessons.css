@@ -27,7 +27,18 @@
   bottom: -10%;
 }
 
-@media all and (orientation: portrait) and (max-width: 415px) {
+.card-image .image {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+.card-image .image img {
+  width: 200px;
+  height: 200px;
+}
+
+
+@media all and (orientation: portrait) and (max-width: 321px) {
 
   .lessons {
     width: 100vw;
@@ -51,28 +62,254 @@
   }
 
   .lessons-subcontainer .lessons-container {
+    max-height: 100vh;
+    width: 95%;
     position: relative;
+    top: 155%;
     display: flex;
     flex-direction: column-reverse;
-    justify-content: space-around;
-    margin-left: -3%;
+    justify-content: space-between;
   }
 
-  .box {
-    max-width: 90vw;
-    padding: 5px;
+  .card {
+    display: flex;
+    flex-direction: row;
+    max-width: 10vw;
+    max-height: 70vh;
   }
 
-  .box, .lesson-item-title {
-    font-size: 4vw;
+  .card, .lesson-item-title {
+    font-size: 3vw;
   }
 
   .lessons-subcontainer .lessons-container .pagination {
+    position: relative;
+    bottom: 5%;
     align-self: flex-start;
     margin-top: 2.5%;
     margin-bottom: 2.5%;
     margin-left: 2.5%;
     font-size: 3vw;
+  }
+
+
+  .card-image .image {
+    background-color: black;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .card-image .image img {
+    width: 50px;
+    height: 50px;
+  }
+
+}
+
+@media all and (orientation: portrait) and (min-width: 322px) and (max-width: 415px) {
+
+  .lessons {
+    width: 100vw;
+  }
+
+  .lessons-subcontainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filter-container {
+    max-width: 90vw;
+  }
+
+  .filter-container .field .control .label, .filter-container .field .control .select, .filter-container .field .control .select select, .filter-container .field .control .select option {
+    width: 100%;
+  }
+
+  .filter-container .field .control .label, .filter-container .field .control .select {
+    font-size: 3vw;
+  }
+
+  .lessons-subcontainer .lessons-container {
+    max-height: 100vh;
+    width: 95%;
+    position: relative;
+    top: 125%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: row;
+    max-width: 10vw;
+    max-height: 70vh;
+  }
+
+  .card, .lesson-item-title {
+    font-size: 3vw;
+  }
+
+  .lessons-subcontainer .lessons-container .pagination {
+    position: relative;
+    bottom: 5%;
+    align-self: flex-start;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    margin-left: 2.5%;
+    font-size: 3vw;
+  }
+
+
+  .card-image .image {
+    background-color: black;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .card-image .image img {
+    width: 50px;
+    height: 50px;
+  }
+
+}
+
+@media all and (orientation: portrait) and (min-width: 322px) and (max-width: 413px) {
+
+  .lessons {
+    width: 100vw;
+  }
+
+  .lessons-subcontainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filter-container {
+    max-width: 90vw;
+  }
+
+  .filter-container .field .control .label, .filter-container .field .control .select, .filter-container .field .control .select select, .filter-container .field .control .select option {
+    width: 100%;
+  }
+
+  .filter-container .field .control .label, .filter-container .field .control .select {
+    font-size: 3vw;
+  }
+
+  .lessons-subcontainer .lessons-container {
+    max-height: 100vh;
+    width: 95%;
+    position: relative;
+    top: 125%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: row;
+    max-width: 10vw;
+    max-height: 70vh;
+  }
+
+  .card, .lesson-item-title {
+    font-size: 3vw;
+  }
+
+  .lessons-subcontainer .lessons-container .pagination {
+    position: relative;
+    bottom: 5%;
+    align-self: flex-start;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    margin-left: 2.5%;
+    font-size: 3vw;
+  }
+
+
+  .card-image .image {
+    background-color: black;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .card-image .image img {
+    width: 50px;
+    height: 50px;
+  }
+
+}
+
+@media all and (orientation: portrait) and (min-width: 413px) and (max-width: 500px) {
+
+  .lessons {
+    width: 100vw;
+  }
+
+  .lessons-subcontainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .filter-container {
+    max-width: 90vw;
+  }
+
+  .filter-container .field .control .label, .filter-container .field .control .select, .filter-container .field .control .select select, .filter-container .field .control .select option {
+    width: 100%;
+  }
+
+  .filter-container .field .control .label, .filter-container .field .control .select {
+    font-size: 3vw;
+  }
+
+  .lessons-subcontainer .lessons-container {
+    max-height: 100vh;
+    width: 95%;
+    position: relative;
+    top: 110%;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: row;
+    max-width: 10vw;
+    max-height: 70vh;
+  }
+
+  .card, .lesson-item-title {
+    font-size: 3vw;
+  }
+
+  .lessons-subcontainer .lessons-container .pagination {
+    position: relative;
+    bottom: 5%;
+    align-self: flex-start;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    margin-left: 2.5%;
+    font-size: 3vw;
+  }
+
+
+  .card-image .image {
+    background-color: black;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .card-image .image img {
+    width: 50px;
+    height: 50px;
   }
 
 }
@@ -111,12 +348,12 @@
     margin-top: 2.5%;
   }
 
-  .box {
+  .card {
     max-width: 90vw;
     padding: 5px;
   }
 
-  .box, .lesson-item-title {
+  .card, .lesson-item-title {
     font-size: 2vw;
   }
 
@@ -124,6 +361,16 @@
     align-self: flex-end;
     margin-bottom: 2.5%;
     font-size: 3vw;
+  }
+
+  .card-image .image {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+  }
+  .card-image .image img {
+    width: 200px;
+    height: 200px;
   }
 
 }

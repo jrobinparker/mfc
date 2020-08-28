@@ -21,9 +21,9 @@ const LessonItem = ({ lesson: { _id, title, date, rank, style, likes, completes,
     <div className="column is-3">
       <div className="card">
         <div className="card-image">
-        <figure className="image is-4by3">
-          <img src={thumb} />
-        </figure>
+          <figure className="image">
+            <img src={thumb} />
+          </figure>
         </div>
         <div className="card-content">
           <div className="content">
