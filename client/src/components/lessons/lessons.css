@@ -1,13 +1,30 @@
+.lessons-header {
+  height: 10vh;
+  padding-left: 1.5%;
+  padding-top: 1%;
+}
 
 .lessons-title {
   font-family: 'Fjalla One', sans-serif;
   background-color: black;
   letter-spacing: -3px;
-  padding-right: 5px;
 }
 
 .lessons-subtitle {
   margin-top: 15px;
+}
+
+.lessons-container {
+  height: 90vh;
+}
+
+.lessons-subcontainer, .lessons-subcontainer .lessons-container {
+  height: 100%;
+}
+
+.lessons-subcontainer .lessons-container .pagination {
+  position: relative;
+  bottom: -10%;
 }
 
 @media all and (orientation: portrait) and (max-width: 415px) {
@@ -104,7 +121,7 @@
   }
 
   .lessons-subcontainer .lessons-container .pagination {
-    align-self: flex-start;
+    align-self: flex-end;
     margin-bottom: 2.5%;
     font-size: 3vw;
   }

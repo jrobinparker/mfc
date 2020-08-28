@@ -1,3 +1,8 @@
+.tracks-header {
+  height: 10vh;
+  padding-left: 1.5%;
+  padding-top: 1%;
+}
 
 .tracks-title {
   font-family: 'Fjalla One', sans-serif;

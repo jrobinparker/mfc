@@ -92,16 +92,10 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
 
   return loading ? <Loading /> : (
     <div className="lessons">
-    <div class="hero is-small">
-       <div class="hero-body">
-         <div class="container hero-container">
-           <span class="title lessons-title" style={{ color: 'white' }}>
-             LESSONS
-           </span>
-         </div>
-       </div>
-     </div>
-    <div className="lessons-container">
+      <div className="lessons-header">
+        <span class="title lessons-title" style={{ color: 'white' }}>LESSONS</span>
+      </div>
+      <div className="lessons-container">
         <div className="lessons-subcontainer">
         <div className="filter-container">
           <div class="field">
@@ -144,7 +138,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
           </div>
         </div>
           <div className="lessons-container">
-            <div className="container" style={{ height: '70vh' }}>
+            <div className="container">
               <div className="columns is-multiline">
                 {
                   filteredLessons

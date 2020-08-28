@@ -11,7 +11,7 @@ const LessonItem = ({ lesson: { _id, title, date, rank, style, likes, completes,
   const [ thumb, setThumb ] = useState('')
 
   const defaultThumb = require('../../assets/logo.png')
-  const lessonThumb = `http://localhost:5000/api/lessons/thumbnails/${thumbnail}`
+  const lessonThumb = `https://modernfightingconcepts.herokuapp.com/api/lessons/thumbnails/${thumbnail}`
 
   useEffect(() => {
     setThumb(!thumbnail ? defaultThumb : lessonThumb)
@@ -21,7 +21,7 @@ const LessonItem = ({ lesson: { _id, title, date, rank, style, likes, completes,
     <div className="column is-3">
       <div className="card">
         <div className="card-image">
-        <figure className="img is-4by3">
+        <figure className="image is-4by3">
           <img src={thumb} />
         </figure>
         </div>

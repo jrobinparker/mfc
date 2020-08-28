@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "MFC online platform for students",
   "main": "server.js",
+  "engines": {
+    "node": "13.13.0"
+  }
   "scripts": {
     "start": "node server",
     "server": "nodemon server",

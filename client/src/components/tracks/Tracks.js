@@ -91,15 +91,9 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
 
   return loading ? <Loading /> : (
     <Fragment>
-    <div class="hero is-small">
-       <div class="hero-body">
-         <div class="container">
-           <span class="title tracks-title" style={{ color: 'white' }}>
-             TRACKS
-           </span>
-         </div>
-       </div>
-     </div>
+    <div className="tracks-header">
+      <span class="title lessons-title" style={{ color: 'white' }}>TRACKS</span>
+    </div>
     <div className="lessons-container">
         <div className="lessons-subcontainer">
         <div className="filter-container">
