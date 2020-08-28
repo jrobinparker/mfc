@@ -1903,8 +1903,9 @@ html {
     font-size: 2.5vw;
   }
 
-  .contact-social img {
-    width: 75%;
+  .contact-social {
+    width: 100%;
+    justify-content: space-evenly;
   }
 
 }
