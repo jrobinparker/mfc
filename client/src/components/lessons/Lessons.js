@@ -68,6 +68,18 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
+  if (filter.style === 'bjj') {
+    filteredLessons = currentLessons
+      .filter(lesson => lesson.style === 'Brazilian Jiu-Jitsu')
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
+  }
+
+  if (filter.style === 'muaythai') {
+    filteredLessons = currentLessons
+      .filter(lesson => lesson.style === 'Muay Thai')
+      .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
+  }
+
   if (filter.sort === 'all') {
     filteredLessons = currentLessons.map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
@@ -118,7 +130,8 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
                 <select onChange={e => onChange(e)} name="style">
                   <option value="all" selected>All</option>
                   <option value="eskrima">Eskrima</option>
-
+                  <option value="bjj">Brazilian Jiu-Jitsu</option>
+                  <option value="muaythai">Muay Thai</option>
                 </select>
               </div>
             </div>

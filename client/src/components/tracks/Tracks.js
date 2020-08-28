@@ -67,6 +67,18 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 
+  if (filter.style === 'bjj') {
+    filteredTracks = currentTracks
+      .filter(track => track.style === 'Brazilian Jiu-Jitsu')
+      .map(track => <TrackItem key={track._id} track={track}  />)
+  }
+
+  if (filter.style === 'muaythai') {
+    filteredTracks = currentTracks
+      .filter(track => track.style === 'Muay Thai')
+      .map(track => <TrackItem key={track._id} track={track}  />)
+  }
+
   if (filter.sort === 'all') {
     filteredTracks = currentTracks.map(track => <TrackItem key={track._id} track={track}  />)
   }

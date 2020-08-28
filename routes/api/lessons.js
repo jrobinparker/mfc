@@ -234,7 +234,6 @@ router.get('/videos/:filename', (req, res) => {
     /** Calculate Size of file */
       const { length } = file;
       const range = req.headers.range;
-
       /** Check for Range header */
       if (range) {
         /** Extracting Start and End value from Range Header */
@@ -279,26 +278,10 @@ router.get('/videos/:filename', (req, res) => {
 
       } else {
 
-        res.writeHead(200, {
-          "Content-Length": length,
-          "Content-Type": "video/mp4"
-        });
-
-        let readable = videos.createReadStream({
-          _id: file._id,
-          range: {
-            startPos: start,
-            endPos: end
-          }
-        });
-        pipeline(readable, res, err => {
-          console.log(err);
-        });
+        let readstream = gfs.createReadStream(file.filename);
+        readstream.pipe(res)
 
       }
-
-     // let readstream = gfs.createReadStream(file.filename);
-     // readstream.pipe(res);
 
    }
 )});
