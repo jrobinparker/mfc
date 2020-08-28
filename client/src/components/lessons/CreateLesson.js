@@ -90,7 +90,7 @@ const CreateLesson = ({ loadUser, auth, createLesson, uploadVideo, history }) =>
   }
 
   const extractThumbnail = async filename => {
-    let fileData = { url: `http://localhost:5000/api/lessons/videos/${filename}` }
+    let fileData = { url: `https://modernfightingconcepts.herokuapp.com/api/lessons/videos/${filename}` }
 
     let fileName
     const response = await axios.post('/api/lessons/temp-thumbnails', fileData)
