@@ -69,7 +69,7 @@ const Tracks = ({ track: { tracks, loading }, getTracks }) => {
 
   if (filter.style === 'bjj') {
     filteredTracks = currentTracks
-      .filter(track => track.style === 'Brazilian Jiu-Jitsu')
+      .filter(track => track.style === 'Brazilian Jiu-jitsu')
       .map(track => <TrackItem key={track._id} track={track}  />)
   }
 

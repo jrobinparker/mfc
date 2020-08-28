@@ -70,7 +70,7 @@ const Lessons = ({ lesson: { lessons, loading }, getLessons, loadUser, auth: { u
 
   if (filter.style === 'bjj') {
     filteredLessons = currentLessons
-      .filter(lesson => lesson.style === 'Brazilian Jiu-Jitsu')
+      .filter(lesson => lesson.style === 'Brazilian Jiu-jitsu')
       .map(lesson => <LessonItem key={lesson._id} lesson={lesson}  user={user} />)
   }
 
