@@ -280,7 +280,7 @@ router.get('/videos/:filename', (req, res) => {
       } else {
 
         res.writeHead(200, {
-          "Content-Length": size,
+          "Content-Length": length,
           "Content-Type": "video/mp4"
         });
 
