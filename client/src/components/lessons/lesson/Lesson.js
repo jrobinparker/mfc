@@ -43,9 +43,9 @@ const Lesson = ({ getLesson, getCurrentProfile, setAlert, addLike, removeLike, a
             width='100%'
             height='50%'
             playsInline={true}
-            loop={true}
             muted={true}
-            playing={true}
+            config={{ file: { attributes: { controlsList: 'nodownload' } } }}
+            onContextMenu={e => e.preventDefault()}
             onStart={() => addInProgress(lesson._id)}
             onEnded={() => addComplete(lesson._id)}
           />

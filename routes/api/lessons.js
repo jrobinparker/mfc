@@ -278,10 +278,26 @@ router.get('/videos/:filename', (req, res) => {
 
       } else {
 
-        let readstream = gfs.createReadStream(file.filename);
-        readstream.pipe(res)
+        res.writeHead(200, {
+          "Content-Length": length,
+          "Content-Type": "video/mp4"
+        });
+
+        let readable = videos.createReadStream({
+          _id: file._id,
+          range: {
+            startPos: start,
+            endPos: end
+          }
+        });
+        pipeline(readable, res, err => {
+          console.log(err);
+        });
 
       }
+
+     // let readstream = gfs.createReadStream(file.filename);
+     // readstream.pipe(res);
 
    }
 )});
