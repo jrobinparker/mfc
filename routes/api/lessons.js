@@ -202,7 +202,7 @@ function uploadThumbnail(filePath) {
   const formData = {
       file: fs.createReadStream(filePath),
   }
-  request.post({url: 'http://localhost:5000/api/lessons/thumbnails', formData: formData},
+  request.post({url: 'https://modernfightingconcepts.herokuapp.com/api/lessons/thumbnails', formData: formData},
     function optionalCallback(err, httpResponse, body) {
     if (err) {
       return console.error('upload failed:', err);
