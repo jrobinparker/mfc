@@ -169,6 +169,12 @@ router.post("/temp-thumbnails", (req, res) => {
 
     let fileName, filePath, fileDuration
 
+    const dir = './thumbnails';
+
+    if (!fs.existsSync(dir)){
+        fs.mkdirSync(dir);
+    }
+
     ffmpeg.ffprobe(req.body.url, function(err, metadata) {
         fileDuration = metadata.format.duration
     });
@@ -177,7 +183,7 @@ router.post("/temp-thumbnails", (req, res) => {
         .on('filenames', function (filenames) {
             console.log(filenames)
             fileName = filenames[0];
-            filePath =  "uploads/thumbnails/" + filenames[0];
+            filePath =  "thumbnails/" + filenames[0];
         })
         .on('end', function (filenames) {
             console.log('Screenshots taken for ' + fileName);
@@ -191,7 +197,7 @@ router.post("/temp-thumbnails", (req, res) => {
         })
         .screenshots({
             count: 1,
-            folder: 'uploads/thumbnails',
+            folder: 'thumbnails',
             size: '320x240',
             filename: 'thumbnail-%b.png'
         });
