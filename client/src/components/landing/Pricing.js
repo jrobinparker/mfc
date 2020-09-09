@@ -5,18 +5,15 @@ const Pricing = ({settings}) => {
   const onlinePrice = onlineInfo.slice(0, 1)
   const onlineFeatures = onlineInfo.slice(1)
 
-  const dojoInfo = settings[1].text.split(',')
+  const dojoInfo = settings[1].text.split('.')
   const dojoPrice = dojoInfo.slice(0, 1)
-  const dojoFeatures = dojoInfo.slice(1)
+  let dojoFeatures = dojoInfo.slice(1)
 
   return (
       <div className="pricing" id="pricing">
           <span className="title mfc-title pricing-header">MEMBERSHIP & PRICING</span>
           <div className="features">
             <div className="feature">
-              <div className="feature-img">
-                <img src={require('../../assets/about-img.jpg')} alt="dojo-img" />
-              </div>
               <h1 className="title mfc-title feature-header">{settings[1].title}</h1>
                 <div>
                   {dojoPrice}
@@ -34,9 +31,6 @@ const Pricing = ({settings}) => {
                 </div>
             </div>
             <div className="feature">
-            <div className="feature-img">
-              <img src={require('../../assets/monitor.jpg')} id="monitor" alt="mfc-online" />
-            </div>
               <h1 className="title mfc-title feature-header">{settings[0].title}</h1>
                 <div>
                   {onlinePrice}

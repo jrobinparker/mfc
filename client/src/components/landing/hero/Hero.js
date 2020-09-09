@@ -13,7 +13,7 @@ const Hero = () => {
             <div
               className="banner-button"
               onClick={() => {
-                document.getElementById('dojo').scrollIntoView({behavior: 'smooth'})
+                document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})
               }}>
                 About Us
             </div>

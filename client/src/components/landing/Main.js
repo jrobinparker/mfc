@@ -20,8 +20,6 @@ const Main = ({ getSettings, settings: {settings, loading} }) => {
   return loading ? <Loading /> : (
       <div id="main">
         <Hero />
-        <Dojo settings={dojoSettings} />
-        <About settings={aboutSettings} />
         <Pricing settings={priceSettings} />
         <Contact />
       </div>

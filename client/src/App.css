@@ -255,14 +255,11 @@ html {
   height: 100vh;
   width: 100vw;
   font-size: 2rem;
-  letter-spacing: -3px;
 }
 
 .pricing-header {
-  position: relative;
+  position: absolute;
   font-family: 'Fjalla One', sans-serif;
-  position: relative;
-  top: 0%;
 }
 
 .pricing-top {
@@ -281,9 +278,9 @@ html {
 }
 
 .features {
-  width: 100%;
   position: relative;
-  top: 10%;
+  top: 20%;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   text-align: center;
@@ -751,14 +748,8 @@ html {
 
   /* pricing */
 
-  .pricing-header {
-    position: absolute;
-    top: 60%;
-  }
-
   .features {
     flex-direction: column;
-    top: 12%;
   }
 
   .feature {
@@ -777,9 +768,12 @@ html {
     display: none;
   }
 
-  .feature div, .feature ul li{
+  .feature div {
     font-size: 5vw;
-    letter-spacing: -2px;
+  }
+
+  .feature ul {
+    font-size: 5vw;
   }
 
 
@@ -824,7 +818,7 @@ html {
 }
 
 /* small to medium phones - landscape mode */
-@media all and (orientation: landscape) and (max-width: 568px) {
+@media all and (orientation: landscape) and (max-width: 569px) {
 
 
   /* nav */
@@ -958,8 +952,6 @@ html {
   /* pricing */
 
   .pricing-header {
-    position: absolute;
-    top: 60%;
   }
 
   .features {
@@ -979,9 +971,9 @@ html {
     display: none;
   }
 
-  .feature div, .feature ul li{
-    font-size: 3vw;
-    letter-spacing: -2px;
+
+  .feature ul li {
+    font-size: 2vw;
   }
 
 
@@ -1072,7 +1064,7 @@ html {
   }
 
   .mfc-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .subtitle {
@@ -1145,7 +1137,6 @@ html {
 
   .features {
     flex-direction: column;
-    top: 5%;
   }
 
   .feature {
@@ -1164,9 +1155,12 @@ html {
     display: none;
   }
 
-  .feature div, .feature ul li{
+  .feature div, .feature ul {
     font-size: 5vw;
-    letter-spacing: -2px;
+  }
+
+  .feature ul {
+    padding: 5%;
   }
 
 
@@ -1341,11 +1335,6 @@ html {
 
   /* pricing */
 
-  .pricing-header {
-    position: absolute;
-    top: 60%;
-  }
-
   .features {
     flex-direction: row;
     top: 15%;
@@ -1363,9 +1352,8 @@ html {
     display: none;
   }
 
-  .feature div, .feature ul li{
-    font-size: 3vw;
-    letter-spacing: -2px;
+  .feature ul li {
+    font-size: 2vw;
   }
 
 
@@ -1535,14 +1523,8 @@ html {
 
   /* pricing */
 
-  .pricing-header {
-    position: absolute;
-    top: 60%;
-  }
-
   .features {
     flex-direction: row;
-    top: 15%;
   }
 
   .feature {
@@ -1557,9 +1539,8 @@ html {
     display: none;
   }
 
-  .feature div, .feature ul li{
-    font-size: 3vw;
-    letter-spacing: -2px;
+  .feature div, .feature ul {
+    font-size: 2vw;
   }
 
 
@@ -1653,12 +1634,8 @@ html {
 
   /* pricing */
 
-  .feature {
-    font-size: 2rem;
-  }
-
   .feature-header {
-    font-size: 2rem;
+    font-size: 4vw;
   }
 
   .feature-img {
@@ -1771,7 +1748,7 @@ html {
 
   .features {
     flex-direction: row;
-    top: 15%;
+    top: 20%;
   }
 
   .feature {
@@ -1779,16 +1756,15 @@ html {
   }
 
   .feature-header {
-    font-size: 3vw;
+    font-size: 4vw;
   }
 
   .feature-img {
     display: none;
   }
 
-  .feature div, .feature ul li{
+  .feature div, .feature ul {
     font-size: 3vw;
-    letter-spacing: -2px;
   }
 
 
@@ -1864,7 +1840,6 @@ html {
   /* pricing */
 
   .features {
-    top: 1%;
   }
 
   .feature-img {
@@ -1886,6 +1861,14 @@ html {
 
   .feature ul, .feature div {
     font-size: 2vw;
+  }
+
+  .feature ul {
+    width: 70%;
+  }
+
+  .feature ul li {
+    margin-bottom: 5%;
   }
 
   /* contact */
@@ -1940,7 +1923,6 @@ html {
   /* pricing */
 
   .features {
-    top: 5%;
   }
 
   .feature-img {
@@ -1961,6 +1943,9 @@ html {
   }
 
   .feature ul, .feature div {
-    font-size: 2vw;
+  }
+
+  .feature ul li {
+    margin-bottom: 5%;
   }
 }
