@@ -20,7 +20,7 @@ const RegisterPayPal = ({ prevStep, onSubmit }) => {
         },
         createSubscription: async (data, actions) => {
           return actions.subscription.create({
-            'plan_id': 'P-53H03222WM693071DL4TT2UY'
+            'plan_id': 'P-6FC81467G3648802GL5P3E7Y'
           });
         },
         onApprove: async (data, actions) => {
