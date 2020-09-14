@@ -3,7 +3,7 @@ import React from 'react';
  const ProfileWidget = ({ name, inProgress, completedLessons, completedTracks }) => {
 
    return (
-     <div className="hero is-medium is-primary is-bold">
+     <div className="hero is-medium is-bold">
         <div className="hero-body">
           <div className="container">
             <h1 className="title">

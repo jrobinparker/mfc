@@ -12,6 +12,10 @@
   position: relative;
   top: -1%;
   margin-bottom: 1%;
+  background-color: gray;
+  background-image: url('../../assets/logo-transparent.png');
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .hero-body {
@@ -35,6 +39,7 @@
   letter-spacing: -3px;
   background-color: black;
   padding-right: 5px;
+  color: white;
 }
 
 .profile-edit {
