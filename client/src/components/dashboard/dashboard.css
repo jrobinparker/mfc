@@ -108,6 +108,10 @@
     display: none;
   }
 
+  .modal-card-head p {
+    max-width: 90%;
+  }
+
   .profile-lessons {
     position: relative;
     left: 5%;
@@ -136,6 +140,10 @@
 
   #root {
     height: 100vh;
+  }
+
+  .modal-card-head p {
+    max-width: 90%;
   }
 
   .hero-body {
