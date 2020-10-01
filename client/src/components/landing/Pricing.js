@@ -9,6 +9,16 @@ const Pricing = ({settings}) => {
   const dojoPrice = dojoInfo.slice(0, 1)
   let dojoFeatures = dojoInfo.slice(1)
 
+  const highlightLogin = () => {
+    const navbar = document.querySelector('.mfc-navbar')
+    const login = document.getElementById('login')
+    navbar.scrollIntoView({ behavior: 'smooth' })
+    login.style.backgroundColor = 'black'
+    login.style.color = 'white'
+    login.style.textTransform = 'uppercase'
+    login.classList.add('shake-bottom')
+  }
+
   return (
       <div className="pricing" id="pricing">
           <span className="title mfc-title pricing-header">MEMBERSHIP & PRICING</span>
@@ -39,7 +49,12 @@ const Pricing = ({settings}) => {
                   {onlineFeatures.map(f => <li>{f}</li>)}
                 </ul>
                 <div>
-                  Click Sign Up to get started
+                  Click
+                    <span
+                      style={{ textDecoration: 'underline', fontWeight: 'bold', cursor: 'pointer', marginLeft: '5px' }}
+                      onClick={() => highlightLogin()}>
+                      Sign Up
+                    </span> in the navigation menu to get started
                 </div>
             </div>
           </div>

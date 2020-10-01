@@ -13,7 +13,7 @@ const Contact = () => {
           </div>
           <div className="contact-social">
             <SocialLink link={'http://www.facebook.com/abseconmartialarts/'} imgSrc={'facebook.svg'} />
-            <SocialLink link={'http://mfcmma.com/contact.html'} imgSrc={'youtube.svg'} />
+            <SocialLink link={'https://www.youtube.com/channel/UCa9s2SV9zEJUhkerSk6lQJg'} imgSrc={'youtube.svg'} />
             <SocialLink link={'http://www.instagram.com/joeparkerjr53'} imgSrc={'instagram.svg'} />
           </div>
           <div className="contact-footer">

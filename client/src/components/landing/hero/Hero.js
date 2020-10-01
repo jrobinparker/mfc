@@ -15,7 +15,7 @@ const Hero = () => {
               onClick={() => {
                 document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})
               }}>
-                About Us
+                Pricing
             </div>
           </div>
           </div>
