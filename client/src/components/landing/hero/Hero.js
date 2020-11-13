@@ -9,15 +9,6 @@ const Hero = () => {
           <img src={require('../../../assets/logo-transparent.png')} className="hero-img" alt="sparring" />
           <span className="title mfc-title banner-text banner-header">MODERN FIGHTING CONCEPTS</span>
           <h2 className="subtitle">Dojo & Online University</h2>
-          <div className="banner-buttons">
-            <div
-              className="banner-button"
-              onClick={() => {
-                document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})
-              }}>
-                Pricing
-            </div>
-          </div>
           </div>
         </div>
         </div>

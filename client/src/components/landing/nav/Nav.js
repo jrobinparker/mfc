@@ -17,8 +17,6 @@ const Nav = ({ auth: { isAuthenticated, loading, user }, logout }) => {
 
   const guestLinks = (
     <div className="guest-links">
-      <NavLink link={'Pricing'} id={'pricing'} />
-      <NavLink link={'Contact'} id={'contact'} />
       <span className="nav-brand" id="login" onClick={() => toggleModal(true)}>Login / Sign Up</span>
     </div>
   )

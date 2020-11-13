@@ -35,7 +35,7 @@ const RegisterPayPal = ({ prevStep, onSubmit }) => {
   }, [onSubmit]);
   return (
     <div className="paypal">
-      <h1 className="title">MFC Online University Monthly Subscription - $20/month</h1>
+      <h1 className="title">MFC Online University Monthly Subscription - $10/month</h1>
       <p>Select a payment option to create your account.</p>
       <div ref={payPalRef} />
     </div>

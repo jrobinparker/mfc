@@ -37,9 +37,6 @@ const GuestNav = props => {
     <nav className="mfc-navbar">
         <img src={require('../../../assets/logo-transparent.png')} className="logo" alt="logo"/>
         <NavLink link={'Modern Fighting Concepts'} id={'home'} />
-        <NavLink link={'About'} id={'dojo'} />
-        <NavLink link={'Pricing'} id={'pricing'} />
-        <NavLink link={'Contact'} id={'contact'} />
         <span className="nav-brand" id="login" onClick={() => toggleModal(true)}>Login / Sign Up</span>
         { !modal ? <></> : <AuthModal toggleModal={toggleModal} /> }
     </nav>

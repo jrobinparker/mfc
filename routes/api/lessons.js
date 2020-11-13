@@ -21,7 +21,6 @@ const User = require('../../models/User');
 
 // Mongo URI
 const uri = "mongodb+srv://mfc-online-admin:mfcAdmin0520@mfc-online-db-c7fzs.mongodb.net/test?retryWrites=true&w=majority";
-
 // Create mongo connection
 const conn = mongoose.createConnection(uri);
 

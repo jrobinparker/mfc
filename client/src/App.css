@@ -123,7 +123,7 @@ html {
   display: flex;
   flex-direction: row;
   width: 50%;
-  justify-content: space-around;
+  justify-content: flex-end;
   margin-left: auto;
 }
 
