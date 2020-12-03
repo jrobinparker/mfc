@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator/check');
 const auth = require('../../middleware/auth');
+const db = config.get('mongoURI');
+const thumbURL = config.get('thumbURL');
 const path = require('path');
 const fs = require('fs');
 const request = require('request');
@@ -20,7 +22,7 @@ const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
 // Mongo URI
-const uri = "mongodb+srv://mfc-online-admin:mfcAdmin0520@mfc-online-db-c7fzs.mongodb.net/test?retryWrites=true&w=majority";
+const uri = db;
 // Create mongo connection
 const conn = mongoose.createConnection(uri);
 
@@ -207,7 +209,7 @@ function uploadThumbnail(filePath) {
   const formData = {
       file: fs.createReadStream(filePath),
   }
-  request.post({url: 'https://modernfightingconcepts.herokuapp.com/api/lessons/thumbnails', formData: formData},
+  request.post({url: thumbURL, formData: formData},
     function optionalCallback(err, httpResponse, body) {
     if (err) {
       return console.error('upload failed:', err);
