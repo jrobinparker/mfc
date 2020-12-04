@@ -2,8 +2,8 @@
 https://www.mfcuniversity.com/
 
 # about
-MFC Online University is an online training portal for Modern Fighting Concepts in Absecon, New Jersey. Primarily designed for students who cannot attend live classes due to COVID-19, users can create a paid account to view online videos uploaded by the instructors. This MERN app uses express and mongodb on the back end, bcrypt and jwt for authentication, redux for state management, and react for the front end. Videos are processed using ffmpeg and saved in mongodb using grid-fs.
- 
+MFC Online University is an online training portal for Modern Fighting Concepts in Absecon, New Jersey. Primarily designed for students who cannot attend live classes due to COVID-19, users can create a paid account to view online videos uploaded by the instructors.
+
 # features / frameworks / npm packages used
 * Backend
   * Nodejs / Express (API)
