@@ -20,7 +20,6 @@ MFC Online University is an online training portal for Modern Fighting Concepts 
     * Users receive credit once the entire video is complete
   * Font Awesome
   * Paypal API
-  * Bulma CSS
 * Other
   * Admin components for creating/deleting videos and viewing list of completions
   * Lessons can be combined into a track
